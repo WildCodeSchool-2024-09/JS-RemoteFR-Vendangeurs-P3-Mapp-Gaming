@@ -2,27 +2,45 @@
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    fontFamily: {
-      title: ["Krungthep", "sans-serif"],
-      text: ["Krub", "sans-serif"],
-    },
-    colors: {
-      background: "#050C1A",
-      primary: "#E3FFF4",
-      secondary: {
-        100: "#8402FF",
-        150: "#FF8C00",
-        200: "#FF0062",
-        250: "#00FFB3",
-        300: "#00BBFF",
-        350: "#B9AB99",
+    extend: {
+      fontFamily: {
+        title: ["Krungthep", "sans-serif"],
+        text: ["Krub", "sans-serif"],
+      },
+
+      colors: {
+        orange: {
+          primary: "#ff8c00",
+          secondary: "#8402ff",
+          bg: "#050c1a",
+          text: "#e3fff4",
+        },
+        red: {
+          primary: "#ff0062",
+          secondary: "#00ffb3",
+          bg: "#050c1a",
+          text: "#e3fff4",
+        },
+        blue: {
+          primary: "#00bbff",
+          secondary: "#8402ff",
+          bg: "#050c1a",
+          text: "#e3fff4",
+        },
+        green: {
+          primary: "#00ffb3",
+          secondary: "#8402ff",
+          bg: "#050c1a",
+          text: "#e3fff4",
+        },
+        purple: {
+          primary: "#8402ff",
+          secondary: "#00ffb3",
+          bg: "#050c1a",
+          text: "#e3fff4",
+        },
       },
     },
-    screens: {
-      laptop: "1024px",
-      desktop: "1440px",
-    },
-    extend: {},
   },
   plugins: [],
 };
