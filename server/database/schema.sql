@@ -55,3 +55,16 @@ create table buy (
   foreign key (game_id) references video_games(id),
   foreign key (user_id) references user(id)
 );
+
+insert into table profile (information, wallet, basket, wishlist, comment, user_management, games_management, articles_management, activity_report, user_id)
+ values (
+ 'Maria, Marchal, MariaM, maria.marchal@gmail.com, password', 
+ '23.98€', 
+ '["Tomb raider", "Uncharted"]', 
+ '["Les sims 4", "Mario kart"]', 
+ 'super jeu, très bon rapport qualité prix', 
+ false, 
+ false, 
+ false, 
+ false, 
+ 1);
