@@ -6,7 +6,7 @@ const ConnexionLogin = () => {
         CONNEXION
       </h2>
 
-      {/* FORMULAIE */}
+      {/* FORMULAIRE */}
       <div className="justify-center w-full max-w-md p-8 bg-[#1a1a2e] border border-orange-500 rounded-lg shadow-lg">
         <form>
           <div className="flex flex-col">
