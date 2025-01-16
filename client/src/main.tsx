@@ -19,11 +19,7 @@ const router = createBrowserRouter([
     path: "/",
     element: <App />,
     children: [
-      {
-        path: "Home",
-        element: <HomePage />,
-        // loader: () =>fetch(``
-      },
+      { path: "", element: <HomePage /> },
       { path: "Login", element: <ConnectionPage /> },
       { path: "Game", element: <GamePage /> },
       { path: "Profile", element: <ProfilePage /> },

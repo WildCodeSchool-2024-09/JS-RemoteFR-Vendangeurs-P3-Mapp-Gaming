@@ -1,10 +1,14 @@
-import VideoGames from "../components/VideoGames";
+import Avenir from "../components/AvenirSection";
+import Precommande from "../components/PrecommandeSection";
+import Tendance from "../components/TendanceSection";
 
 const HomePage = () => {
   return (
     <div>
       <h1>Home Page</h1>
-      <VideoGames />
+      <Tendance />
+      <Precommande />
+      <Avenir />
     </div>
   );
 };

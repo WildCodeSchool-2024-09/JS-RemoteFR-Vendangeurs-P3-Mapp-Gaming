@@ -1,7 +1,7 @@
 import axios from "axios";
 import react, { useEffect } from "react";
 
-interface videoGame {
+interface Avenir {
   id: number;
   title: string;
   price: number;
@@ -10,8 +10,8 @@ interface videoGame {
   category: string;
 }
 
-const VideoGames = () => {
-  const [videoGames, setVideoGames] = react.useState<videoGame[]>([]);
+const Avenir = () => {
+  const [videoGames, setVideoGames] = react.useState<Avenir[]>([]);
 
   useEffect(() => {
     axios.get("https://localhost:3310/api/videoGames").then((response) => {
@@ -21,12 +21,12 @@ const VideoGames = () => {
   }, []);
 
   return (
-    <div className="tendance-section">
-      <h2>Jeux Tendance</h2>
-      <div className="tendance-container">
+    <div className="Avenir-section">
+      <h2>A venir</h2>
+      <div className="Avenir-container">
         {videoGames.map((videoGame) => {
           return (
-            <div key={videoGame.id} className="tendance-card">
+            <div key={videoGame.id} className="Avenir-card">
               <h3>{videoGame.title}</h3>
               <p>{videoGame.price} €</p>
               <p>{videoGame.platform}</p>
@@ -38,4 +38,4 @@ const VideoGames = () => {
   );
 };
 
-export default VideoGames;
+export default Avenir;
