@@ -15,4 +15,12 @@ router.post("/api/items", itemActions.add);
 
 /* ************************************************************************* */
 
+import videoGamesAction from "./modules/videoGames/videoGamesAction";
+
+router.get("/api/videoGames", videoGamesAction.browse);
+router.get("/api/videoGames/:id", videoGamesAction.read);
+router.put("/api/videoGames/:id", videoGamesAction.edit);
+router.post("/api/videoGames", videoGamesAction.add);
+router.delete("/api/videoGames/:id", videoGamesAction.remove);
+
 export default router;

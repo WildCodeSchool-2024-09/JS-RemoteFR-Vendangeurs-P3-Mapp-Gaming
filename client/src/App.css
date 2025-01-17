@@ -5,52 +5,67 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  :root {
-    --color-background: #050c1a;
-    --color-primary: #ff8c00;
-    --color-text-base: #e3fff4;
-    --font-family: "Krub", sans-serif;
-    --font-family-title: "Krungthep", sans-serif;
-  }
+.theme-orange {
+  --color-primary: #ff8c00;
+  --color-secondary: #8402ff;
+  --color-bg-primary: #050c1a;
+  --color-text-primary: #e3fff4;
 }
 
-.theme-admin {
-  --color-background: #050c1a;
-  --color-primary: #b9ab99;
-  ----color-text-base: #e3fff4;
-  --font-family: "Krub", sans-serif;
-  --font-family-title: "Krungthep", sans-serif;
-}
-
-.theme-xbox {
-  --color-background: #050c1a;
-  --color-primary: #00ffb3;
-  --color-text-base: #e3fff4;
-  --font-family: "Krub", sans-serif;
-  --font-family-title: "Krungthep", sans-serif;
-}
-
-.theme-play {
-  --color-background: #050c1a;
-  --color-primary: #00bbff;
-  --color-text-base: #e3fff4;
-  --font-family: "Krub", sans-serif;
-  --font-family-title: "Krungthep", sans-serif;
-}
-
-.theme-pc {
-  --color-background: #050c1a;
-  --color-primary: #8402ff;
-  --color-text-base: #e3fff4;
-  --font-family: "Krub", sans-serif;
-  --font-family-title: "Krungthep", sans-serif;
-}
-
-.theme-nintendo {
-  --color-background: #050c1a;
+.theme-red {
   --color-primary: #ff0062;
-  --color-text-base: #e3fff4;
-  --font-family: "Krub", sans-serif;
-  --font-family-title: "Krungthep", sans-serif;
+  --color-secondary: #00ffb3;
+  --color-bg-primary: #050c1a;
+  --color-text-primary: #e3fff4;
+}
+
+.theme-blue {
+  --color-primary: #00bbff;
+  --color-secondary: #8402ff;
+  --color-bg-primary: #050c1a;
+  --color-text-primary: #e3fff4;
+}
+
+.theme-green {
+  --color-primary: #00ffb3;
+  --color-secondary: #8402ff;
+  --color-bg-primary: #050c1a;
+  --color-text-primary: #e3fff4;
+}
+
+.theme-purple {
+  --color-primary: #8402ff;
+  --color-secondary: #00ffb3;
+  --color-bg-primary: #050c1a;
+  --color-text-primary: #e3fff4;
+}
+
+@layer utilities {
+  .bg-bg-primary {
+    background-color: var(--color-bg-primary);
+  }
+
+  .text-color-text-primary {
+    color: var(--color-text-primary);
+  }
+
+  .text-color-text-secondary {
+    color: var(--color-secondary);
+  }
+
+  .bg-primary {
+    background-color: var(--color-primary);
+  }
+
+  .text-primary {
+    color: var(--color-primary);
+  }
+
+  .bg-secondary {
+    background-color: var(--color-secondary);
+  }
+
+  .text-secondary {
+    color: var(--color-secondary);
+  }
 }

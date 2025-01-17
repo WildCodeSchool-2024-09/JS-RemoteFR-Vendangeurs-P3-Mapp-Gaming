@@ -11,6 +11,7 @@ import ConnectionPage from "./pages/ConnectionPage";
 import GamePage from "./pages/GamePage";
 import HomePage from "./pages/HomePage";
 import ProfilePage from "./pages/ProfilePage";
+import SoloGamePage from "./pages/SoloGamePage";
 
 /* ************************************************************************* */
 
@@ -22,6 +23,7 @@ const router = createBrowserRouter([
       { path: "/", element: <HomePage /> },
       { path: "/login", element: <ConnectionPage /> },
       { path: "/game", element: <GamePage /> },
+      { path: "/sologame", element: <SoloGamePage /> },
       { path: "/profile", element: <ProfilePage /> },
       { path: "*", element: <NotFound /> },
     ],

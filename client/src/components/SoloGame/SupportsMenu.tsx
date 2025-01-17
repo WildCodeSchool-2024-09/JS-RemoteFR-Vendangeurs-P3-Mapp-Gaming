@@ -12,7 +12,7 @@ export default function SupportsMenu() {
     { id: 4, title: "PC" },
   ];
   return (
-    <div className="text-primary bg-background p-4">
+    <div className="text-primary bg-background p-4 w-96">
       <div className="flex items-center justify-between">
         <button
           type="button"
