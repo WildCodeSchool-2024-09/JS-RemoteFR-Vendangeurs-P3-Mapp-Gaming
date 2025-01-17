@@ -14,7 +14,7 @@ create table user (
   firstname varchar(100) not null,
   lastname varchar(100) not null,
   username varchar(100) not null,
-  email varchar(100) not null,
+  email varchar(100) not null unique,
   password varchar(100) not null,
   date_of_creation date not null,
   membership varchar(100) not null,
@@ -24,7 +24,7 @@ create table user (
 create table profile (
   id int unsigned primary key auto_increment not null,
   information VARCHAR(255) not null,
-  wallet VARCHAR(255) not null,
+  wallet decimal(10, 2) not null,
   basket VARCHAR(255) not null,
   wishlist VARCHAR(255) not null,
   comment VARCHAR(255) not null,
@@ -39,7 +39,7 @@ create table profile (
 create table rating (
   id int unsigned primary key auto_increment not null,
   rate int unsigned not null,
-  review VARCHAR(255) not null,
+  review TEXT not null,
   game_id int unsigned not null,
   user_id int unsigned not null,
   foreign key (game_id) references videoGames(id),
@@ -61,8 +61,10 @@ create table trending (
   viewes int unsigned not null
 );
 
-create table appear(
+create table game_trending(
   id int unsigned primary key auto_increment not null,
+  game_id int unsigned not null,
+  trending_id int unsigned not null,
   foreign key (game_id) references videoGames(id),
   foreign key (trending_id) references trending(id)
 );
@@ -73,7 +75,8 @@ create table preorder(
   title VARCHAR(255) not null,
   price decimal(10, 2) not null,
   release_date date not null,
-  category varchar(100) not null
+  category varchar(100) not null,
+  game_id int unsigned not null,
   foreign key (game_id) references videoGames(id)
 );
 
@@ -81,22 +84,25 @@ create table upcoming(
   id int unsigned primary key auto_increment not null,
   upcoming_date date not null,
   title VARCHAR(255) not null,
-  category varchar(100) not null
+  category varchar(100) not null,
+  game_id int unsigned not null,
   foreign key (game_id) references videoGames(id)
 );
 
 create table platforms(
   id int unsigned primary key auto_increment not null,
-  supported_platforms VARCHAR(255) not null,
+  supported_platforms varchar(255) not null
 );
 
 create table game_platforms(
-  id int unsigned primary key auto_increment not null,
-  foreign key (game_id) references videoGames(id)
+  id int primary key not null,
+  game_id int unsigned not null,
+  platform_id int unsigned not null,
+  foreign key (game_id) references videoGames(id),
   foreign key (platform_id) references platforms(id)
 );
 
-INSERT INTO videoGames (title, price, release_date,category) 
+INSERT INTO videoGames (title, price, release_date, category) 
 VALUES 
 ('The Legend of Zelda: Breath of the Wild', 59.99, '2017-03-03', 'Action-Adventure'),
 ('Super Mario Odyssey', 59.99, '2017-10-27', 'Platformer'),
@@ -143,10 +149,28 @@ VALUES
 ('Kingdom Come Deliverance', 29.99, '2018-02-13', 'Action-RPG'),
 ('Hogwarts Legacy', 59.99, '2023-02-10','RPG');
 
-INSERT INTO platforms (id,name) VALUES 
+INSERT INTO platforms (id,supported_platforms) VALUES 
 (1,'XBOX'),
 (2,'PS'),
 (3,'SWITCH'),
 (4,'PC');
 
+INSERT INTO user (firstname, lastname, username, email, password, date_of_creation, membership, is_admin)
+values(
+  'Maria', 'Marchal', 'MariaM', 'maria.marchal@gmail.com', 'password', '2022-01-14', 'Gold', true
+);
+
+INSERT INTO profile (information, wallet, basket, wishlist, comment, user_management, games_management, articles_management, activity_report, user_id)
+values(
+  'Maria, Marchal, MariaM, maria.marchal@gmail.com, password',
+  23.98,
+  'The Legend of Zelda: Breath of the Wild, Super Mario Odyssey',
+  'The Witcher 3: Wild Hunt, Red Dead Redemption 2',
+  'I love this game',
+  true,
+  true,
+  true,
+  true,
+  1
+);
 
