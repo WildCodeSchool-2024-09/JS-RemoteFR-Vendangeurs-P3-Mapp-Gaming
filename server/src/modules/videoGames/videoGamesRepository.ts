@@ -21,7 +21,7 @@ class videoGamesRepository {
   // The C of CRUD - Create operation
   async create(videoGames: Omit<videoGames, "id">) {
     const [result] = await databaseClient.query<Result>(
-      "INSERT INTO video_Games (title, price, release_date, platform, category, image1, image2, image3, image4, image5, description) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+      "INSERT INTO videoGames (title, price, release_date, platform, category, image1, image2, image3, image4, image5, description) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
       [
         videoGames.title,
         videoGames.price,
@@ -43,7 +43,7 @@ class videoGamesRepository {
   async read(id: number) {
     // Execute the SQL SELECT query to retrieve a specific item by its ID
     const [rows] = await databaseClient.query<Rows>(
-      "SELECT * FROM video_Games WHERE id = ?",
+      "SELECT * FROM videoGames WHERE id = ?",
       [id],
     );
     return rows[0] as videoGames;
@@ -51,9 +51,7 @@ class videoGamesRepository {
 
   async readAll() {
     // Execute the SQL SELECT query to retrieve all items from the "item" table
-    const [rows] = await databaseClient.query<Rows>(
-      "SELECT * FROM video_Games",
-    );
+    const [rows] = await databaseClient.query<Rows>("SELECT * FROM videoGames");
     return rows as videoGames[];
   }
 
@@ -61,7 +59,7 @@ class videoGamesRepository {
   async update(videoGames: videoGames) {
     // Execute the SQL UPDATE query to update an existing videoGames in the "videoGames" table
     const [result] = await databaseClient.query<Result>(
-      "UPDATE video_Games SET title = ?, price = ?, release_date = ?, platform = ?, category = ? image1 = ? image2 = ? image3 = ? image4 = ? image5 = ? description = ? WHERE id = ?",
+      "UPDATE videoGames SET title = ?, price = ?, release_date = ?, platform = ?, category = ? image1 = ? image2 = ? image3 = ? image4 = ? image5 = ? description = ? WHERE id = ?",
       [
         videoGames.title,
         videoGames.price,
@@ -83,11 +81,10 @@ class videoGamesRepository {
   // The D of CRUD - Delete operation
   async delete(id: number) {
     const [result] = await databaseClient.query<Result>(
-      "DELETE FROM video_Games WHERE id = ?",
+      "DELETE FROM videoGames WHERE id = ?",
       [id],
     );
     return result.affectedRows;
   }
 }
-
 export default new videoGamesRepository();
