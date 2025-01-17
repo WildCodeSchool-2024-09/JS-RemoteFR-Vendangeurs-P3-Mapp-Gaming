@@ -56,7 +56,7 @@ create table buy (
   foreign key (user_id) references user(id)
 );
 
-insert into table profile (information, wallet, basket, wishlist, comment, user_management, games_management, articles_management, activity_report, user_id)
+insert into profile (information, wallet, basket, wishlist, comment, user_management, games_management, articles_management, activity_report, user_id)
  values (
  'Maria, Marchal, MariaM, maria.marchal@gmail.com, password', 
  '23.98€', 
@@ -69,9 +69,9 @@ insert into table profile (information, wallet, basket, wishlist, comment, user_
  false, 
  1);
 
-  INSERT INTO USER (firstname, lastname, username, email, password, date_of_creation, membership, is_admin)
+  INSERT INTO USER (id, firstname, lastname, username, email, password, date_of_creation, membership, is_admin)
  VALUES 
-  ('Admin', 'System', 'admin', 'admin@mappgaming.com', 'Adminpa2word', '2024-12-31', 'Premium', true),
-  ('Marvin', 'Dupont', 'MarvD', 'marvin.dupont@gmail.com', 'Password1', '2025-01-01', 'Premium', false),
-  ('Aurélia', 'Martin', 'AureliaM', 'aurelia.martin@gmail.com', 'Password2', '2025-01-02', 'Premium', false),
-  ('Pénélope', 'Teixeira', 'PennyT', 'penelope.teixeira@gmail.com', 'Password3', '2025-01-03', 'Basic', false);
+  (1'Admin', 'System', 'admin', 'admin@mappgaming.com', 'Adminpa2word', '2024-12-31', 'Premium', true),
+  (2'Marvin', 'Dupont', 'MarvD', 'marvin.dupont@gmail.com', 'Password1', '2025-01-01', 'Premium', false),
+  (3'Aurélia', 'Martin', 'AureliaM', 'aurelia.martin@gmail.com', 'Password2', '2025-01-02', 'Premium', false),
+  (4'Pénélope', 'Teixeira', 'PennyT', 'penelope.teixeira@gmail.com', 'Password3', '2025-01-03', 'Basic', false);
