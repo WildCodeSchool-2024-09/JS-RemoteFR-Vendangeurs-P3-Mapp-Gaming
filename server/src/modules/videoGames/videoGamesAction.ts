@@ -40,6 +40,12 @@ const edit: RequestHandler = async (req, res, next) => {
       releaseDate: req.body.releaseDate,
       platform: req.body.platform,
       category: req.body.category,
+      image1: req.body.image1,
+      image2: req.body.image2,
+      image3: req.body.image3,
+      image4: req.body.image4,
+      image5: req.body.image5,
+      description: req.body.description,
     };
 
     const affectedRows = await videoGamesRepository.update(videoGame);
@@ -63,6 +69,12 @@ const add: RequestHandler = async (req, res, next) => {
       releaseDate: req.body.releaseDate,
       platform: req.body.platform,
       category: req.body.category,
+      image1: req.body.image1,
+      image2: req.body.image2,
+      image3: req.body.image3,
+      image4: req.body.image4,
+      image5: req.body.image5,
+      description: req.body.description,
     };
 
     const insertId = await videoGamesRepository.create(newVideoGame);

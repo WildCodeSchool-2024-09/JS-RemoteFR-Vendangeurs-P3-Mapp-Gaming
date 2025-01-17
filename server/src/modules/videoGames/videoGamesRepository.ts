@@ -9,19 +9,31 @@ type videoGames = {
   releaseDate: Date;
   platform: string;
   category: string;
+  image1: string;
+  image2: string;
+  image3: string;
+  image4: string;
+  image5: string;
+  description: string;
 };
 
 class videoGamesRepository {
   // The C of CRUD - Create operation
   async create(videoGames: Omit<videoGames, "id">) {
     const [result] = await databaseClient.query<Result>(
-      "INSERT INTO videoGames (title, price, release_date, platform, category) VALUES (?, ?, ?, ?, ?)",
+      "INSERT INTO videoGames (title, price, release_date, platform, category, image1, image2, image3, image4, image5, description) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
       [
         videoGames.title,
         videoGames.price,
         videoGames.releaseDate,
         videoGames.platform,
         videoGames.category,
+        videoGames.image1,
+        videoGames.image2,
+        videoGames.image3,
+        videoGames.image4,
+        videoGames.image5,
+        videoGames.description,
       ],
     );
     return result.insertId;
@@ -47,13 +59,19 @@ class videoGamesRepository {
   async update(videoGames: videoGames) {
     // Execute the SQL UPDATE query to update an existing videoGames in the "videoGames" table
     const [result] = await databaseClient.query<Result>(
-      "UPDATE videoGames SET title = ?, price = ?, release_date = ?, platform = ?, category = ? WHERE id = ?",
+      "UPDATE videoGames SET title = ?, price = ?, release_date = ?, platform = ?, category = ? image1 = ? image2 = ? image3 = ? image4 = ? image5 = ? description = ? WHERE id = ?",
       [
         videoGames.title,
         videoGames.price,
         videoGames.releaseDate,
         videoGames.platform,
         videoGames.category,
+        videoGames.image1,
+        videoGames.image2,
+        videoGames.image3,
+        videoGames.image4,
+        videoGames.image5,
+        videoGames.description,
         videoGames.id,
       ],
     );

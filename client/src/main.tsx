@@ -11,6 +11,7 @@ import ConnectionPage from "./pages/ConnectionPage";
 import GamePage from "./pages/GamePage";
 import HomePage from "./pages/HomePage";
 import ProfilePage from "./pages/ProfilePage";
+import SoloGamePage from "./pages/SoloGamePage";
 
 /* ************************************************************************* */
 
