@@ -87,4 +87,5 @@ class videoGamesRepository {
     return result.affectedRows;
   }
 }
+
 export default new videoGamesRepository();

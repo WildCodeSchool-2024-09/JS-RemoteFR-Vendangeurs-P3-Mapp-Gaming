@@ -1,7 +1,8 @@
 DROP DATABASE IF EXISTS MAPP_GAMING_DB;
 CREATE DATABASE MAPP_GAMING_DB;
 USE MAPP_GAMING_DB;
-create table videogames (
+
+create table videoGames (
   id int unsigned primary key auto_increment not null,
   title varchar(255) not null,
   price decimal(10, 2) not null,
@@ -21,17 +22,17 @@ create table user (
   firstname varchar(100) not null,
   lastname varchar(100) not null,
   username varchar(100) not null,
-  email varchar(100) not null,
+  email varchar(100) not null unique,
   password varchar(100) not null,
   date_of_creation date not null,
   membership varchar(100) not null,
-  is_admin boolean DEFAULT false
+  is_admin BOOLEAN DEFAULT false
 );
 
 create table profile (
   id int unsigned primary key auto_increment not null,
   information VARCHAR(255) not null,
-  wallet VARCHAR(255) not null,
+  wallet decimal(10, 2) not null,
   basket VARCHAR(255) not null,
   wishlist VARCHAR(255) not null,
   comment VARCHAR(255) not null,
@@ -45,20 +46,20 @@ create table profile (
 
 create table rating (
   id int unsigned primary key auto_increment not null,
-  user_id int unsigned not null,
-  game_id int unsigned not null,
   rate int unsigned not null,
   review TEXT not null,
+  game_id int unsigned not null,
+  user_id int unsigned not null,
   foreign key (game_id) references videoGames(id),
   foreign key (user_id) references user(id)
 );
 
 create table buy (
   id int unsigned primary key auto_increment not null,
-  user_id int unsigned not null,
-  game_id int unsigned not null,
   quantity_sold int unsigned not null,
   payment_date date not null,
+  game_id int unsigned not null,
+  user_id int unsigned not null,
   foreign key (game_id) references videoGames(id),
   foreign key (user_id) references user(id)
 );
@@ -134,6 +135,7 @@ insert into profile (information, wallet, basket, wishlist, comment, user_manage
 (2,'PS'),
 (3,'SWITCH'),
 (4,'PC');
+
 
  INSERT INTO videoGames (title, price, release_date, platform, category, image1, image2, image3, image4, image5, description) 
 VALUES 
