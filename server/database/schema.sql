@@ -7,7 +7,6 @@ create table videoGames (
   title varchar(255) not null,
   price decimal(10, 2) not null,
   release_date date not null,
-  platform varchar(100) not null,
   category varchar(100) not null,
   image1 varchar(255) not null,
   image2 varchar(255) not null,
@@ -136,10 +135,14 @@ insert into profile (information, wallet, basket, wishlist, comment, user_manage
 (3,'SWITCH'),
 (4,'PC');
 
+INSERT INTO rating (rate, review, game_id, user_id) VALUES
+(4, "super jeu, très bon jeu d'aventure" , 1, 1),
+(2, 'super jeu, très bon rapport qualité prix', 1, 2),
 
- INSERT INTO videoGames (title, price, release_date, platform, category, image1, image2, image3, image4, image5, description) 
+
+ INSERT INTO videoGames (title, price, release_date, category, image1, image2, image3, image4, image5, description) 
 VALUES 
-('Tomb Raider Definitive Edition', 19.99, '2014-01-28', 'PlayStation 4', 'Action-Adventure', '../../assets/images/tombraider.jpeg','../../assets/images/tombraider2.png','../../assets/images/tombraider3.jpg','../../assets/images/tombraider4.png','../../assets/images/tombraider5.webp',"L'aventure qui force la jeune et inexpérimentée Lara Croft à devenir une survivante endurcie a été remaniée pour les consoles nouvelle génération. Vous y retrouverez une Lara incroyablement détaillée et un environnement qui ressemble à s'y méprendre au monde réel. Lara doit endurer des combats intenses, personnaliser ses armes et son équipement pour survivre à sa première aventure et découvrir le secret mortel de l'île. La Definitive Edition du jeu d'action-aventure acclamé par la critique inclut des contenus bonus et regroupe tous les packs de contenu téléchargeable additionnels.");
+('Tomb Raider Definitive Edition', 19.99, '2014-01-28', 'Action-Adventure', '../../assets/images/tombraider.jpeg','../../assets/images/tombraider2.png','../../assets/images/tombraider3.jpg','../../assets/images/tombraider4.png','../../assets/images/tombraider5.webp',"L'aventure qui force la jeune et inexpérimentée Lara Croft à devenir une survivante endurcie a été remaniée pour les consoles nouvelle génération. Vous y retrouverez une Lara incroyablement détaillée et un environnement qui ressemble à s'y méprendre au monde réel. Lara doit endurer des combats intenses, personnaliser ses armes et son équipement pour survivre à sa première aventure et découvrir le secret mortel de l'île. La Definitive Edition du jeu d'action-aventure acclamé par la critique inclut des contenus bonus et regroupe tous les packs de contenu téléchargeable additionnels.");
 -- ('The Legend of Zelda: Breath of the Wild', 59.99, '2017-03-03', 'Nintendo Switch', 'Action-Adventure'),
 
 -- ('Super Mario Odyssey', 59.99, '2017-10-27', 'Nintendo Switch', 'Platformer'),

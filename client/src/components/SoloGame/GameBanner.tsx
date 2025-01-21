@@ -1,4 +1,5 @@
-// import { useEffect, useState } from "react";
+import axios from "axios";
+import react, { useEffect } from "react";
 import Check from "../../assets/icons/Check.svg";
 import StarP from "../../assets/icons/StarP.svg";
 import StarV from "../../assets/icons/StarV.svg";
@@ -8,30 +9,50 @@ import switchIcon from "../../assets/icons/switch.svg";
 import xbox from "../../assets/icons/xbox.svg";
 import tombraider from "../../assets/images/tombraider.jpeg";
 
-export default function GameBanner() {
-  // const [game, setGame] = useState(null);
+interface Games {
+  id: number;
+  title: string;
+  price: number;
+  releaseDate: Date;
+  platform: string;
+  category: string;
+  image1: string;
+  image2: string;
+  image3: string;
+  image4: string;
+  image5: string;
+  description: string;
+}
 
-  // useEffect(() => {
-  //   fetch("http://localhost:3310/api/Games")
-  //     .then((response) => response.json())
-  //     .then((data) => setGame(data));
-  // }, []);
+export default function GameBanner() {
+  const [videoGames, setVideoGames] = react.useState<Games[]>([]);
+
+  useEffect(() => {
+    axios.get("http://localhost:3310/api/videoGames").then((response) => {
+      setVideoGames(response.data);
+      console.info("Données OK: ", response.data);
+    });
+  }, []);
   return (
     <>
       <section className="flex items-center justify-between mb-4">
-        <div className="flex gap-4">
-          <h1>TOMB RAIDER</h1>
-          <div className="flex items-center gap-2">
-            <span>EN STOCK</span>
-            <img src={Check} alt="check" />
-          </div>
-          <div className="flex items-center gap-3">
-            <img src={pc} alt="pc" />
-            <img src={playstation} alt="playstation" />
-            <img src={xbox} alt="xbox" />
-            <img src={switchIcon} alt="switch" />
-          </div>
-        </div>
+        {videoGames.map((videoGame) => {
+          return (
+            <div key={videoGame.id} className="flex gap-4">
+              <h1>{videoGame.title}</h1>
+              <div className="flex items-center gap-2">
+                <span>{videoGame.category}</span>
+                <img src={Check} alt="check" />
+              </div>
+              <div className="flex items-center gap-3">
+                <img src={pc} alt="pc" />
+                <img src={playstation} alt="playstation" />
+                <img src={xbox} alt="xbox" />
+                <img src={switchIcon} alt="switch" />
+              </div>
+            </div>
+          );
+        })}
         <div className="flex items-center">
           <img src={StarP} alt="star" />
           <img src={StarP} alt="star" />
