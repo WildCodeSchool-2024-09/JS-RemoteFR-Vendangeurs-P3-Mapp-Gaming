@@ -1,4 +1,4 @@
-import type { NextFunction, Request, RequestHandler, Response } from "express";
+import type { NextFunction, Request, Response } from "express";
 import Joi from "joi";
 
 const validateDatas = (req: Request, res: Response, next: NextFunction) => {
@@ -6,12 +6,12 @@ const validateDatas = (req: Request, res: Response, next: NextFunction) => {
 
   console.info(req.body);
 
-  const userAction = Joi.object({
+  const schema = Joi.object({
     email: Joi.string().email().required(),
     password: Joi.string().min(6).required(),
   });
 
-  const { error } = userAction.validate(req.body);
+  const { error } = schema.validate(req.body);
 
   if (error) {
     console.info("erreur de validation des données", error.details);
