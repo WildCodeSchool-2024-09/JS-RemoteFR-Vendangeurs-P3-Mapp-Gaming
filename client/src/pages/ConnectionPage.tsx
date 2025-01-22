@@ -1,7 +1,9 @@
+import ConnexionLogin from "../components/ConnexionLogin";
+
 const ConnectionPage = () => {
   return (
     <div>
-      <h1>Connection Page</h1>
+      <ConnexionLogin />
     </div>
   );
 };
