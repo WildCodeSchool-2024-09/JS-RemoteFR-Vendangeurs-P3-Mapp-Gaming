@@ -14,7 +14,7 @@ const Avenir = () => {
   const [videoGames, setVideoGames] = react.useState<Avenir[]>([]);
 
   useEffect(() => {
-    axios.get("https://localhost:3310/api/videoGames").then((response) => {
+    axios.get("http://localhost:3310/api/videoGames").then((response) => {
       setVideoGames(response.data);
       console.info(response.data);
     });

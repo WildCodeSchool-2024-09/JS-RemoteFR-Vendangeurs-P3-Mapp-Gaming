@@ -8,7 +8,6 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import App from "./App";
 import NotFound from "./components/NotFound/NotFound";
 import ConnectionPage from "./pages/ConnectionPage";
-import GamePage from "./pages/GamePage";
 import HomePage from "./pages/HomePage";
 import ProfilePage from "./pages/ProfilePage";
 import SoloGamePage from "./pages/SoloGamePage";
@@ -21,9 +20,9 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       { path: "", element: <HomePage /> },
-      { path: "Login", element: <ConnectionPage /> },
-      { path: "Game", element: <GamePage /> },
-      { path: "Profile", element: <ProfilePage /> },
+      { path: "login", element: <ConnectionPage /> },
+      { path: "soloGamePage", element: <SoloGamePage /> },
+      { path: "profile", element: <ProfilePage /> },
       { path: "*", element: <NotFound /> },
     ],
   },

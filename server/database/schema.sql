@@ -7,14 +7,15 @@ create table videoGames (
   title varchar(255) not null,
   price decimal(10, 2) not null,
   release_date date not null,
-  platform varchar(100) not null,
   category varchar(100) not null,
   image1 varchar(255) not null,
   image2 varchar(255) not null,
   image3 varchar(255) not null,
   image4 varchar(255) not null,
   image5 varchar(255) not null,
-  description TEXT not null
+  description TEXT not null,
+  is_upcoming BOOLEAN DEFAULT false,
+  is_preorder BOOLEAN DEFAULT false
 );
 
 create table user (
@@ -66,35 +67,7 @@ create table buy (
 
 create table trending (
   id int unsigned primary key auto_increment not null,
-  viewes int unsigned not null
-);
-
-create table game_trending(
-  id int unsigned primary key auto_increment not null,
-  game_id int unsigned not null,
-  trending_id int unsigned not null,
-  foreign key (game_id) references videoGames(id),
-  foreign key (trending_id) references trending(id)
-);
-
-create table preorder(
-  id int unsigned primary key auto_increment not null,
-  is_preorder boolean not null,
-  title VARCHAR(255) not null,
-  price decimal(10, 2) not null,
-  release_date date not null,
-  category varchar(100) not null,
-  game_id int unsigned not null,
-  foreign key (game_id) references videoGames(id)
-);
-
-create table upcoming(
-  id int unsigned primary key auto_increment not null,
-  upcoming_date date not null,
-  title VARCHAR(255) not null,
-  category varchar(100) not null,
-  game_id int unsigned not null,
-  foreign key (game_id) references videoGames(id)
+  views int unsigned not null
 );
 
 create table platforms(
@@ -137,16 +110,15 @@ insert into profile (information, wallet, basket, wishlist, comment, user_manage
 (4,'PC');
 
 
- INSERT INTO videoGames (title, price, release_date, platform, category, image1, image2, image3, image4, image5, description) 
+ INSERT INTO videoGames (title, price, release_date, category, image1, image2, image3, image4, image5, description, is_upcoming, is_preorder) 
 VALUES 
-('Tomb Raider Definitive Edition', 19.99, '2014-01-28', 'PlayStation 4', 'Action-Adventure', '../../assets/images/tombraider.jpeg','../../assets/images/tombraider2.png','../../assets/images/tombraider3.jpg','../../assets/images/tombraider4.png','../../assets/images/tombraider5.webp',"L'aventure qui force la jeune et inexpérimentée Lara Croft à devenir une survivante endurcie a été remaniée pour les consoles nouvelle génération. Vous y retrouverez une Lara incroyablement détaillée et un environnement qui ressemble à s'y méprendre au monde réel. Lara doit endurer des combats intenses, personnaliser ses armes et son équipement pour survivre à sa première aventure et découvrir le secret mortel de l'île. La Definitive Edition du jeu d'action-aventure acclamé par la critique inclut des contenus bonus et regroupe tous les packs de contenu téléchargeable additionnels.");
--- ('The Legend of Zelda: Breath of the Wild', 59.99, '2017-03-03', 'Nintendo Switch', 'Action-Adventure'),
-
--- ('Super Mario Odyssey', 59.99, '2017-10-27', 'Nintendo Switch', 'Platformer'),
--- ('The Witcher 3: Wild Hunt', 39.99, '2015-05-19', 'PC', 'Action-RPG'),
--- ('Red Dead Redemption 2', 59.99, '2018-10-26', 'PlayStation 4', 'Action-Adventure'),
--- ('God of War', 49.99, '2022-01-14', 'PC', 'Action-Adventure'),
--- ('The Last of Us Part II', 59.99, '2020-06-19', 'PlayStation 4', 'Action-Adventure'),
+('Tomb Raider Definitive Edition', 19.99, '2014-01-28', 'Action-Adventure', '../../assets/images/tombraider.jpeg','../../assets/images/tombraider2.png','../../assets/images/tombraider3.jpg','../../assets/images/tombraider4.png','../../assets/images/tombraider5.webp',"L'aventure qui force la jeune et inexpérimentée Lara Croft à devenir une survivante endurcie a été remaniée pour les consoles nouvelle génération. Vous y retrouverez une Lara incroyablement détaillée et un environnement qui ressemble à s'y méprendre au monde réel. Lara doit endurer des combats intenses, personnaliser ses armes et son équipement pour survivre à sa première aventure et découvrir le secret mortel de l'île. La Definitive Edition du jeu d'action-aventure acclamé par la critique inclut des contenus bonus et regroupe tous les packs de contenu téléchargeable additionnels.", false, false);
+-- ('The Legend of Zelda: Breath of the Wild', 59.99, '2017-03-03', 'Action-Adventure'),
+-- ('Super Mario Odyssey', 59.99, '2017-10-27', 'Platformer'),
+-- ('The Witcher 3: Wild Hunt', 39.99, '2015-05-19', 'Action-RPG'),
+-- ('Red Dead Redemption 2', 59.99, '2018-10-26', 'Action-Adventure'),
+-- ('God of War', 49.99, '2022-01-14', 'Action-Adventure'),
+-- ('The Last of Us Part II', 59.99, '2020-06-19', 'Action-Adventure'),
 -- ('Halo Infinite', 59.99, '2021-12-08', 'Xbox Series X', 'FPS'),
 -- ('Forza Horizon 5', 59.99, '2021-11-09', 'Xbox Series X', 'Racing'),
 -- ('Cyberpunk 2077', 59.99, '2020-12-10', 'PC', 'Action-RPG'),
@@ -163,7 +135,7 @@ VALUES
 -- ('The Elder Scrolls V: Skyrim', 39.99, '2011-11-11', 'PC', 'Action-RPG'),
 -- ('Grand Theft Auto V', 19.99, '2013-09-17', 'PC', 'Action-Adventure'),
 -- ('Minecraft', 29.99, '2011-11-18', 'PC', 'Sandbox'),
--- ('Starfield', 59.99, '2022-11-11', 'PC', 'Action-RPG'),
+-- ('Starfield', 59.99, '2022-11-11', 'PC', 'Action-RPG'),np
 -- ('Valheim', 19.99, '2021-02-02', 'PC', 'Survival'),
 -- ('Enshrouded', 29.99, '2024-01-24', 'PC', 'Survival'),
 -- ('Diablo 4', 49.99, '2023-10-17', 'PC', 'Action-RPG'),
@@ -185,3 +157,66 @@ VALUES
 -- ('Hearts of Iron IV', 39.99, '2016-06-06', 'PC', 'Strategy'),
 -- ('Kingdom Come Deliverance', 29.99, '2018-02-13', 'PC', 'Action-RPG'),
 -- ('Hogwarts Legacy', 59.99, '2023-02-10', 'PC', 'RPG');
+
+INSERT INTO trending (views) 
+VALUES 
+(79),
+(248),
+(750),
+(820),
+(267),
+(118),
+(636),
+(403),
+(662),
+(779),
+(456),
+(526),
+(562),
+(616),
+(865),
+(290),
+(89),
+(147),
+(977),
+(975),
+(562),
+(297),
+(652),
+(599),
+(337),
+(703),
+(635),
+(919),
+(135),
+(618),
+(828),
+(60),
+(625),
+(867),
+(684),
+(952),
+(734),
+(793),
+(248),
+(883),
+(724),
+(503),
+(186),
+(275),
+(317);
+
+SELECT Vg.title, Vg.price, Vg.image1, T.views
+FROM videoGames AS Vg
+JOIN trending AS T
+ON Vg.id = T.id
+ORDER BY T.views DESC
+LIMIT 10;
+
+Select *
+FROM videoGames
+WHERE is_upcoming = true;
+
+Select *
+FROM videoGames
+WHERE is_preorder = true;
