@@ -24,5 +24,4 @@ router.put("/api/user/:id", userAction.edit);
 router.post("/api/user", userAction.add);
 router.delete("/api/user/:id", userAction.remove);
 
-
 export default router;
