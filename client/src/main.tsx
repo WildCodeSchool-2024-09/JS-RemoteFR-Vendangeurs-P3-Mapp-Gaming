@@ -21,7 +21,7 @@ const router = createBrowserRouter([
     children: [
       { path: "", element: <HomePage /> },
       { path: "Login", element: <ConnectionPage /> },
-      { path: "SoloGame", element: <SoloGamePage /> },
+      { path: "SoloGame/:id", element: <SoloGamePage /> },
       { path: "Profile", element: <ProfilePage /> },
       { path: "*", element: <NotFound /> },
     ],
