@@ -1,13 +1,8 @@
-DROP DATABASE IF EXISTS MAPP_GAMING_DB;
-CREATE DATABASE MAPP_GAMING_DB;
-USE MAPP_GAMING_DB;
-
 create table videoGames (
   id int unsigned primary key auto_increment not null,
   title varchar(255) not null,
   price decimal(10, 2) not null,
   release_date date not null,
-  platform varchar(100) not null,
   category varchar(100) not null,
   image1 varchar(255) not null,
   image2 varchar(255) not null,
@@ -110,42 +105,74 @@ create table game_platforms(
   foreign key (platform_id) references platforms(id)
 );
 
- INSERT INTO USER (firstname, lastname, username, email, password, date_of_creation, membership, is_admin)
- VALUES 
-  ('Admin', 'System', 'admin', 'admin@mappgaming.com', 'Adminpa2word', '2024-12-31', 'Premium', true),
-  ('Marvin', 'Dupont', 'MarvD', 'marvin.dupont@gmail.com', 'Password1', '2025-01-01', 'Premium', false),
-  ('Aurélia', 'Martin', 'AureliaM', 'aurelia.martin@gmail.com', 'Password2', '2025-01-02', 'Premium', false),
-  ('Pénélope', 'Teixeira', 'PennyT', 'penelope.teixeira@gmail.com', 'Password3', '2025-01-03', 'Basic', false);
-
-insert into profile (information, wallet, basket, wishlist, comment, user_management, games_management, articles_management, activity_report, user_id)
- values (
- 'Admin, System, admin, admin@mappgaming.com, Adminpa2word', 
- 23.98, 
- 'Tomb raider Definitive Edition', 
- 'Tomb raider Definitive Edition', 
- 'super jeu, très bon rapport qualité prix', 
- false, 
- false, 
- false, 
- false, 
- 1);
-
- INSERT INTO platforms (id,supported_platforms) VALUES 
-(1,'XBOX'),
-(2,'PS'),
-(3,'SWITCH'),
-(4,'PC');
-
-
- INSERT INTO videoGames (title, price, release_date, platform, category, image1, image2, image3, image4, image5, description) 
+ INSERT INTO videoGames (title, price, release_date, category, image1, image2, image3, image4, image5, description) 
 VALUES 
-('Tomb Raider Definitive Edition', 19.99, '2014-01-28', 'PlayStation 4', 'Action-Adventure', '../../assets/images/tombraider.jpeg','../../assets/images/tombraider2.png','../../assets/images/tombraider3.jpg','../../assets/images/tombraider4.png','../../assets/images/tombraider5.webp',"L'aventure qui force la jeune et inexpérimentée Lara Croft à devenir une survivante endurcie a été remaniée pour les consoles nouvelle génération. Vous y retrouverez une Lara incroyablement détaillée et un environnement qui ressemble à s'y méprendre au monde réel. Lara doit endurer des combats intenses, personnaliser ses armes et son équipement pour survivre à sa première aventure et découvrir le secret mortel de l'île. La Definitive Edition du jeu d'action-aventure acclamé par la critique inclut des contenus bonus et regroupe tous les packs de contenu téléchargeable additionnels.");
--- ('The Legend of Zelda: Breath of the Wild', 59.99, '2017-03-03', 'Nintendo Switch', 'Action-Adventure'),
+(
+'Tomb Raider Definitive Edition', 
+19.99, 
+'2014-01-28', 
+'Action-Adventure', 
+'http://localhost:3000/src/assets/images/tombraider.jpeg',
+'http://localhost:3000/src/assets/images/tombraider2.png',
+'http://localhost:3000/src/assets/images/tombraider3.jpg',
+'http://localhost:3000/src/assets/images/tombraider4.png',
+'http://localhost:3000/src/assets/images/tombraider5.webp','L\'aventure qui force la jeune et inexpérimentée Lara Croft à devenir une survivanteendurcie a été remaniée pour les consoles nouvelle génération. Vous y retrouverez une Lara incroyablement détaillée et un environnement quiressemble à s\'y méprendre au monde réel. Lara doit endurer des combats intenses, personnaliser ses armes et son équipement pour survivre à sapremière aventure et découvrir le secret mortel de l\'île. La Definitive Edition du jeu d\'action-aventure acclamé par la critique inclut descontenus bonus et regroupe tous les packs de contenu téléchargeable additionnels.'),
 
--- ('Super Mario Odyssey', 59.99, '2017-10-27', 'Nintendo Switch', 'Platformer'),
--- ('The Witcher 3: Wild Hunt', 39.99, '2015-05-19', 'PC', 'Action-RPG'),
--- ('Red Dead Redemption 2', 59.99, '2018-10-26', 'PlayStation 4', 'Action-Adventure'),
--- ('God of War', 49.99, '2022-01-14', 'PC', 'Action-Adventure'),
+('The Legend of Zelda: Breath of the Wild', 
+59.99, 
+'2017-03-03', 
+'Action-Adventure',
+ 'http://localhost:3000/src/assets/images/zelda1.png',
+ 'http://localhost:3000/src/assets/images/zelda2.webp',
+ 'http://localhost:3000/src/assets/images/zelda3.jpg',
+ 'http://localhost:3000/src/assets/images/zelda4.webp',
+ 'http://localhost:3000/src/assets/images/zelda5.jpg',
+ 'Explorez un vaste monde ouvert rempli de mystères, d''énigmes et de dangers dans The Legend of Zelda: Breath of the Wild. Incarnez Link et partez à la recherche de la princesse Zelda pour affronter le maléfique Ganon. Découvrez des paysages variés, résolvez des sanctuaires et utilisez des pouvoirs spéciaux pour surmonter les défis.'),
+
+('Super Mario Odyssey', 
+59.99, 
+'2017-10-27', 
+'Platformer',
+ 'http://localhost:3000/src/assets/images/mario1.jpg',
+ 'http://localhost:3000/src/assets/images/mario2.jpg',
+ 'http://localhost:3000/src/assets/images/mario3.jpg',
+ 'http://localhost:3000/src/assets/images/mario4.webp',
+ 'http://localhost:3000/src/assets/images/mario5.webp',
+ 'Accompagnez Mario dans une aventure épique à travers divers royaumes pour sauver la princesse Peach de Bowser. Découvrez de nouveaux pouvoirs avec Cappy, voyagez à travers des mondes magnifiques et collectez des lunes pour alimenter votre vaisseau, l''Odyssée.'),
+
+('The Witcher 3: Wild Hunt', 
+39.99, 
+'2015-05-19', 
+'Action-RPG',
+ 'http://localhost:3000/src/assets/images/witcher1.jpg',
+ 'http://localhost:3000/src/assets/images/witcher2.avif',
+ 'http://localhost:3000/src/assets/images/witcher3.avif',
+ 'http://localhost:3000/src/assets/images/witcher4.webp',
+ 'http://localhost:3000/src/assets/images/witcher5.jpg',
+ 'Incarnez Geralt de Riv, un chasseur de monstres légendaire dans un monde riche et ouvert, rempli de quêtes et de mystères. Explorez des contrées fascinantes, combattez des créatures mythiques et prenez des décisions qui influenceront le destin de nombreux personnages.'),
+
+('Red Dead Redemption 2', 
+59.99, 
+'2018-10-26', 
+'Action-Adventure',
+ 'http://localhost:3000/src/assets/images/rdr1.avif',
+ 'http://localhost:3000/src/assets/images/rdr2.jpg',
+ 'http://localhost:3000/src/assets/images/rdr3.jpg',
+ 'http://localhost:3000/src/assets/images/rdr4.jpg',
+ 'http://localhost:3000/src/assets/images/rdr5.jpg',
+ 'Plongez dans l''Ouest sauvage avec Arthur Morgan et la bande de Van der Linde, entre hors-la-loi et survie. Faites face à des dilemmes moraux, explorez un monde détaillé et interactif, et construisez votre propre légende dans ce western épique signé Rockstar Games.'),
+
+('God of War', 
+49.99, 
+'2022-01-14', 
+'Action-Adventure',
+ 'http://localhost:3000/src/assets/images/gow1.jpg',
+ 'http://localhost:3000/src/assets/images/gow2.jpg',
+ 'http://localhost:3000/src/assets/images/gow3.webp',
+ 'http://localhost:3000/src/assets/images/gow4.webp',
+ 'http://localhost:3000/src/assets/images/gow5.webp',
+ 'Kratos et son fils Atreus explorent la mythologie nordique dans une aventure riche en émotions et en combats épiques. Découvrez un gameplay innovant avec des affrontements brutaux, une narration poignante et une immersion totale dans un monde inspiré des mythes scandinaves.');
+
 -- ('The Last of Us Part II', 59.99, '2020-06-19', 'PlayStation 4', 'Action-Adventure'),
 -- ('Halo Infinite', 59.99, '2021-12-08', 'Xbox Series X', 'FPS'),
 -- ('Forza Horizon 5', 59.99, '2021-11-09', 'Xbox Series X', 'Racing'),
@@ -185,3 +212,34 @@ VALUES
 -- ('Hearts of Iron IV', 39.99, '2016-06-06', 'PC', 'Strategy'),
 -- ('Kingdom Come Deliverance', 29.99, '2018-02-13', 'PC', 'Action-RPG'),
 -- ('Hogwarts Legacy', 59.99, '2023-02-10', 'PC', 'RPG');
+ INSERT INTO USER (firstname, lastname, username, email, password, date_of_creation, membership, is_admin)
+ VALUES 
+  ('Admin', 'System', 'admin', 'admin@mappgaming.com', 'Adminpa2word', '2024-12-31', 'Premium', true),
+  ('Marvin', 'Dupont', 'MarvD', 'marvin.dupont@gmail.com', 'Password1', '2025-01-01', 'Premium', false),
+  ('Aurélia', 'Martin', 'AureliaM', 'aurelia.martin@gmail.com', 'Password2', '2025-01-02', 'Premium', false),
+  ('Pénélope', 'Teixeira', 'PennyT', 'penelope.teixeira@gmail.com', 'Password3', '2025-01-03', 'Basic', false);
+
+insert into profile (information, wallet, basket, wishlist, comment, user_management, games_management, articles_management, activity_report, user_id)
+ values (
+ 'Admin, System, admin, admin@mappgaming.com, Adminpa2word', 
+ 23.98, 
+ 'Tomb raider Definitive Edition', 
+ 'Tomb raider Definitive Edition', 
+ 'super jeu, très bon rapport qualité prix', 
+ false, 
+ false, 
+ false, 
+ false, 
+ 1);
+
+ INSERT INTO platforms (id,supported_platforms) VALUES 
+(1,'XBOX'),
+(2,'PS'),
+(3,'SWITCH'),
+(4,'PC');
+
+INSERT INTO rating (rate, review, game_id, user_id) VALUES
+(4, 'super jeu, très bon jeu d\'aventure' , 1, 1),
+(2, 'super jeu, très bon rapport qualité prix', 1, 2);
+
+
