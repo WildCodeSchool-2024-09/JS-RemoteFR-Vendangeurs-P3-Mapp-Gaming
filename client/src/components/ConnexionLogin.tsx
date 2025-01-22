@@ -1,5 +1,4 @@
 import { useState } from "react";
-import axios from "axios";
 
 const ConnexionLogin = () => {
   const [firstName, setFirstName] = useState("");
@@ -17,7 +16,7 @@ const ConnexionLogin = () => {
     password: string;
     pseudo: string;
   }) => {
-  console.info("Form submitted", formData);
+    console.info("Form submitted", formData);
   };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {

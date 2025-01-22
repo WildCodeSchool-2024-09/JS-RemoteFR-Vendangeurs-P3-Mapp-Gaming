@@ -1,8 +1,7 @@
-import express from "express";
-import { DatabaseClient } from "../database/client";
 import argon2 from "argon2";
+import express from "express";
 import jwt from "jsonwebtoken";
-
+import { DatabaseClient } from "../database/client";
 
 const router = express.Router();
 
@@ -16,9 +15,8 @@ router.delete("/api/videoGames/:id", videoGamesAction.remove);
 
 /***********
  * ********************* */
-
-import userAction from "./modules/User/userAction";
 import validateDatas from "../middlewares/validateDatas";
+import userAction from "./modules/User/userAction";
 
 router.get("/api/user", userAction.browse);
 router.get("/api/user/:id", userAction.read);

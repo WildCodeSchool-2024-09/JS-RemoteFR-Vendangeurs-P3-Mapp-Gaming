@@ -1,7 +1,7 @@
-import userRepository from "./userRepository";
 // Import access to data
 // Declare the action
 import type { RequestHandler } from "express";
+import userRepository from "./userRepository";
 
 // The B of BREAD - Browse (Read All) operation
 const browse: RequestHandler = async (req, res, next) => {

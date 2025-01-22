@@ -1,6 +1,5 @@
+import type { NextFunction, Request, RequestHandler, Response } from "express";
 import Joi from "joi";
-import type { Request, Response, NextFunction, RequestHandler } from "express";
-import userAction from "../src/modules/User/userAction";
 
 const validateDatas = (req: Request, res: Response, next: NextFunction) => {
   console.info("début de la validation des données");

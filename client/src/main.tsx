@@ -9,8 +9,8 @@ import App from "./App";
 import NotFound from "./components/NotFound/NotFound";
 import ConnectionPage from "./pages/ConnectionPage";
 import HomePage from "./pages/HomePage";
-import ProfilePage from "./pages/UserPage";
 import SoloGamePage from "./pages/SoloGamePage";
+import ProfilePage from "./pages/UserPage";
 
 /* ************************************************************************* */
 
