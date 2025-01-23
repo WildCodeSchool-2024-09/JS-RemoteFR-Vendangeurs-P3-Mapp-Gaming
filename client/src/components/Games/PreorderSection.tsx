@@ -35,6 +35,21 @@ const PreorderSection = () => {
         })}
       </div>
     </div>
+    // <section>
+    //   <div className="flex items-center">
+    //     <h2 className="text-lg font-bold">PRÉCOMMANDE</h2>
+    //     <a href="/preorders" className="text-orange-500 text-sm">
+    //       ➤
+    //     </a>
+    //   </div>
+    //   <div className="grid grid-cols-5 gap-4 mt-4">
+    //     <div className="bg-gray-700 aspect-video rounded-lg" />
+    //     <div className="bg-gray-700 aspect-video rounded-lg" />
+    //     <div className="bg-gray-700 aspect-video rounded-lg" />
+    //     <div className="bg-gray-700 aspect-video rounded-lg" />
+    //     <div className="bg-gray-700 aspect-video rounded-lg" />
+    //   </div>
+    // </section>
   );
 };
 

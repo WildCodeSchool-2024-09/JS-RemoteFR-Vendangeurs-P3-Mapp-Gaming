@@ -1,5 +1,5 @@
 import PreorderSection from "../components/Games/PreorderSection";
-import TrendingSection from "../components/Games/TrendingSection.tsx";
+import TrendingSection from "../components/Games/TrendingSection";
 import UpcomingSection from "../components/Games/UpcomingSection";
 
 const HomePage = () => {

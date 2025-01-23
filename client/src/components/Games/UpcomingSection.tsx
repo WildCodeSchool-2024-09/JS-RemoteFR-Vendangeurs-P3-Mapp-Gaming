@@ -42,6 +42,19 @@ const UpcomingSection = () => {
         })}
       </div>
     </div>
+    // <section>
+    //   <div className="flex items-center">
+    //     <h2 className="text-lg font-bold">À VENIR</h2>
+    //     <a href="/upcoming-games" className="text-orange-500 text-sm">
+    //       ➤
+    //     </a>
+    //   </div>
+    //   <div className="grid grid-cols-4 gap-4 mt-4">
+    //     <div className="col-span-1 bg-gray-700 aspect-video rounded-lg" />
+    //     <div className="col-span-2 bg-gray-700 aspect-video rounded-lg" />
+    //     <div className="col-span-1 bg-gray-700 aspect-video rounded-lg" />
+    //   </div>
+    // </section>
   );
 };
 

@@ -5,15 +5,8 @@ interface videoGames {
   id: number;
   title: string;
   price: number;
-  releaseDate: string;
-  platform: string;
+  releaseDate: Date;
   category: string;
-  image1: string;
-  image2: string;
-  image3: string;
-  image4: string;
-  image5: string;
-  description: string;
 }
 
 const TrendingSection = () => {
@@ -21,7 +14,7 @@ const TrendingSection = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3310/api/videoGames/upcoming")
+      .get("http://localhost:3310/api/videoGames/trending")
       .then((response) => {
         setVideoGames(response.data);
         console.info(response.data);
@@ -29,12 +22,12 @@ const TrendingSection = () => {
   }, []);
 
   return (
-    <div className="Trending-section">
-      <h2>Trending Games</h2>
-      <div className="Trending-container">
+    <div className="tendance-section">
+      <h2>Tendance</h2>
+      <div className="tendance-container">
         {videoGames.map((videoGame) => {
           return (
-            <div key={videoGame.id} className="Trending-card">
+            <div key={videoGame.id} className="tendance-card">
               <h3>{videoGame.title}</h3>
               <p>{videoGame.price} €</p>
             </div>
@@ -42,6 +35,24 @@ const TrendingSection = () => {
         })}
       </div>
     </div>
+    // <section>
+    //   <div className="flex items-center ">
+    //     <h2 className="text-lg font-bold">TENDANCE</h2>
+    //     <a href="/trending" className="text-orange-500 text-sm">
+    //       ➤
+    //     </a>
+    //   </div>
+    //   <div className="grid grid-cols-5 grid-rows-1 gap-4 mt-4">
+    //     <div className="col-span-2 bg-gray-700 aspect-video rounded-lg" />
+    //     <div className="col-span-1 bg-gray-700 aspect-video rounded-lg" />
+    //     <div className="col-span-1 bg-gray-700 aspect-video rounded-lg" />
+    //     <div className="col-span-1 bg-gray-700 aspect-video rounded-lg" />
+    //     <div className="col-span-1 bg-gray-700 aspect-video rounded-lg" />
+    //     <div className="col-span-1 bg-gray-700 aspect-video rounded-lg" />
+    //     <div className="col-span-1 bg-gray-700 aspect-video rounded-lg" />
+    //   </div>
+    // </section>
   );
 };
+
 export default TrendingSection;
