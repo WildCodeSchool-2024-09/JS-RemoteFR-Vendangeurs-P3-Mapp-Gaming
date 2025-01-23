@@ -4,8 +4,7 @@ import UpcomingSection from "../components/Games/UpcomingSection";
 
 const HomePage = () => {
   return (
-    <div>
-      <h1>Home Page</h1>
+    <div className="bg-slate-300">
       <TrendingSection />
       <PreorderSection />
       <UpcomingSection />

@@ -7,6 +7,7 @@ interface videoGames {
   price: number;
   releaseDate: Date;
   category: string;
+  image1: string;
 }
 
 const PreorderSection = () => {
@@ -24,10 +25,20 @@ const PreorderSection = () => {
   return (
     <div className="Preorder-section">
       <h2>Precommande</h2>
-      <div className="Preorder-container">
+      <div className="flex justify-center items-center gap-6">
         {videoGames.map((videoGame) => {
           return (
-            <div key={videoGame.id} className="Preorder-card">
+            <div
+              key={videoGame.id}
+              className="flex flex-col items-center gap-3"
+            >
+              <div className="w-72 h-72">
+                <img
+                  src={videoGame.image1}
+                  alt=""
+                  className="w-full h-full object-cover rounded-2xl"
+                />
+              </div>
               <h3>{videoGame.title}</h3>
               <p>{videoGame.price} €</p>
             </div>
