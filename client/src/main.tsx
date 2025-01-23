@@ -8,9 +8,9 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import App from "./App";
 import NotFound from "./components/NotFound/NotFound";
 import ConnectionPage from "./pages/ConnectionPage";
-import GamePage from "./pages/GamePage";
 import HomePage from "./pages/HomePage";
 import ProfilePage from "./pages/ProfilePage";
+import SoloGamePage from "./pages/SoloGamePage";
 
 /* ************************************************************************* */
 
@@ -19,10 +19,10 @@ const router = createBrowserRouter([
     path: "/",
     element: <App />,
     children: [
-      { path: "/", element: <HomePage /> },
-      { path: "/login", element: <ConnectionPage /> },
-      { path: "/game", element: <GamePage /> },
-      { path: "/profile", element: <ProfilePage /> },
+      { path: "", element: <HomePage /> },
+      { path: "Login", element: <ConnectionPage /> },
+      { path: "SoloGame/:id", element: <SoloGamePage /> },
+      { path: "Profile", element: <ProfilePage /> },
       { path: "*", element: <NotFound /> },
     ],
   },
