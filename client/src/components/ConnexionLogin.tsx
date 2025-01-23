@@ -1,38 +1,47 @@
 import axios from "axios";
 import { useState } from "react";
+import { useNavigate } from "react-router";
+import { useAuth } from "../contexts/AuthContext";
 
 const ConnexionLogin = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  // const [firstname, setFirstname] = useState("");
-  // const [lastname, setLastname] = useState("");
-  const [user, setUser] = useState<User | null>(null);
-  interface User {
-    email: string;
-    password: string;
-  }
+  const [login, setLogin] = useState({
+    email: "",
+    password: "",
+  });
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const { setUser } = useAuth();
+
+  const navigate = useNavigate();
+
+  const handleInputsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+
+    setLogin((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    try {
-      console.info("debut de connexion");
+    const result = await axios.post(
+      `${import.meta.env.VITE_API_URL}/auth/login`,
+      login,
+    );
 
-      console.info(`url back : ${import.meta.env.VITE_SERVER_URL}`);
+    const currentUser = await axios.get(
+      `${import.meta.env.VITE_API_URL}/auth/find/${result.data.userId}`,
+    );
 
-      const user: User = await axios.post(
-        `${import.meta.env.VITE_SERVER_URL}/api/login`,
-        {
-          email: email,
-          password: password,
-        },
-      );
+    setUser(currentUser.data);
 
-      setUser(user);
-    } catch (error) {
-      console.error(error);
-    }
-    console.info(user);
+    setLogin({
+      email: "",
+      password: "",
+    });
+
+    navigate("/");
   };
 
   return (
@@ -44,7 +53,7 @@ const ConnexionLogin = () => {
 
       {/* FORMULAIE */}
       <div className="justify-center w-full max-w-md p-8 bg-[#1a1a2e] border border-orange-500 rounded-lg shadow-lg">
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleFormSubmit}>
           {/* <div className="flex flex-col">
             <label
               className="block text-gray-300 text-sm font-bold mb-2"
@@ -86,11 +95,13 @@ const ConnexionLogin = () => {
             </label>
             <input
               id="email"
-              type="text"
+              name="email"
+              type="email"
               className="w-full px-3 py-2 bg-black text-white border border-purple-500 rounded focus:outline-none focus:ring-2 focus:ring-orange-500 mb-4"
               placeholder="Entrez votre email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={login.email}
+              onChange={handleInputsChange}
+              required
             />
           </div>
           <div className="flex-col">
@@ -102,11 +113,13 @@ const ConnexionLogin = () => {
             </label>
             <input
               id="password"
-              type="text"
+              name="password"
+              type="password"
+              required
               className="w-full px-3 py-2 bg-black text-white border border-purple-500 rounded focus:outline-none focus:ring-2 focus:ring-orange-500 mb-6"
               placeholder="Entrez votre mot de passe"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              value={login.password}
+              onChange={handleInputsChange}
             />
           </div>
 

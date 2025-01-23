@@ -1,6 +1,6 @@
 import express from "express";
-// import { checkAuthDatas } from "./middlewares/checkAuthDatas";
-// import authActions from "./modules/auth/authActions";
+import { checkAuthDatas } from "./middlewares/checkAuthDatas";
+import authActions from "./modules/auth/authActions";
 
 const router = express.Router();
 
@@ -10,7 +10,7 @@ const router = express.Router();
 
 // Authentification routes
 // router.post("/auth/register", authActions.register);
-// router.post("/auth/login", checkAuthDatas, authActions.login);
+router.post("/auth/login", checkAuthDatas, authActions.login);
 // router.get("/auth/find/:id", authActions.findCurrentUser);
 
 // Define item-related routes

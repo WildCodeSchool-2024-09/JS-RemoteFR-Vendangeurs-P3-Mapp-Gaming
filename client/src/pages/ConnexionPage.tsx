@@ -1,6 +1,6 @@
 import ConnexionLogin from "../components/ConnexionLogin";
 
-const ConnectionPage = () => {
+const ConnexionPage = () => {
   return (
     <div>
       <ConnexionLogin />
@@ -8,4 +8,4 @@ const ConnectionPage = () => {
   );
 };
 
-export default ConnectionPage;
+export default ConnexionPage;

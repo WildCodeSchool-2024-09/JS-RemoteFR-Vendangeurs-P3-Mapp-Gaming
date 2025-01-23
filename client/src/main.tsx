@@ -7,7 +7,8 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
 import App from "./App";
 import NotFound from "./components/NotFound/NotFound";
-import ConnectionPage from "./pages/ConnectionPage";
+import { AuthProvider } from "./contexts/AuthContext";
+import ConnexionPage from "./pages/ConnexionPage";
 import HomePage from "./pages/HomePage";
 import ProfilePage from "./pages/ProfilePage";
 import SoloGamePage from "./pages/SoloGamePage";
@@ -20,7 +21,7 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       { path: "", element: <HomePage /> },
-      { path: "Login", element: <ConnectionPage /> },
+      { path: "Login", element: <ConnexionPage /> },
       { path: "SoloGame", element: <SoloGamePage /> },
       { path: "Profile", element: <ProfilePage /> },
       { path: "*", element: <NotFound /> },
@@ -37,6 +38,8 @@ if (rootElement == null) {
 
 createRoot(rootElement).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   </StrictMode>,
 );
