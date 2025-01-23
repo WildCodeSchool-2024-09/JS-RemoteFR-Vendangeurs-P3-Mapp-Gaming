@@ -42,7 +42,6 @@ const ConnexionLogin = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-black via-[#1a1a2e] to-[#ff8c00] m-0 flex items-center justify-center relative">
-     
       {/* FORMULAIRE */}
       <div className="justify-center w-full max-w-md p-8 bg-[#1a1a2e] border border-orange-500 rounded-lg shadow-lg">
         <form onSubmit={handleSubmit}>
