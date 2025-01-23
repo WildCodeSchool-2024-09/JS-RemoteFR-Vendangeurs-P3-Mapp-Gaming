@@ -9,7 +9,9 @@ create table videoGames (
   image3 varchar(255) not null,
   image4 varchar(255) not null,
   image5 varchar(255) not null,
-  description TEXT not null
+  description TEXT not null,
+  is_upcoming TINYINT(1) DEFAULT 0,
+  is_preorder TINYINT(1) DEFAULT 0
 );
 
 create table user (
@@ -61,35 +63,7 @@ create table buy (
 
 create table trending (
   id int unsigned primary key auto_increment not null,
-  viewes int unsigned not null
-);
-
-create table game_trending(
-  id int unsigned primary key auto_increment not null,
-  game_id int unsigned not null,
-  trending_id int unsigned not null,
-  foreign key (game_id) references videoGames(id),
-  foreign key (trending_id) references trending(id)
-);
-
-create table preorder(
-  id int unsigned primary key auto_increment not null,
-  is_preorder boolean not null,
-  title VARCHAR(255) not null,
-  price decimal(10, 2) not null,
-  release_date date not null,
-  category varchar(100) not null,
-  game_id int unsigned not null,
-  foreign key (game_id) references videoGames(id)
-);
-
-create table upcoming(
-  id int unsigned primary key auto_increment not null,
-  upcoming_date date not null,
-  title VARCHAR(255) not null,
-  category varchar(100) not null,
-  game_id int unsigned not null,
-  foreign key (game_id) references videoGames(id)
+  views int unsigned not null
 );
 
 create table platforms(
@@ -98,14 +72,14 @@ create table platforms(
 );
 
 create table game_platforms(
-  id int primary key not null,
+  id int unsigned primary key not null,
   game_id int unsigned not null,
   platform_id int unsigned not null,
   foreign key (game_id) references videoGames(id),
   foreign key (platform_id) references platforms(id)
 );
 
- INSERT INTO videoGames (title, price, release_date, category, image1, image2, image3, image4, image5, description) 
+ INSERT INTO videoGames (title, price, release_date, category, image1, image2, image3, image4, image5, description, is_upcoming, is_preorder) 
 VALUES 
 (
 'Tomb Raider Definitive Edition', 
@@ -116,7 +90,9 @@ VALUES
 'http://localhost:3000/src/assets/images/tombraider2.png',
 'http://localhost:3000/src/assets/images/tombraider3.jpg',
 'http://localhost:3000/src/assets/images/tombraider4.png',
-'http://localhost:3000/src/assets/images/tombraider5.webp','L\'aventure qui force la jeune et inexpérimentée Lara Croft à devenir une survivanteendurcie a été remaniée pour les consoles nouvelle génération. Vous y retrouverez une Lara incroyablement détaillée et un environnement quiressemble à s\'y méprendre au monde réel. Lara doit endurer des combats intenses, personnaliser ses armes et son équipement pour survivre à sapremière aventure et découvrir le secret mortel de l\'île. La Definitive Edition du jeu d\'action-aventure acclamé par la critique inclut descontenus bonus et regroupe tous les packs de contenu téléchargeable additionnels.'),
+'http://localhost:3000/src/assets/images/tombraider5.webp','L\'aventure qui force la jeune et inexpérimentée Lara Croft à devenir une survivanteendurcie a été remaniée pour les consoles nouvelle génération. Vous y retrouverez une Lara incroyablement détaillée et un environnement quiressemble à s\'y méprendre au monde réel. Lara doit endurer des combats intenses, personnaliser ses armes et son équipement pour survivre à sapremière aventure et découvrir le secret mortel de l\'île. La Definitive Edition du jeu d\'action-aventure acclamé par la critique inclut descontenus bonus et regroupe tous les packs de contenu téléchargeable additionnels.',
+1,
+0),
 
 ('The Legend of Zelda: Breath of the Wild', 
 59.99, 
@@ -127,7 +103,9 @@ VALUES
  'http://localhost:3000/src/assets/images/zelda3.jpg',
  'http://localhost:3000/src/assets/images/zelda4.webp',
  'http://localhost:3000/src/assets/images/zelda5.jpg',
- 'Explorez un vaste monde ouvert rempli de mystères, d''énigmes et de dangers dans The Legend of Zelda: Breath of the Wild. Incarnez Link et partez à la recherche de la princesse Zelda pour affronter le maléfique Ganon. Découvrez des paysages variés, résolvez des sanctuaires et utilisez des pouvoirs spéciaux pour surmonter les défis.'),
+ 'Explorez un vaste monde ouvert rempli de mystères, d''énigmes et de dangers dans The Legend of Zelda: Breath of the Wild. Incarnez Link et partez à la recherche de la princesse Zelda pour affronter le maléfique Ganon. Découvrez des paysages variés, résolvez des sanctuaires et utilisez des pouvoirs spéciaux pour surmonter les défis.',
+ 0,
+ 1),
 
 ('Super Mario Odyssey', 
 59.99, 
@@ -138,7 +116,9 @@ VALUES
  'http://localhost:3000/src/assets/images/mario3.jpg',
  'http://localhost:3000/src/assets/images/mario4.webp',
  'http://localhost:3000/src/assets/images/mario5.webp',
- 'Accompagnez Mario dans une aventure épique à travers divers royaumes pour sauver la princesse Peach de Bowser. Découvrez de nouveaux pouvoirs avec Cappy, voyagez à travers des mondes magnifiques et collectez des lunes pour alimenter votre vaisseau, l''Odyssée.'),
+ 'Accompagnez Mario dans une aventure épique à travers divers royaumes pour sauver la princesse Peach de Bowser. Découvrez de nouveaux pouvoirs avec Cappy, voyagez à travers des mondes magnifiques et collectez des lunes pour alimenter votre vaisseau, l''Odyssée.',
+ 0,
+ 0),
 
 ('The Witcher 3: Wild Hunt', 
 39.99, 
@@ -149,7 +129,9 @@ VALUES
  'http://localhost:3000/src/assets/images/witcher3.avif',
  'http://localhost:3000/src/assets/images/witcher4.webp',
  'http://localhost:3000/src/assets/images/witcher5.jpg',
- 'Incarnez Geralt de Riv, un chasseur de monstres légendaire dans un monde riche et ouvert, rempli de quêtes et de mystères. Explorez des contrées fascinantes, combattez des créatures mythiques et prenez des décisions qui influenceront le destin de nombreux personnages.'),
+ 'Incarnez Geralt de Riv, un chasseur de monstres légendaire dans un monde riche et ouvert, rempli de quêtes et de mystères. Explorez des contrées fascinantes, combattez des créatures mythiques et prenez des décisions qui influenceront le destin de nombreux personnages.',
+ 0,
+ 1),
 
 ('Red Dead Redemption 2', 
 59.99, 
@@ -160,7 +142,9 @@ VALUES
  'http://localhost:3000/src/assets/images/rdr3.jpg',
  'http://localhost:3000/src/assets/images/rdr4.jpg',
  'http://localhost:3000/src/assets/images/rdr5.jpg',
- 'Plongez dans l''Ouest sauvage avec Arthur Morgan et la bande de Van der Linde, entre hors-la-loi et survie. Faites face à des dilemmes moraux, explorez un monde détaillé et interactif, et construisez votre propre légende dans ce western épique signé Rockstar Games.'),
+ 'Plongez dans l''Ouest sauvage avec Arthur Morgan et la bande de Van der Linde, entre hors-la-loi et survie. Faites face à des dilemmes moraux, explorez un monde détaillé et interactif, et construisez votre propre légende dans ce western épique signé Rockstar Games.',
+ 1,
+ 1),
 
 ('God of War', 
 49.99, 
@@ -171,7 +155,9 @@ VALUES
  'http://localhost:3000/src/assets/images/gow3.webp',
  'http://localhost:3000/src/assets/images/gow4.webp',
  'http://localhost:3000/src/assets/images/gow5.webp',
- 'Kratos et son fils Atreus explorent la mythologie nordique dans une aventure riche en émotions et en combats épiques. Découvrez un gameplay innovant avec des affrontements brutaux, une narration poignante et une immersion totale dans un monde inspiré des mythes scandinaves.');
+ 'Kratos et son fils Atreus explorent la mythologie nordique dans une aventure riche en émotions et en combats épiques. Découvrez un gameplay innovant avec des affrontements brutaux, une narration poignante et une immersion totale dans un monde inspiré des mythes scandinaves.',
+ 1,
+ 0);
 
 -- ('The Last of Us Part II', 59.99, '2020-06-19', 'PlayStation 4', 'Action-Adventure'),
 -- ('Halo Infinite', 59.99, '2021-12-08', 'Xbox Series X', 'FPS'),
@@ -190,7 +176,7 @@ VALUES
 -- ('The Elder Scrolls V: Skyrim', 39.99, '2011-11-11', 'PC', 'Action-RPG'),
 -- ('Grand Theft Auto V', 19.99, '2013-09-17', 'PC', 'Action-Adventure'),
 -- ('Minecraft', 29.99, '2011-11-18', 'PC', 'Sandbox'),
--- ('Starfield', 59.99, '2022-11-11', 'PC', 'Action-RPG'),
+-- ('Starfield', 59.99, '2022-11-11', 'PC', 'Action-RPG'),np
 -- ('Valheim', 19.99, '2021-02-02', 'PC', 'Survival'),
 -- ('Enshrouded', 29.99, '2024-01-24', 'PC', 'Survival'),
 -- ('Diablo 4', 49.99, '2023-10-17', 'PC', 'Action-RPG'),
@@ -212,6 +198,55 @@ VALUES
 -- ('Hearts of Iron IV', 39.99, '2016-06-06', 'PC', 'Strategy'),
 -- ('Kingdom Come Deliverance', 29.99, '2018-02-13', 'PC', 'Action-RPG'),
 -- ('Hogwarts Legacy', 59.99, '2023-02-10', 'PC', 'RPG');
+
+INSERT INTO trending (views) 
+VALUES 
+(79),
+(248),
+(750),
+(820),
+(267),
+(118),
+(636),
+(403),
+(662),
+(779),
+(456),
+(526),
+(562),
+(616),
+(865),
+(290),
+(89),
+(147),
+(977),
+(975),
+(562),
+(297),
+(652),
+(599),
+(337),
+(703),
+(635),
+(919),
+(135),
+(618),
+(828),
+(60),
+(625),
+(867),
+(684),
+(952),
+(734),
+(793),
+(248),
+(883),
+(724),
+(503),
+(186),
+(275),
+(317);
+
  INSERT INTO USER (firstname, lastname, username, email, password, date_of_creation, membership, is_admin)
  VALUES 
   ('Admin', 'System', 'admin', 'admin@mappgaming.com', 'Adminpa2word', '2024-12-31', 'Premium', true),
@@ -241,5 +276,3 @@ insert into profile (information, wallet, basket, wishlist, comment, user_manage
 INSERT INTO rating (rate, review, game_id, user_id) VALUES
 (4, 'super jeu, très bon jeu d\'aventure' , 1, 1),
 (2, 'super jeu, très bon rapport qualité prix', 1, 2);
-
-
