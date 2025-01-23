@@ -14,8 +14,8 @@ create table videoGames (
   image4 varchar(255) not null,
   image5 varchar(255) not null,
   description TEXT not null,
-  is_upcoming BOOLEAN DEFAULT false,
-  is_preorder BOOLEAN DEFAULT false
+  is_upcoming TINYINT(1) DEFAULT 0,
+  is_preorder TINYINT(1) DEFAULT 0
 );
 
 create table user (
@@ -76,7 +76,7 @@ create table platforms(
 );
 
 create table game_platforms(
-  id int primary key not null,
+  id int unsigned primary key not null,
   game_id int unsigned not null,
   platform_id int unsigned not null,
   foreign key (game_id) references videoGames(id),
@@ -112,7 +112,7 @@ insert into profile (information, wallet, basket, wishlist, comment, user_manage
 
  INSERT INTO videoGames (title, price, release_date, category, image1, image2, image3, image4, image5, description, is_upcoming, is_preorder) 
 VALUES 
-('Tomb Raider Definitive Edition', 19.99, '2014-01-28', 'Action-Adventure', '../../assets/images/tombraider.jpeg','../../assets/images/tombraider2.png','../../assets/images/tombraider3.jpg','../../assets/images/tombraider4.png','../../assets/images/tombraider5.webp',"L'aventure qui force la jeune et inexpérimentée Lara Croft à devenir une survivante endurcie a été remaniée pour les consoles nouvelle génération. Vous y retrouverez une Lara incroyablement détaillée et un environnement qui ressemble à s'y méprendre au monde réel. Lara doit endurer des combats intenses, personnaliser ses armes et son équipement pour survivre à sa première aventure et découvrir le secret mortel de l'île. La Definitive Edition du jeu d'action-aventure acclamé par la critique inclut des contenus bonus et regroupe tous les packs de contenu téléchargeable additionnels.", false, false);
+('Tomb Raider Definitive Edition', 19.99, '2014-01-28', 'Action-Adventure', '../../assets/images/tombraider.jpeg','../../assets/images/tombraider2.png','../../assets/images/tombraider3.jpg','../../assets/images/tombraider4.png','../../assets/images/tombraider5.webp',"L'aventure qui force la jeune et inexpérimentée Lara Croft à devenir une survivante endurcie a été remaniée pour les consoles nouvelle génération. Vous y retrouverez une Lara incroyablement détaillée et un environnement qui ressemble à s'y méprendre au monde réel. Lara doit endurer des combats intenses, personnaliser ses armes et son équipement pour survivre à sa première aventure et découvrir le secret mortel de l'île. La Definitive Edition du jeu d'action-aventure acclamé par la critique inclut des contenus bonus et regroupe tous les packs de contenu téléchargeable additionnels.", 1, 0);
 -- ('The Legend of Zelda: Breath of the Wild', 59.99, '2017-03-03', 'Action-Adventure'),
 -- ('Super Mario Odyssey', 59.99, '2017-10-27', 'Platformer'),
 -- ('The Witcher 3: Wild Hunt', 39.99, '2015-05-19', 'Action-RPG'),
@@ -205,18 +205,3 @@ VALUES
 (186),
 (275),
 (317);
-
-SELECT Vg.title, Vg.price, Vg.image1, T.views
-FROM videoGames AS Vg
-JOIN trending AS T
-ON Vg.id = T.id
-ORDER BY T.views DESC
-LIMIT 10;
-
-Select *
-FROM videoGames
-WHERE is_upcoming = true;
-
-Select *
-FROM videoGames
-WHERE is_preorder = true;

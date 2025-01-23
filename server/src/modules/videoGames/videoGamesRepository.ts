@@ -34,8 +34,8 @@ class videoGamesRepository {
         videoGames.image4,
         videoGames.image5,
         videoGames.description,
-        videoGames.is_upcoming,
-        videoGames.is_preorder,
+        videoGames.is_upcoming ? 1 : 0,
+        videoGames.is_preorder ? 1 : 0,
       ],
     );
     return result.insertId;
@@ -73,8 +73,8 @@ class videoGamesRepository {
         videoGames.image4,
         videoGames.image5,
         videoGames.description,
-        videoGames.is_upcoming,
-        videoGames.is_preorder,
+        videoGames.is_upcoming ? 1 : 0,
+        videoGames.is_preorder ? 1 : 0,
         videoGames.id,
       ],
     );
@@ -93,7 +93,7 @@ class videoGamesRepository {
   // Rechercher les jeux précommandes basé sur le champ is_preorder
   async readPreorder() {
     const [rows] = await databaseClient.query<Rows>(
-      "SELECT * FROM videoGames WHERE is_preorder = true",
+      "SELECT * FROM videoGames WHERE is_preorder = 1",
     );
     return rows as videoGames[];
   }
@@ -101,7 +101,7 @@ class videoGamesRepository {
   // Rechercher les jeux à venir basé sur le champ is_upcoming
   async readUpcoming() {
     const [rows] = await databaseClient.query<Rows>(
-      "SELECT * FROM videoGames WHERE is_upcoming = true",
+      "SELECT * FROM videoGames WHERE is_upcoming = 1",
     );
     return rows as videoGames[];
   }

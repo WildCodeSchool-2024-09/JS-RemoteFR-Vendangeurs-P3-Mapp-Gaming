@@ -102,7 +102,7 @@ const remove: RequestHandler = async (req, res, next) => {
 // Read operation for trending
 const getTrending: RequestHandler = async (req, res, next) => {
   try {
-    const trendingGames = await videoGamesRepository.readTrending();
+    const trendingGames = await videoGamesRepository.readTrending;
     res.json(trendingGames);
   } catch (err) {
     next(err);

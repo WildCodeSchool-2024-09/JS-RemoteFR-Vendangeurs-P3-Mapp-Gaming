@@ -1,6 +1,6 @@
-import argon2 from "argon2";
+// import argon2 from "argon2";
 import express from "express";
-import jwt from "jsonwebtoken";
+// import jwt from "jsonwebtoken";
 
 const router = express.Router();
 
@@ -22,13 +22,14 @@ const router = express.Router();
 import videoGamesAction from "./modules/videoGames/videoGamesAction";
 
 router.get("/api/videoGames", videoGamesAction.browse);
-router.get("/api/videoGames/:id", videoGamesAction.read);
-router.put("/api/videoGames/:id", videoGamesAction.edit);
-router.post("/api/videoGames", videoGamesAction.add);
-router.delete("/api/videoGames/:id", videoGamesAction.remove);
 router.get("/api/videoGames/trending", videoGamesAction.getTrending);
 router.get("/api/videoGames/preorder", videoGamesAction.getPreorder);
 router.get("/api/videoGames/upcoming", videoGamesAction.getUpcoming);
+router.get("/api/videoGames/:id", videoGamesAction.read);
+
+router.put("/api/videoGames/:id", videoGamesAction.edit);
+router.post("/api/videoGames", videoGamesAction.add);
+router.delete("/api/videoGames/:id", videoGamesAction.remove);
 
 /* ************************************************************************* */
 // router.post(
