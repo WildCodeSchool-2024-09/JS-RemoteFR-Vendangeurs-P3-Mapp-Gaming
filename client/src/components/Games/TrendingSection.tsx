@@ -7,6 +7,7 @@ interface videoGames {
   price: number;
   releaseDate: Date;
   category: string;
+  image1: string;
 }
 
 const TrendingSection = () => {
@@ -24,10 +25,20 @@ const TrendingSection = () => {
   return (
     <div className="tendance-section">
       <h2>Tendance</h2>
-      <div className="tendance-container">
+      <div className="flex justify-center items-center gap-6">
         {videoGames.map((videoGame) => {
           return (
-            <div key={videoGame.id} className="tendance-card">
+            <div
+              key={videoGame.id}
+              className="flex flex-col items-center gap-3"
+            >
+              <div className="w-72 h-72">
+                <img
+                  src={videoGame.image1}
+                  alt=""
+                  className="w-full h-full object-cover rounded-2xl"
+                />
+              </div>
               <h3>{videoGame.title}</h3>
               <p>{videoGame.price} €</p>
             </div>
