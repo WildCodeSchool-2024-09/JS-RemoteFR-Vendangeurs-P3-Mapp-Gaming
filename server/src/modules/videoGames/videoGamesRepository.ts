@@ -109,7 +109,7 @@ class videoGamesRepository {
   // Rechercher les jeux tendances (basé sur le nombre de vues)
   async readTrending() {
     const [rows] = await databaseClient.query<Rows>(
-      "SELECT Vg.title, Vg.price, Vg.image1, T.views FROM videoGames Vg JOIN trending T ON Vg.id = T.id ORDER BY T.views DESC LIMIT 10",
+      "SELECT * FROM videoGames ORDER BY views DESC LIMIT 7",
     );
     return rows as videoGames[];
   }
