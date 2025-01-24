@@ -249,10 +249,10 @@ VALUES
 
  INSERT INTO USER (firstname, lastname, username, email, password, date_of_creation, membership, is_admin)
  VALUES 
-  ('Admin', 'System', 'admin', 'admin@mappgaming.com', 'Adminpa2word', '2024-12-31', 'Premium', true),
-  ('Marvin', 'Dupont', 'MarvD', 'marvin.dupont@gmail.com', 'Password1', '2025-01-01', 'Premium', false),
-  ('Aurélia', 'Martin', 'AureliaM', 'aurelia.martin@gmail.com', 'Password2', '2025-01-02', 'Premium', false),
-  ('Pénélope', 'Teixeira', 'PennyT', 'penelope.teixeira@gmail.com', 'Password3', '2025-01-03', 'Basic', false);
+  ('Admin', 'System', 'admin', 'admin@mappgaming.com', '$argon2id$v=19$m=65536,t=3,p=4$bTdUGynIQ17CSSQJADhGKQ$5W/fOBLdTkGx6t3U9noZkIPABMNveWQJZDi+pme+hGc', '2024-12-31', 'Premium', true),
+  ('Marvin', 'Dupont', 'MarvD', 'marvin.dupont@gmail.com', '$argon2id$v=19$m=65536,t=3,p=4$nhq07fuIipoLX0/GSopWsA$zEi134CSDVvtHvC8yoQwtKwbVzHecly8+9ZOA0811ig', '2025-01-01', 'Premium', false),
+  ('Aurélia', 'Martin', 'AureliaM', 'aurelia.martin@gmail.com', '$argon2id$v=19$m=65536,t=3,p=4$WIn1Abx0Q+6lN7h/dTVb4A$U2q6ZL7ntryVpMIV9bXyvghJkLZCe6RUY8ehaCUKfcQ', '2025-01-02', 'Premium', false),
+  ('Pénélope', 'Teixeira', 'PennyT', 'penelope.teixeira@gmail.com', '$argon2id$v=19$m=65536,t=3,p=4$653qCkPsQJuByI4w8kuFCQ$NYKG+hZlr3TzV9LN4t+WihKnzLWLcFy95KtzCDMO2CI', '2025-01-03', 'Basic', false);
 
 insert into profile (information, wallet, basket, wishlist, comment, user_management, games_management, articles_management, activity_report, user_id)
  values (

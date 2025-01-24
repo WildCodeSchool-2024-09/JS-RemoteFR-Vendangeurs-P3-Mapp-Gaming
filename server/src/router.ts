@@ -9,9 +9,9 @@ const router = express.Router();
 /* ************************************************************************* */
 
 // Authentification routes
-// router.post("/auth/register", authActions.register);
+router.post("/auth/register", authActions.register);
 router.post("/auth/login", checkAuthDatas, authActions.login);
-// router.get("/auth/find/:id", authActions.findCurrentUser);
+router.get("/auth/find/:id", authActions.findCurrentUser);
 
 // Define item-related routes
 import itemActions from "./modules/item/itemActions";

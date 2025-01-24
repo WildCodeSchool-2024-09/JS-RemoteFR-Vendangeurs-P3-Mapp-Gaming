@@ -6,6 +6,8 @@ type User = {
   id?: number;
   email: string;
   password: string;
+  username: string;
+  hashedPassword: string;
   is_admin?: boolean;
 };
 
@@ -13,8 +15,8 @@ class AuthRepository {
   async create(user: User) {
     try {
       const result = await databaseClient.query<Result>(
-        "INSERT INTO users (email, password) VALUES (?, ?)",
-        [user.email, user.password],
+        "INSERT INTO user (email, password) VALUES (?, ?)",
+        [user.email, user.hashedPassword],
       );
       return { id: result[0].insertId };
     } catch (error: unknown) {
@@ -31,15 +33,15 @@ class AuthRepository {
 
   async readOneByEmail(email: string) {
     const [row] = await databaseClient.query<Rows>(
-      "SELECT id, email, password FROM users WHERE email = ? LIMIT 1",
+      "SELECT id, email, password, username, is_admin FROM user WHERE email = ? LIMIT 1",
       [email],
     );
     return row[0] as User;
   }
 
-  async readOneByID(id: number) {
+  async readOneById(id: number) {
     const [row] = await databaseClient.query<Rows>(
-      "SELECT id, email, password FROM users WHERE email = ? LIMIT 1",
+      "SELECT id, email, password, username, is_admin FROM user WHERE email = ? LIMIT 1",
       [id],
     );
     return row[0] as User;

@@ -2,10 +2,10 @@ import argon2 from "argon2";
 import jwt from "jsonwebtoken";
 
 type User = {
-  id: number;
+  id?: number;
   email: string;
   password: string;
-  is_admin: boolean;
+  is_admin?: boolean;
 };
 
 const passwordsMatch = async (
@@ -15,4 +15,14 @@ const passwordsMatch = async (
   return await argon2.verify(hash, password);
 };
 
-export { passwordsMatch };
+const generateToken = ({ user }: { user: User }) => {
+  return jwt.sign(
+    { userId: user.id, email: user.email, isAdmin: user.is_admin },
+    process.env.APP_SECRET as string,
+    {
+      expiresIn: "1h",
+    },
+  );
+};
+
+export { generateToken, passwordsMatch };
