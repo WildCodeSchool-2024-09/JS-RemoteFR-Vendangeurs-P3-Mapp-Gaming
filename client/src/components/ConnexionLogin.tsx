@@ -133,12 +133,6 @@ const ConnexionLogin = () => {
             >
               CONNEXION
             </button>
-            <button
-              type="button"
-              className="w-1/2 mr-2 px-4 py-2 bg-transparent border-purple-500 border-2 text-white font-bold rounded hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-purple-500"
-            >
-              S'INSCRIRE
-            </button>
           </div>
         </form>
       </div>
