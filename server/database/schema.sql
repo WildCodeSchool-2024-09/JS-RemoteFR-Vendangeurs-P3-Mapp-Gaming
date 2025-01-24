@@ -105,6 +105,14 @@ create table game_platforms(
   foreign key (platform_id) references platforms(id)
 );
 
+create table wishlist(
+  id int unsigned primary key auto_increment not null,
+  profile_id int unsigned not null,
+  game_id int unsigned not null,
+  foreign key (profile_id) references profile(id),
+  foreign key (game_id) references videoGames(id)
+);
+
  INSERT INTO videoGames (title, price, release_date, category, image1, image2, image3, image4, image5, description) 
 VALUES 
 (
@@ -231,4 +239,17 @@ insert into profile (information, wallet, basket, wishlist, comment, user_manage
  false, 
  false, 
  1);
+
+ insert into wishlist (profile_id, game_id)
+values 
+(2, 3), -- Marvin ajoute "Super Mario Odyssey"
+(2, 4), -- Marvin ajoute "The Witcher 3: Wild Hunt"
+(3, 2), -- Aurélia ajoute "The Legend of Zelda: Breath of the Wild"
+(3, 4), -- Aurélia ajoute "The Witcher 3: Wild Hunt"
+(4, 1), -- Pénélope ajoute "Tomb Raider Definitive Edition"
+(4, 5); -- Pénélope ajoute "Red Dead Redemption 2"
  
+select videoGames.title, videoGames.price, videoGames.category
+from videoGames
+join videoGames ON wishlist.game_id = videoGames.id
+where profile.user_id = 2;
