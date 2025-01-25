@@ -29,10 +29,12 @@ function Register() {
     const newUser = await axios.post(
       `${import.meta.env.VITE_API_URL}/api/auth/register`,
       login,
+      { withCredentials: true },
     );
 
     const currentUser = await axios.get(
       `${import.meta.env.VITE_API_URL}/api/auth/find/${newUser.data.userId}`,
+      { withCredentials: true },
     );
 
     setUser(currentUser.data);

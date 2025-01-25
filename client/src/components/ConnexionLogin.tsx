@@ -56,38 +56,6 @@ const ConnexionLogin = () => {
       {/* FORMULAIE */}
       <div className="justify-center w-full max-w-md p-8 bg-[#1a1a2e] border border-orange-500 rounded-lg shadow-lg">
         <form onSubmit={handleFormSubmit}>
-          {/* <div className="flex flex-col">
-            <label
-              className="block text-gray-300 text-sm font-bold mb-2"
-              htmlFor="firstName"
-            >
-              PRÉNOM
-            </label>{" "}
-            <input
-              id="firstName"
-              type="text"
-              className="w-full px-3 py-2 bg-black text-white border border-purple-500 rounded focus:outline-none focus:ring-2 focus:ring-orange-500 mb-4"
-              placeholder="Entrez votre prénom"
-              value={firstname}
-              onChange={(e) => setFirstname(e.target.value)}
-            />
-          </div>
-          <div className="flex flex-col">
-            <label
-              className="block text-gray-300 text-sm font-bold mb-2"
-              htmlFor="lastName"
-            >
-              NOM
-            </label>
-            <input
-              id="lastName"
-              type="text"
-              className="w-full px-3 py-2 bg-black text-white border border-purple-500 rounded focus:outline-none focus:ring-2 focus:ring-orange-500 mb-4"
-              placeholder="Entrez votre nom"
-              value={lastname}
-              onChange={(e) => setLastname(e.target.value)}
-            />
-          </div> */}
           <div className="flex-col">
             <label
               className="block text-gray-300 text-sm font-bold mb-2"
