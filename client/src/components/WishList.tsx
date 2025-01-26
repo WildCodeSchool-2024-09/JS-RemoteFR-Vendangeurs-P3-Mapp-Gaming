@@ -1,34 +1,43 @@
-interface Game {
-    id: number;
-    title: string;
-    imageUrl: string;
+import axios from "axios";
+import react, { useEffect } from "react";
+interface videoGames {
+  id: number;
+  title: string;
+  image1: string;
 }
 
-interface WishListProps {
-    games: Game[];
-}
+const WishList = () => {
+  const [videoGames, setVideoGames] = react.useState<videoGames[]>([]);
 
-const WishList: React.FC<WishListProps> = ({ games }) => {
-    return (
-        <div className="text-white flex flex-col items-center p-6 bg-[#1a1a2e] border border-orange-500 rounded-lg shadow-lg ">
-             <h1 className="text-3xl font-bold mb-6">ET POURQUOI PAS TA WISHLIST ?</h1>
-<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-6xl w-full">
-        {games.length > 0 ? (
-          games.map((game) => (
+  useEffect(() => {
+    // Changer l'ID 1 par celui de l'utilisateur connecté
+    axios
+      .get("http://localhost:3310/api/user/profile/1/wishlist")
+      .then((response) => {
+        setVideoGames(response.data);
+      });
+  }, []);
+
+  return (
+    <div className="text-white flex flex-col items-center p-6 bg-[#1a1a2e] border border-orange-500 rounded-lg shadow-lg ">
+      <h1 className="mb-6 text-3xl font-bold">ET POURQUOI PAS TA WISHLIST ?</h1>
+      <div className="grid w-full max-w-6xl grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
+        {videoGames.length > 0 ? (
+          videoGames.map((videoGame) => (
             <div
-              key={game.id}
-              className="bg-gray-800 rounded-lg overflow-hidden shadow-md hover:scale-105 transform transition duration-300"
+              key={videoGame.id}
+              className="overflow-hidden transition duration-300 transform bg-gray-800 rounded-lg shadow-md hover:scale-105"
             >
               <img
-                src={game.imageUrl}
-                alt={game.title}
-                className="w-full h-40 object-cover"
+                src={videoGame.image1}
+                alt={videoGame.title}
+                className="object-cover w-full h-40"
               />
               <div className="p-4 text-center">
-                <h2 className="text-lg font-semibold">{game.title}</h2>
+                <h2 className="text-lg font-semibold">{videoGame.title}</h2>
                 <button
                   type="button"
-                  className="mt-4 px-4 py-2 bg-orange-500 text-white rounded hover:bg-orange-600"
+                  className="px-4 py-2 mt-4 text-white bg-orange-500 rounded hover:bg-orange-600"
                 >
                   Ajouter au panier
                 </button>
@@ -44,5 +53,3 @@ const WishList: React.FC<WishListProps> = ({ games }) => {
 };
 
 export default WishList;
-
-  
