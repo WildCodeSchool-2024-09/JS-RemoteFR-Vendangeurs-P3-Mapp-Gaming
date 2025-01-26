@@ -114,5 +114,6 @@ class videoGamesRepository {
     return rows as videoGames[];
   }
 }
+// afficher le contenu du basket
 
 export default new videoGamesRepository();
