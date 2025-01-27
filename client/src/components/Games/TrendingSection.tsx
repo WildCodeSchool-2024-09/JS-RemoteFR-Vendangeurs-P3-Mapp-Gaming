@@ -1,5 +1,6 @@
 import axios from "axios";
 import react, { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 interface videoGames {
   id: number;
@@ -24,45 +25,27 @@ const TrendingSection = () => {
 
   return (
     <div className="tendance-section">
-      <h2>Tendance</h2>
+      <Link to="/trending">
+        <h2>Tendance</h2>
+      </Link>
       <div className="flex justify-center items-center gap-6">
-        {videoGames.map((videoGame) => {
-          return (
-            <div
-              key={videoGame.id}
-              className="flex flex-col items-center gap-3"
-            >
+        {videoGames.map((videoGame) => (
+          <Link to={`/SoloGame/${videoGame.id}`} key={videoGame.id}>
+            <div className="flex flex-col items-center gap-3">
               <div className="w-72 h-72">
                 <img
                   src={videoGame.image1}
-                  alt=""
+                  alt={videoGame.title}
                   className="w-full h-full object-cover rounded-2xl"
                 />
               </div>
               <h3>{videoGame.title}</h3>
               <p>{videoGame.price} €</p>
             </div>
-          );
-        })}
+          </Link>
+        ))}
       </div>
     </div>
-    // <section>
-    //   <div className="flex items-center ">
-    //     <h2 className="text-lg font-bold">TENDANCE</h2>
-    //     <a href="/trending" className="text-orange-500 text-sm">
-    //       ➤
-    //     </a>
-    //   </div>
-    //   <div className="grid grid-cols-5 grid-rows-1 gap-4 mt-4">
-    //     <div className="col-span-2 bg-gray-700 aspect-video rounded-lg" />
-    //     <div className="col-span-1 bg-gray-700 aspect-video rounded-lg" />
-    //     <div className="col-span-1 bg-gray-700 aspect-video rounded-lg" />
-    //     <div className="col-span-1 bg-gray-700 aspect-video rounded-lg" />
-    //     <div className="col-span-1 bg-gray-700 aspect-video rounded-lg" />
-    //     <div className="col-span-1 bg-gray-700 aspect-video rounded-lg" />
-    //     <div className="col-span-1 bg-gray-700 aspect-video rounded-lg" />
-    //   </div>
-    // </section>
   );
 };
 

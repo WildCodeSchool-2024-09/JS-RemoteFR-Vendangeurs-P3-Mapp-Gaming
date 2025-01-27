@@ -8,10 +8,14 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import App from "./App";
 import NotFound from "./components/NotFound/NotFound";
 import { AuthProvider } from "./contexts/AuthContext";
+import { ThemeProvider } from "./contexts/ColorsContext";
 import ConnexionPage from "./pages/ConnexionPage";
 import HomePage from "./pages/HomePage";
+import PreorderPage from "./pages/PreorderPage";
 import ProfilePage from "./pages/ProfilePage";
 import SoloGamePage from "./pages/SoloGamePage";
+import TrendingPage from "./pages/TrendingPage";
+import UpcomingPage from "./pages/UpcomingPage";
 
 /* ************************************************************************* */
 
@@ -21,10 +25,13 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       { path: "", element: <HomePage /> },
-      { path: "Login", element: <ConnexionPage /> },
-      { path: "SoloGame/:id", element: <SoloGamePage /> },
-      { path: "Profile", element: <ProfilePage /> },
+      { path: "login", element: <ConnexionPage /> },
+      { path: "soloGame/:id", element: <SoloGamePage /> },
+      { path: "profile", element: <ProfilePage /> },
       { path: "*", element: <NotFound /> },
+      { path: "trending", element: <TrendingPage /> },
+      { path: "preorder", element: <PreorderPage /> },
+      { path: "upcoming", element: <UpcomingPage /> },
     ],
   },
 ]);
@@ -38,8 +45,10 @@ if (rootElement == null) {
 
 createRoot(rootElement).render(
   <StrictMode>
-    <AuthProvider>
-      <RouterProvider router={router} />
-    </AuthProvider>
+    <ThemeProvider>
+      <AuthProvider>
+        <RouterProvider router={router} />
+      </AuthProvider>
+    </ThemeProvider>
   </StrictMode>,
 );
