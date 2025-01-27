@@ -1,6 +1,6 @@
-// import argon2 from "argon2";
 import express from "express";
-// import jwt from "jsonwebtoken";
+import { checkAuthDatas } from "./middlewares/checkAuthDatas";
+import authActions from "./modules/auth/authActions";
 
 const router = express.Router();
 
@@ -8,14 +8,17 @@ const router = express.Router();
 // Define Your API Routes Here
 /* ************************************************************************* */
 
-// import validateDatas from "../middlewares/validateDatas";
-// import userAction from "./modules/user/userAction";
+// Authentification routes
+router.post("/auth/register", authActions.register);
+router.post("/auth/login", checkAuthDatas, authActions.login);
+router.get("/auth/find/:id", authActions.findCurrentUser);
 
-// router.get("/api/user", userAction.browse);
-// router.get("/api/user/:id", userAction.read);
-// router.put("/api/user/:id", userAction.edit);
-// router.post("/api/user", userAction.add);
-// router.delete("/api/user/:id", userAction.remove);
+// Define item-related routes
+import itemActions from "./modules/item/itemActions";
+
+router.get("/api/items", itemActions.browse);
+router.get("/api/items/:id", itemActions.read);
+router.post("/api/items", itemActions.add);
 
 /* ************************************************************************* */
 

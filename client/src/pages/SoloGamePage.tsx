@@ -1,13 +1,17 @@
 import { useParams } from "react-router-dom";
 import About from "../components/SoloGame/About";
 import GameBanner from "../components/SoloGame/GameBanner";
+import { useTheme } from "../contexts/ColorsContext";
 // import Opinions from "../components/SoloGame/Opinions";
 
 export default function SoloGamePage() {
-  const { id } = useParams<{ id: string }>(); // Récupération de l'ID dans l'URL
+  const { id } = useParams<{ id: string }>();
+  const { theme } = useTheme();
 
   return (
-    <div className="bg-slate-400 p-14">
+    <div
+      className={`${theme} bg-bg-primary text-color-text-primary min-h-screen p-14`}
+    >
       <GameBanner gameId={id} />
       <About gameId={id} />
       {/* <Opinions gameId={id} /> */}
