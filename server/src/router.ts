@@ -26,6 +26,10 @@ import videoGamesAction from "./modules/videoGames/videoGamesAction";
 
 router.get("/api/videoGames", videoGamesAction.browse);
 router.get("/api/videoGames/trending", videoGamesAction.getTrending);
+router.get(
+  "/api/videoGames/trending-no-limit",
+  videoGamesAction.getTrendingNoLimit,
+);
 router.get("/api/videoGames/preorder", videoGamesAction.getPreorder);
 router.get("/api/videoGames/upcoming", videoGamesAction.getUpcoming);
 router.get("/api/videoGames/:id", videoGamesAction.read);
