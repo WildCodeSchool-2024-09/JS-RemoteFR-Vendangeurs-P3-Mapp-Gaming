@@ -5,6 +5,7 @@ import { useTheme } from "../../contexts/ColorsContext";
 
 export default function SupportsMenu() {
   const [isOpen, setIsOpen] = useState(false);
+  const [selectedConsole, setSelectedConsole] = useState<string | null>(null);
   const { theme, changeTheme } = useTheme();
 
   const supports = [
@@ -21,10 +22,10 @@ export default function SupportsMenu() {
       <div className="flex items-center justify-between">
         <button
           type="button"
-          className="text-lg font-bold text-primary"
+          className="text-lg font-title text-primary"
           onClick={() => setIsOpen((prev) => !prev)}
         >
-          SÉLECTIONNER MA CONSOLE
+          {selectedConsole ? selectedConsole : "SÉLECTIONNER MA CONSOLE"}
         </button>
         <img
           src={!isOpen ? ArrowDown : ArrowUp}
@@ -39,8 +40,9 @@ export default function SupportsMenu() {
             <div key={support.id} className="p-2 border-b border-secondary">
               <button
                 type="button"
-                className="text-primary hover:text-secondary transition w-full text-left"
+                className="text-primary font-title hover:text-secondary transition w-full text-left"
                 onClick={() => {
+                  setSelectedConsole(support.title);
                   changeTheme(support.theme);
                   setIsOpen(false);
                 }}

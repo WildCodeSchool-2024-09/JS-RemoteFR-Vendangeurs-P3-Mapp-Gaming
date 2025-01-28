@@ -39,7 +39,7 @@ const PreorderSection = () => {
   return (
     <div className="Preorder-section px-6">
       <Link to="/preorder">
-        <h2 className="text-2xl font-bold mb-6">Précommandes</h2>
+        <h2 className="text-2xl font-title mb-6">Précommandes</h2>
       </Link>
 
       <div className="relative">
@@ -47,7 +47,7 @@ const PreorderSection = () => {
         <button
           type="button"
           onClick={() => scroll("left")}
-          className="absolute left-0 top-1/2 -translate-y-1/2 bg-primary bg-opacity-30 text-white p-2 rounded-full shadow-md z-10 hidden md:flex"
+          className="absolute left-0 top-1/2 -translate-y-1/2 bg-primary bg-opacity-30 text-white rounded-full shadow-md z-10 hidden md:flex"
         >
           <img src={arrowLeft} alt="Précédent" />
         </button>
@@ -73,10 +73,10 @@ const PreorderSection = () => {
 
                 {/* Conteneur du texte avec effet flouté */}
                 <div className="absolute bottom-0 left-0 w-full bg-black bg-opacity-30 text-white text-center p-2 backdrop-blur-md">
-                  <h3 className="text-sm font-bold overflow-hidden whitespace-nowrap text-ellipsis w-full">
+                  <h3 className="text-sm font-title overflow-hidden whitespace-nowrap text-ellipsis w-full">
                     {videoGame.title}
                   </h3>
-                  <span className="text-xs">{videoGame.price} €</span>
+                  <span className=" font-text">{videoGame.price} €</span>
                 </div>
               </div>
             </Link>
@@ -87,7 +87,7 @@ const PreorderSection = () => {
         <button
           type="button"
           onClick={() => scroll("right")}
-          className="absolute right-0 top-1/2 -translate-y-1/2 bg-primary text-white p-2 rounded-full shadow-md z-10 hidden md:flex"
+          className="absolute right-0 top-1/2 -translate-y-1/2 bg-primary text-white rounded-full shadow-md z-10 hidden md:flex"
         >
           <img src={arrowRight} alt="Suivant" />
         </button>

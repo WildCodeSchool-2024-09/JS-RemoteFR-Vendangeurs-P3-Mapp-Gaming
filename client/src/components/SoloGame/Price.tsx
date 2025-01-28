@@ -23,7 +23,7 @@ export default function Price({ gameId }: { gameId: string | undefined }) {
 
   return (
     <section className="flex flex-col items-center justify-center gap-4">
-      <h2 className="text-xl font-bold">{game.price}€</h2>
+      <h2 className="text-xl font-title">{game.price}€</h2>
       <div className="flex gap-4">
         <button type="button" className="border border-primary p-3 rounded-lg">
           <img src={Favorite} alt="Favorite" />
@@ -32,7 +32,7 @@ export default function Price({ gameId }: { gameId: string | undefined }) {
           type="button"
           className="border border-primary p-3 rounded-lg flex items-center gap-4"
         >
-          <span>AJOUTER AU PANIER</span>
+          <span className="font-text">AJOUTER AU PANIER</span>
           <img src={basket} alt="basket" />
         </button>
       </div>

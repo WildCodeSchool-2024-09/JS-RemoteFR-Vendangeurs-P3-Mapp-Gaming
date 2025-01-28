@@ -40,7 +40,7 @@ const UpcomingSection = () => {
   return (
     <section className="mt-10 px-6">
       <Link to="/upcoming">
-        <h2 className="text-2xl font-bold mb-6">À Venir</h2>
+        <h2 className="text-2xl font-title mb-6">À Venir</h2>
       </Link>
       <div className="Upcoming-section flex flex-col items-center">
         <div className="relative w-full flex justify-center items-center">
@@ -48,7 +48,7 @@ const UpcomingSection = () => {
           <button
             type="button"
             onClick={prevGame}
-            className="absolute left-0 top-1/2 -translate-y-1/2 bg-primary text-white p-3 rounded-full shadow-md z-10 hidden md:flex"
+            className="absolute left-0 top-1/2 -translate-y-1/2 bg-primary text-white rounded-full shadow-md z-10 hidden md:flex"
           >
             <img src={arrowLeft} alt="" />
           </button>
@@ -94,8 +94,8 @@ const UpcomingSection = () => {
                       className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
                     />
                     <div className="absolute bottom-0 left-0 w-full bg-black bg-opacity-40 text-white text-center p-2 backdrop-blur-md">
-                      <h3 className="text-sm font-bold">{videoGame.title}</h3>
-                      <span className="text-xs">{videoGame.price} €</span>
+                      <h3 className="text-sm font-title">{videoGame.title}</h3>
+                      <span className="font-text">{videoGame.price} €</span>
                     </div>
                   </div>
                 </Link>
@@ -107,7 +107,7 @@ const UpcomingSection = () => {
           <button
             type="button"
             onClick={nextGame}
-            className="absolute right-0 top-1/2 -translate-y-1/2 bg-primary text-white p-3 rounded-full shadow-md z-10 hidden md:flex"
+            className="absolute right-0 top-1/2 -translate-y-1/2 bg-primary text-white rounded-full shadow-md z-10 hidden md:flex"
           >
             <img src={arrowRight} alt="" />
           </button>

@@ -4,15 +4,15 @@ export default function SupportsChoice() {
   const { changeTheme } = useTheme();
 
   return (
-    <section className="flex flex-col items-center justify-center text-center">
-      <h1 className="text-3xl font-bold text-primary mb-6">
+    <section className="flex flex-col items-center justify-center text-center mt-10">
+      <h1 className="text-3xl font-title text-primary mb-6">
         VIENS DÉCOUVRIR UN LARGE CHOIX DE JEUX SUR NOS DIFFÉRENTES PLATEFORMES !
       </h1>
 
       <div className="flex gap-4">
         <button
           type="button"
-          className="px-6 py-3 bg-primary text-color-text-primary font-bold rounded-lg transition hover:scale-105"
+          className="px-6 py-3 bg-primary text-color-text-primary font-title rounded-lg transition hover:scale-105"
           onClick={() => changeTheme("theme-red")}
         >
           NINTENDO
@@ -20,7 +20,7 @@ export default function SupportsChoice() {
 
         <button
           type="button"
-          className="px-6 py-3 bg-primary text-color-text-primary font-bold rounded-lg transition hover:scale-105"
+          className="px-6 py-3 bg-primary text-color-text-primary font-title rounded-lg transition hover:scale-105"
           onClick={() => changeTheme("theme-blue")}
         >
           PLAYSTATION
@@ -28,7 +28,7 @@ export default function SupportsChoice() {
 
         <button
           type="button"
-          className="px-6 py-3 bg-primary text-color-text-primary font-bold rounded-lg transition hover:scale-105"
+          className="px-6 py-3 bg-primary text-color-text-primary font-title rounded-lg transition hover:scale-105"
           onClick={() => changeTheme("theme-green")}
         >
           XBOX
@@ -36,7 +36,7 @@ export default function SupportsChoice() {
 
         <button
           type="button"
-          className="px-6 py-3 bg-primary text-color-text-primary font-bold rounded-lg transition hover:scale-105"
+          className="px-6 py-3 bg-primary text-color-text-primary font-title rounded-lg transition hover:scale-105"
           onClick={() => changeTheme("theme-purple")}
         >
           PC
