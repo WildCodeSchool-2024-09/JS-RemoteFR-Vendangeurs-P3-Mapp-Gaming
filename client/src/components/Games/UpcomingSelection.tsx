@@ -25,7 +25,7 @@ const UpcomingSelection = () => {
   return (
     <div className="Upcoming-section p-6">
       <Link to="/upcoming">
-        <h2 className="text-2xl font-bold mb-6">À venir</h2>
+        <h2 className="text-2xl font-title mb-6">À venir</h2>
       </Link>
 
       <section className="flex flex-col items-center justify-center gap-4">
@@ -43,10 +43,10 @@ const UpcomingSelection = () => {
                   className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
                 />
                 <div className="absolute bottom-0 left-0 w-full bg-black bg-opacity-30 text-white text-center p-2 backdrop-blur-md">
-                  <h3 className="text-sm font-bold overflow-hidden whitespace-nowrap text-ellipsis">
+                  <h3 className="text-sm font-title overflow-hidden whitespace-nowrap text-ellipsis">
                     {game.title}
                   </h3>
-                  <span className="text-xs">{game.price} €</span>
+                  <span className="font-text">{game.price} €</span>
                 </div>
               </div>
             </Link>

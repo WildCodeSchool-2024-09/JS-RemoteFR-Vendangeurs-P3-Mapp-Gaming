@@ -25,7 +25,7 @@ const TrendingSection = () => {
   return (
     <div className="tendance-section p-6">
       <Link to="/trending">
-        <h2 className="text-2xl font-bold mb-6">Tendance</h2>
+        <h2 className="text-2xl font-title mb-6">Tendance</h2>
       </Link>
 
       {videoGames.length >= 7 && (
@@ -42,10 +42,10 @@ const TrendingSection = () => {
                   className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
                 />
                 <div className="absolute bottom-0 left-0 w-full bg-black bg-opacity-20 text-white text-center p-3 backdrop-blur-md">
-                  <h3 className="text-lg font-bold overflow-hidden whitespace-nowrap text-ellipsis">
+                  <h3 className="text-lg font-title overflow-hidden whitespace-nowrap text-ellipsis">
                     {videoGames[0].title}
                   </h3>
-                  <span className="text-sm">{videoGames[0].price} €</span>
+                  <span className="font-text">{videoGames[0].price} €</span>
                 </div>
               </div>
             </Link>
@@ -73,10 +73,10 @@ const TrendingSection = () => {
                       className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
                     />
                     <div className="absolute bottom-0 left-0 w-full bg-black bg-opacity-20 text-white text-center p-2 backdrop-blur-md">
-                      <h3 className="text-sm font-bold overflow-hidden whitespace-nowrap text-ellipsis">
+                      <h3 className="text-sm font-title overflow-hidden whitespace-nowrap text-ellipsis">
                         {game.title}
                       </h3>
-                      <span className="text-xs">{game.price} €</span>
+                      <span className="font-text">{game.price} €</span>
                     </div>
                   </div>
                 </Link>
