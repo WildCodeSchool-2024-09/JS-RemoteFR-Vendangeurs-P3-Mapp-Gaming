@@ -1,4 +1,4 @@
-import PreorderSection from "../components/Games/PreorderSection";
+import PreorderSelection from "../components/Games/PreorderSelection";
 import { useTheme } from "../contexts/ColorsContext";
 
 const PreorderPage = () => {
@@ -7,7 +7,7 @@ const PreorderPage = () => {
     <div
       className={`${theme} bg-bg-primary text-color-text-primary min-h-screen`}
     >
-      <PreorderSection />
+      <PreorderSelection />
     </div>
   );
 };

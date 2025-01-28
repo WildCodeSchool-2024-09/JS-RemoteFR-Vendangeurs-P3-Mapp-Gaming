@@ -2,7 +2,6 @@ import { useParams } from "react-router-dom";
 import About from "../components/SoloGame/About";
 import GameBanner from "../components/SoloGame/GameBanner";
 import { useTheme } from "../contexts/ColorsContext";
-// import Opinions from "../components/SoloGame/Opinions";
 
 export default function SoloGamePage() {
   const { id } = useParams<{ id: string }>();
@@ -14,7 +13,6 @@ export default function SoloGamePage() {
     >
       <GameBanner gameId={id} />
       <About gameId={id} />
-      {/* <Opinions gameId={id} /> */}
     </div>
   );
 }
