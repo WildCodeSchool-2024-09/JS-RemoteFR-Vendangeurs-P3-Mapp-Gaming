@@ -4,8 +4,8 @@ import type { Result, Rows } from "../../../database/client";
 
 type User = {
   id: number;
-  firstName: string;
-  lastName: string;
+  firstname: string;
+  lastname: string;
   username: string;
   email: string;
   password: string;
@@ -20,8 +20,8 @@ class userRepository {
     const [result] = await databaseClient.query<Result>(
       "INSERT INTO user (first_name, last_name, username, email, password) VALUES (?, ?, ?, ?, ?, ?, ?)",
       [
-        user.firstName,
-        user.lastName,
+        user.firstname,
+        user.lastname,
         user.username,
         user.email,
         user.password,
@@ -54,8 +54,8 @@ class userRepository {
     const [result] = await databaseClient.query<Result>(
       "UPDATE user SET first_name = ?, last_name = ?, username = ?, email = ?, password = ?, date_of_creation = ?, membership = ?, WHERE id = ?",
       [
-        user.firstName,
-        user.lastName,
+        user.firstname,
+        user.lastname,
         user.username,
         user.email,
         user.password,
@@ -64,6 +64,7 @@ class userRepository {
         user.id,
       ],
     );
+    return result.affectedRows;
   }
 
   // The D of CRUD - Delete operation

@@ -6,7 +6,10 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 /* ************************************************************************* */
 
 import App from "./App";
+import AdminGameSection from "./components/Admin/AdminGameSection";
+import AdminUserSection from "./components/Admin/AdminUserSection";
 import NotFound from "./components/NotFound/NotFound";
+import AdminPage from "./pages/AdminPage";
 import { AuthProvider } from "./contexts/AuthContext";
 import { ThemeProvider } from "./contexts/ColorsContext";
 import ConnexionPage from "./pages/ConnexionPage";
@@ -32,6 +35,14 @@ const router = createBrowserRouter([
       { path: "trending", element: <TrendingPage /> },
       { path: "preorder", element: <PreorderPage /> },
       { path: "upcoming", element: <UpcomingPage /> },
+      {
+        path: "admin",
+        element: <AdminPage />,
+        children: [
+          { path: "user", element: <AdminUserSection /> },
+          { path: "videoGames", element: <AdminGameSection /> },
+        ],
+      },
     ],
   },
 ]);
