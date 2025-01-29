@@ -1,14 +1,14 @@
 import { Link } from "react-router-dom";
 import User from "../assets/Icons/User.svg";
+import Logo from "../assets/Icons/logoB.svg";
 
 export default function navBar() {
   return (
     <>
       <header className="bg-background text-xs flex justify-between items-center px-4 py-2">
-        {/* Section gauche */}
         <div className="flex items-center gap-8">
           <Link to="/">
-            <h1 className="text-primary">Map Gaming</h1>
+            <img src={Logo} alt="Logo" className="w-12 h-12" />
           </Link>
           <Link to="/" className="transition hover:scale-105">
             <span className="font-title">ACCUEIL</span>
