@@ -7,6 +7,8 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
 import App from "./App";
 import NotFound from "./components/NotFound/NotFound";
+import { BasketProvider } from "./contexts/BasketContext";
+import BasketPage from "./pages/BasketPage";
 import ConnectionPage from "./pages/ConnectionPage";
 import HomePage from "./pages/HomePage";
 import PreorderPage from "./pages/PreorderPage";
@@ -30,6 +32,7 @@ const router = createBrowserRouter([
       { path: "trending", element: <TrendingPage /> },
       { path: "preorder", element: <PreorderPage /> },
       { path: "upcoming", element: <UpcomingPage /> },
+      { path: "basket", element: <BasketPage /> },
     ],
   },
 ]);
@@ -43,6 +46,8 @@ if (rootElement == null) {
 
 createRoot(rootElement).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <BasketProvider>
+      <RouterProvider router={router} />
+    </BasketProvider>
   </StrictMode>,
 );

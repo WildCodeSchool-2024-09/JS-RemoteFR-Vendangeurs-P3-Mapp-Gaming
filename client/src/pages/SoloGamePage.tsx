@@ -1,16 +1,11 @@
-import { useParams } from "react-router-dom";
-import About from "../components/SoloGame/About";
-import GameBanner from "../components/SoloGame/GameBanner";
-// import Opinions from "../components/SoloGame/Opinions";
-
-export default function SoloGamePage() {
-  const { id } = useParams<{ id: string }>(); // Récupération de l'ID dans l'URL
-
+function SoloGamePage() {
   return (
-    <div className="bg-slate-400 p-14">
-      <GameBanner gameId={id} />
-      <About gameId={id} />
-      {/* <Opinions gameId={id} /> */}
+    <div id="SoloGamePageContainer">
+      <h1>SoloGamePage</h1>
+
+      <p>SoloGamePage Page</p>
     </div>
   );
 }
+
+export default SoloGamePage;
