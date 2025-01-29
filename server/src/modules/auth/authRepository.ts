@@ -15,8 +15,8 @@ class AuthRepository {
   async create(user: User) {
     try {
       const result = await databaseClient.query<Result>(
-        "INSERT INTO user (email, password) VALUES (?, ?)",
-        [user.email, user.hashedPassword],
+        "INSERT INTO user (username, email, password) VALUES (?, ?, ?)",
+        [user.username, user.email, user.hashedPassword],
       );
       return { id: result[0].insertId };
     } catch (error: unknown) {
