@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import User from "../assets/Icons/User.svg";
+import BasketContext from "../contexts/BasketContext";
+import basket from "../assets/Icons/basket.svg";
 
 export default function navBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -71,6 +73,10 @@ export default function navBar() {
           <div>
             <img src={User} alt="User" className="w-9 h-9" />
           </div>
+          {/* Bouton Basket */}
+          <Link to="/basket">
+            <img src={basket} alt="Basket" className="w-7 h-7 cursor-pointer" />
+          </Link>
         </div>
       </header>
     </>

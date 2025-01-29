@@ -11,7 +11,7 @@ function BasketPage() {
       <p>Panier de l'utilisateur {userId}</p>
 
       {basket.videoGames.length === 0 ? (
-        <p>Votre panier est vide</p>
+        <p>Rien à voir pour l'instant 👻</p>
       ) : (
         <ul>
           {basket.videoGames.map((videoGame) => (
