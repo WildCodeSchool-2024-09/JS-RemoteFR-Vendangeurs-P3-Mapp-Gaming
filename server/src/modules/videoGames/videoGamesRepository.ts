@@ -113,6 +113,13 @@ class videoGamesRepository {
     );
     return rows as videoGames[];
   }
+
+  async readTrendingNoLimit() {
+    const [rows] = await databaseClient.query<Rows>(
+      "SELECT * FROM videoGames ORDER BY views DESC",
+    );
+    return rows as videoGames[];
+  }
 }
 // afficher le contenu du basket
 

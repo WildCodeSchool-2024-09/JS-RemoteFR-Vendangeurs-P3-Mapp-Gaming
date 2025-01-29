@@ -10,7 +10,9 @@ import AdminGameSection from "./components/Admin/AdminGameSection";
 import AdminUserSection from "./components/Admin/AdminUserSection";
 import NotFound from "./components/NotFound/NotFound";
 import AdminPage from "./pages/AdminPage";
-import ConnectionPage from "./pages/ConnectionPage";
+import { AuthProvider } from "./contexts/AuthContext";
+import { ThemeProvider } from "./contexts/ColorsContext";
+import ConnexionPage from "./pages/ConnexionPage";
 import HomePage from "./pages/HomePage";
 import PreorderPage from "./pages/PreorderPage";
 import ProfilePage from "./pages/ProfilePage";
@@ -26,7 +28,7 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       { path: "", element: <HomePage /> },
-      { path: "login", element: <ConnectionPage /> },
+      { path: "login", element: <ConnexionPage /> },
       { path: "soloGame/:id", element: <SoloGamePage /> },
       { path: "profile", element: <ProfilePage /> },
       { path: "*", element: <NotFound /> },
@@ -54,6 +56,10 @@ if (rootElement == null) {
 
 createRoot(rootElement).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <ThemeProvider>
+      <AuthProvider>
+        <RouterProvider router={router} />
+      </AuthProvider>
+    </ThemeProvider>
   </StrictMode>,
 );

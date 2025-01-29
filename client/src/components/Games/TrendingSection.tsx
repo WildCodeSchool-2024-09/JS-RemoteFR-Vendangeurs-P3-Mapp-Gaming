@@ -1,8 +1,8 @@
 import axios from "axios";
-import react, { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-interface videoGames {
+interface VideoGame {
   id: number;
   title: string;
   price: number;
@@ -12,39 +12,79 @@ interface videoGames {
 }
 
 const TrendingSection = () => {
-  const [videoGames, setVideoGames] = react.useState<videoGames[]>([]);
+  const [videoGames, setVideoGames] = useState<VideoGame[]>([]);
 
   useEffect(() => {
     axios
       .get("http://localhost:3310/api/videoGames/trending")
       .then((response) => {
         setVideoGames(response.data);
-        console.info(response.data);
       });
   }, []);
 
   return (
-    <div className="tendance-section">
+    <div className="tendance-section p-6">
       <Link to="/trending">
-        <h2>Tendance</h2>
+        <h2 className="text-2xl font-title mb-6">Tendance</h2>
       </Link>
-      <div className="flex justify-center items-center gap-6">
-        {videoGames.map((videoGame) => (
-          <Link to={`/SoloGame/${videoGame.id}`} key={videoGame.id}>
-            <div className="flex flex-col items-center gap-3">
-              <div className="w-72 h-72">
+
+      {videoGames.length >= 7 && (
+        <section className="flex flex-col items-center justify-center gap-4">
+          <div className="grid grid-cols-5 grid-rows-2 gap-6 w-3/4">
+            <Link
+              to={`/SoloGame/${videoGames[0].id}`}
+              className="col-span-2 row-span-2"
+            >
+              <div className="relative overflow-hidden rounded-2xl h-full w-full">
                 <img
-                  src={videoGame.image1}
-                  alt={videoGame.title}
-                  className="w-full h-full object-cover rounded-2xl"
+                  src={videoGames[0].image1}
+                  alt={videoGames[0].title}
+                  className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
                 />
+                <div className="absolute bottom-0 left-0 w-full bg-black bg-opacity-20 text-white text-center p-3 backdrop-blur-md">
+                  <h3 className="text-lg font-title overflow-hidden whitespace-nowrap text-ellipsis">
+                    {videoGames[0].title}
+                  </h3>
+                  <span className="font-text">{videoGames[0].price} €</span>
+                </div>
               </div>
-              <h3>{videoGame.title}</h3>
-              <p>{videoGame.price} €</p>
-            </div>
-          </Link>
-        ))}
-      </div>
+            </Link>
+
+            {videoGames.slice(1, 7).map((game, index) => {
+              const positions = [
+                { col: 3, row: 1 },
+                { col: 3, row: 2 },
+                { col: 4, row: 1 },
+                { col: 4, row: 2 },
+                { col: 5, row: 1 },
+                { col: 5, row: 2 },
+              ];
+
+              return (
+                <Link
+                  to={`/SoloGame/${game.id}`}
+                  key={game.id}
+                  className={`col-start-${positions[index].col} row-start-${positions[index].row} h-full w-full`}
+                >
+                  <div className="relative overflow-hidden rounded-2xl h-full w-full">
+                    <img
+                      src={game.image1}
+                      alt={game.title}
+                      className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+                    />
+                    <div className="absolute bottom-0 left-0 w-full bg-black bg-opacity-20 text-white text-center p-2 backdrop-blur-md">
+                      <h3 className="text-sm font-title overflow-hidden whitespace-nowrap text-ellipsis">
+                        {game.title}
+                      </h3>
+                      <span className="font-text">{game.price} €</span>
+                    </div>
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
+        </section>
+      )}
     </div>
   );
 };
