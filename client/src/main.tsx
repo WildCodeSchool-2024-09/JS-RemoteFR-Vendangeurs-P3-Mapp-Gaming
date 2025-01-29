@@ -32,7 +32,7 @@ const router = createBrowserRouter([
       { path: "trending", element: <TrendingPage /> },
       { path: "preorder", element: <PreorderPage /> },
       { path: "upcoming", element: <UpcomingPage /> },
-      { path: "basket", element: <BasketPage /> },
+      { path: "users/:id/basket", element: <BasketPage /> },
     ],
   },
 ]);

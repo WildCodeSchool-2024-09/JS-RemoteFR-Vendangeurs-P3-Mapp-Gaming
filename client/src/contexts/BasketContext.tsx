@@ -6,7 +6,7 @@ type Basket = { videoGames: VideoGame[]; userId: number };
 
 type BasketContextType = {
   basket: Basket;
-  addToBasket: (videogame: VideoGame) => void;
+  addToBasket: (videogame: VideoGame, userId: number) => void;
 };
 
 const BasketContext = createContext<BasketContextType | undefined>(undefined);
@@ -14,10 +14,10 @@ const BasketContext = createContext<BasketContextType | undefined>(undefined);
 export const BasketProvider = ({ children }: { children: ReactNode }) => {
   const [basket, setBasket] = useState<Basket>({ videoGames: [], userId: 0 });
 
-  const addToBasket = (videoGame: VideoGame) => {
+  const addToBasket = (videoGame: VideoGame, userId: number) => {
     setBasket({
       videoGames: [...basket.videoGames, videoGame],
-      userId: basket.userId,
+      userId: userId,
     });
   };
 
