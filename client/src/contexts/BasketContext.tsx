@@ -7,7 +7,7 @@ type Basket = { videoGames: VideoGame[]; userId: number };
 type BasketContextType = {
   basket: Basket;
   addToBasket: (videogame: VideoGame, userId: number) => void;
-  getTotalPrice: () => number
+  getTotalPrice: () => number;
 };
 
 const BasketContext = createContext<BasketContextType | undefined>(undefined);
@@ -27,7 +27,7 @@ export const BasketProvider = ({ children }: { children: ReactNode }) => {
   };
 
   return (
-    <BasketContext.Provider value={{ basket, addToBasket,getTotalPrice }}>
+    <BasketContext.Provider value={{ basket, addToBasket, getTotalPrice }}>
       {children}
     </BasketContext.Provider>
   );
