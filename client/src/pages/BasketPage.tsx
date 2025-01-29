@@ -1,12 +1,15 @@
 import { useBasket } from "../contexts/BasketContext";
 
 function BasketPage() {
-  const { basket, addToBasket } = useBasket();
+  const { basket, addToBasket, getTotalPrice } = useBasket();
   const userId = 0;
 
   return (
-    <div id="BasketPageContainer">
-      <h1>BasketPage</h1>
+    <div
+      id="BasketPageContainer"
+      className="min-h-screen bg-gradient-to-b from-black via-gray-900 to-orange-900 text-white p-6"
+    >
+      <h1 className="text-3xl font-bold text-orange-400 mb-6">PANIER</h1>
 
       <p>Panier de l'utilisateur {userId}</p>
 
@@ -58,6 +61,19 @@ function BasketPage() {
           Ajouter
         </button>
       </div>
+      {/* Total et bouton commande */}
+      <div className="mt-6 flex justify-between items-center text-xl font-bold">
+        <span>Total :</span>
+        <span>{getTotalPrice().toFixed(2)} €</span>{" "}
+        {/* Total dynamique */}
+      </div>
+
+      <button
+        type="button"
+        className="mt-4 w-full bg-orange-600 hover:bg-orange-500 text-white py-2 rounded flex justify-center items-center gap-2"
+      >
+        PASSER COMMANDE 🛒
+      </button>
     </div>
   );
 }
