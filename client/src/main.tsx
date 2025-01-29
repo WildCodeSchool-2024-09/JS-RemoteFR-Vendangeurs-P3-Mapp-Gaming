@@ -6,7 +6,10 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 /* ************************************************************************* */
 
 import App from "./App";
+import AdminGameSection from "./components/Admin/AdminGameSection";
+import AdminUserSection from "./components/Admin/AdminUserSection";
 import NotFound from "./components/NotFound/NotFound";
+import AdminPage from "./pages/AdminPage";
 import ConnectionPage from "./pages/ConnectionPage";
 import HomePage from "./pages/HomePage";
 import PreorderPage from "./pages/PreorderPage";
@@ -30,6 +33,14 @@ const router = createBrowserRouter([
       { path: "trending", element: <TrendingPage /> },
       { path: "preorder", element: <PreorderPage /> },
       { path: "upcoming", element: <UpcomingPage /> },
+      {
+        path: "admin",
+        element: <AdminPage />,
+        children: [
+          { path: "user", element: <AdminUserSection /> },
+          { path: "videoGames", element: <AdminGameSection /> },
+        ],
+      },
     ],
   },
 ]);
