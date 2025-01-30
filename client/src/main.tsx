@@ -20,9 +20,11 @@ import ConnexionPage from "./pages/ConnexionPage";
 import HomePage from "./pages/HomePage";
 import PreorderPage from "./pages/PreorderPage";
 import ProfilePage from "./pages/ProfilePage";
+import RegisterPage from "./pages/RegisterPage";
 import SoloGamePage from "./pages/SoloGamePage";
 import TrendingPage from "./pages/TrendingPage";
 import UpcomingPage from "./pages/UpcomingPage";
+import WishlistPage from "./pages/WishlistPage";
 
 /* ************************************************************************* */
 
@@ -33,6 +35,7 @@ const router = createBrowserRouter([
     children: [
       { path: "", element: <HomePage /> },
       { path: "connexion", element: <ConnexionPage /> },
+      { path: "inscription", element: <RegisterPage /> },
       { path: "achetez-votre-jeu-ici/:id", element: <SoloGamePage /> },
       { path: "profile", element: <ProfilePage /> },
       { path: "*", element: <NotFound /> },
@@ -40,6 +43,7 @@ const router = createBrowserRouter([
       { path: "precommande", element: <PreorderPage /> },
       { path: "a-venir", element: <UpcomingPage /> },
       { path: "users/:id/basket", element: <BasketPage /> },
+      { path: "users/:id/wishlist", element: <WishlistPage /> },
 
       {
         path: "admin",
