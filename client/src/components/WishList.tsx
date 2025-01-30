@@ -1,13 +1,17 @@
 import axios from "axios";
 import react, { useEffect } from "react";
+import { useBasket } from "../contexts/BasketContext";
 interface videoGames {
   id: number;
   title: string;
   image1: string;
+  price: number;
 }
 
 const WishList = () => {
   const [videoGames, setVideoGames] = react.useState<videoGames[]>([]);
+  const { addToBasket } = useBasket();
+  const userId = 0;
 
   useEffect(() => {
     // Changer l'ID 1 par celui de l'utilisateur connecté
@@ -23,9 +27,9 @@ const WishList = () => {
       <h1 className="mb-6 text-3xl font-bold">ET POURQUOI PAS TA WISHLIST ?</h1>
       <div className="grid w-full max-w-6xl grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
         {videoGames.length > 0 ? (
-          videoGames.map((videoGame) => (
+          videoGames.map((videoGame, index) => (
             <div
-              key={videoGame.id}
+              key={`${videoGame.id}-${index}`}
               className="overflow-hidden transition duration-300 transform bg-gray-800 rounded-lg shadow-md hover:scale-105"
             >
               <img
@@ -38,6 +42,10 @@ const WishList = () => {
                 <button
                   type="button"
                   className="px-4 py-2 mt-4 text-white bg-orange-500 rounded hover:bg-orange-600"
+                  onClick={() => {
+                    console.info("Ajout au panier :", videoGame);
+                    addToBasket(videoGame, userId);
+                  }}
                 >
                   Ajouter au panier
                 </button>
