@@ -60,7 +60,7 @@ const PreorderSection = () => {
         >
           {videoGames.map((videoGame) => (
             <Link
-              to={`/acheter-ce-jeux/${videoGame.id}`}
+              to={`/achetez-votre-jeu-ici/${videoGame.id}`}
               key={videoGame.id}
               className="snap-center flex-shrink-0"
             >

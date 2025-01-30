@@ -4,11 +4,13 @@ import Favorite from "../assets/Icons/Favorite.svg";
 import User from "../assets/Icons/User.svg";
 import basket from "../assets/Icons/basket.svg";
 import logoB from "../assets/icons/logoB.svg";
+import { useAuth } from "../contexts/AuthContext";
 import { useBasket } from "../contexts/BasketContext";
 
 export default function NavBar() {
   //const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { itemCount } = useBasket(); // Récupération du nombre d'articles
+  const { user } = useAuth();
 
   return (
     <>
@@ -41,7 +43,7 @@ export default function NavBar() {
 
           {/* Bouton Wishlist */}
           <div className="relative">
-            <Link to="/users/:id/wishlist">
+            <Link to={`/users/${user?.id}/wishlist`}>
               <img
                 src={Favorite}
                 alt="Favorite"
@@ -51,7 +53,7 @@ export default function NavBar() {
           </div>
           {/* Bouton Basket avec compteur */}
           <div className="relative">
-            <Link to="/users/:id/basket">
+            <Link to={`/users/${user?.id}/basket`}>
               <img
                 src={basket}
                 alt="Basket"

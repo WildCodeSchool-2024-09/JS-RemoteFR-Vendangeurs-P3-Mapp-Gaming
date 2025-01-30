@@ -25,13 +25,17 @@ export const BasketProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const getTotalPrice = () => {
-    return basket.videoGames.reduce((total, game) => total + game.price, 0) || 0;
+    return (
+      basket.videoGames.reduce((total, game) => total + game.price, 0) || 0
+    );
   };
 
   const itemCount = basket.videoGames.length; // Calcul du nombre d'articles
 
   return (
-    <BasketContext.Provider value={{ basket, itemCount, addToBasket, getTotalPrice }}>
+    <BasketContext.Provider
+      value={{ basket, itemCount, addToBasket, getTotalPrice }}
+    >
       {children}
     </BasketContext.Provider>
   );

@@ -6,7 +6,6 @@ app.use(express.json());
 import { checkAuthDatas } from "./middlewares/checkAuthDatas";
 import authActions from "./modules/auth/authActions";
 
-
 const router = express.Router();
 
 /* ************************************************************************* */
