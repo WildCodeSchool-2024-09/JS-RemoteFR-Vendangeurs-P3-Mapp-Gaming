@@ -25,5 +25,3 @@ export default function SoloGamePage() {
     </div>
   );
 }
-
-export default SoloGamePage;

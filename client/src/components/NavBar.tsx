@@ -1,10 +1,12 @@
+//import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useBasket } from "../contexts/BasketContext";
 import User from "../assets/Icons/User.svg";
 import basket from "../assets/Icons/basket.svg";
+import logoB from "../assets/icons/logoB.svg";
 
 export default function NavBar() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  //const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { itemCount } = useBasket(); // Récupération du nombre d'articles
 
   return (
@@ -12,7 +14,7 @@ export default function NavBar() {
       <header className="bg-background text-xs flex justify-between items-center px-4 py-2">
         <div className="flex items-center gap-8">
           <Link to="/">
-            <img src={Logo} alt="Logo" className="w-12 h-12" />
+            <img src={logoB} alt="Logo" className="w-12 h-12" />
           </Link>
           <Link to="/" className="transition hover:scale-105">
             <span className="font-title">ACCUEIL</span>

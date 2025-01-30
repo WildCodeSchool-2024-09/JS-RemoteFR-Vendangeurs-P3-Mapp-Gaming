@@ -71,12 +71,11 @@ if (rootElement == null) {
 
 createRoot(rootElement).render(
   <StrictMode>
-    <BasketProvider>
-      <RouterProvider router={router} />
-    </BasketProvider>
     <ThemeProvider>
       <AuthProvider>
-        <RouterProvider router={router} />
+        <BasketProvider>
+          <RouterProvider router={router} />
+        </BasketProvider>
       </AuthProvider>
     </ThemeProvider>
   </StrictMode>,
