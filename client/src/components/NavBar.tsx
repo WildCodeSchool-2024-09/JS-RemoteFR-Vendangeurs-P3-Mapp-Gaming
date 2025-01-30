@@ -1,4 +1,3 @@
-//import { useState } from "react";
 import { Link } from "react-router-dom";
 import Favorite from "../assets/Icons/Favorite.svg";
 import User from "../assets/Icons/User.svg";
@@ -8,8 +7,7 @@ import { useAuth } from "../contexts/AuthContext";
 import { useBasket } from "../contexts/BasketContext";
 
 export default function NavBar() {
-  //const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { itemCount } = useBasket(); // Récupération du nombre d'articles
+  const { itemCount } = useBasket();
   const { user } = useAuth();
 
   return (
@@ -33,13 +31,16 @@ export default function NavBar() {
           </Link>
         </div>
 
-        <div className="flex items-center gap-2 text-primary">
-          <Link to="/connexion">
-            <span className="font-title">CONNEXION</span>
-          </Link>
-          <div>
+        <div className="flex items-center gap-4 text-primary">
+          <Link
+            to={user ? `/profile/${user.id}` : "/connexion"}
+            className="flex items-center gap-2"
+          >
+            <span className="font-title">
+              {user ? user.username : "CONNEXION"}
+            </span>
             <img src={User} alt="User" className="w-9 h-9" />
-          </div>
+          </Link>
 
           {/* Bouton Wishlist */}
           <div className="relative">
@@ -51,6 +52,7 @@ export default function NavBar() {
               />
             </Link>
           </div>
+
           {/* Bouton Basket avec compteur */}
           <div className="relative">
             <Link to={`/users/${user?.id}/basket`}>
