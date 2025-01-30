@@ -39,7 +39,7 @@ const UpcomingSection = () => {
 
   return (
     <section className="mt-10 px-6">
-      <Link to="/upcoming">
+      <Link to="/a-venir">
         <h2 className="text-2xl font-title mb-6">À Venir</h2>
       </Link>
       <div className="Upcoming-section flex flex-col items-center">
@@ -78,7 +78,7 @@ const UpcomingSection = () => {
 
               return (
                 <Link
-                  to={`/SoloGame/${videoGame.id}`}
+                  to={`/achetez-votre-jeu-ici/${videoGame.id}`}
                   key={videoGame.id}
                   className="absolute transition-all duration-500"
                   style={{

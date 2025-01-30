@@ -13,19 +13,19 @@ export default function navBar() {
           <Link to="/" className="transition hover:scale-105">
             <span className="font-title">ACCUEIL</span>
           </Link>
-          <Link to="/trending" className="transition hover:scale-105">
+          <Link to="/tendance" className="transition hover:scale-105">
             <span className="font-title">TENDANCES</span>
           </Link>
-          <Link to="/preorder" className="transition hover:scale-105">
+          <Link to="/precommande" className="transition hover:scale-105">
             <span className="font-title">PRÉCOMMANDES</span>
           </Link>
-          <Link to="/upcoming" className="transition hover:scale-105">
+          <Link to="/a-venir" className="transition hover:scale-105">
             <span className="font-title">À VENIR</span>
           </Link>
         </div>
 
         <div className="flex items-center gap-2 text-primary">
-          <Link to="/login">
+          <Link to="/connexion">
             <span className="font-title">CONNEXION</span>
           </Link>
           <div>
