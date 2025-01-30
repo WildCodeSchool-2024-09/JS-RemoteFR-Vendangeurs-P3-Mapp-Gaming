@@ -40,10 +40,10 @@ export default function GameBanner({ gameId }: { gameId: string | undefined }) {
     <>
       {/* Bannière principale */}
       <section className="flex items-center justify-between mb-4">
-        <div className="flex gap-4">
-          <h1 className="text-3xl font-bold">{game.title}</h1>
-          <div className="flex items-center gap-2">
-            <span className="text-lg">{game.category}</span>
+        <div className="flex gap-5">
+          <h1 className="text-3xl font-bold font-title">{game.title}</h1>
+          <div className="flex items-center gap-4">
+            <span className="text-lg font-text">{game.category}</span>
             <img src={Check} alt="check" />
           </div>
           <div className="flex items-center gap-3">

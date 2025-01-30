@@ -109,6 +109,15 @@ const getTrending: RequestHandler = async (req, res, next) => {
   }
 };
 
+const getTrendingNoLimit: RequestHandler = async (req, res, next) => {
+  try {
+    const trendingGames = await videoGamesRepository.readTrendingNoLimit();
+    res.json(trendingGames);
+  } catch (err) {
+    next(err);
+  }
+};
+
 // Read operation for preorders
 const getPreorder: RequestHandler = async (req, res, next) => {
   try {
@@ -136,6 +145,7 @@ export default {
   add,
   remove,
   getTrending,
+  getTrendingNoLimit,
   getPreorder,
   getUpcoming,
   //getBasket,

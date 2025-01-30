@@ -1,8 +1,10 @@
 import axios from "axios";
-import react, { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import arrowLeft from "../../assets/icons/arrowLeft.svg";
+import arrowRight from "../../assets/icons/arrowRight.svg";
 
-interface videoGames {
+interface VideoGame {
   id: number;
   title: string;
   price: number;
@@ -10,48 +12,108 @@ interface videoGames {
   platform: string;
   category: string;
   image1: string;
-  image2: string;
-  image3: string;
-  image4: string;
-  image5: string;
   description: string;
 }
 
 const UpcomingSection = () => {
-  const [videoGames, setVideoGames] = react.useState<videoGames[]>([]);
+  const [videoGames, setVideoGames] = useState<VideoGame[]>([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
     axios
       .get("http://localhost:3310/api/videoGames/upcoming")
       .then((response) => {
         setVideoGames(response.data);
-        console.info(response.data);
       });
   }, []);
 
+  const nextGame = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % videoGames.length);
+  };
+
+  const prevGame = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === 0 ? videoGames.length - 1 : prevIndex - 1,
+    );
+  };
+
   return (
-    <div className="Upcoming-section">
+    <section className="mt-10 px-6">
       <Link to="/upcoming">
-        <h2>A venir</h2>
+        <h2 className="text-2xl font-title mb-6">À Venir</h2>
       </Link>
-      <div className="flex justify-center items-center gap-6">
-        {videoGames.map((videoGame) => (
-          <Link to={`/SoloGame/${videoGame.id}`} key={videoGame.id}>
-            <div className="flex flex-col items-center gap-3">
-              <div className="w-72 h-72">
-                <img
-                  src={videoGame.image1}
-                  alt=""
-                  className="w-full h-full object-cover rounded-2xl"
-                />
-              </div>
-              <h3>{videoGame.title}</h3>
-              <p>{videoGame.price} €</p>
-            </div>
-          </Link>
-        ))}
+      <div className="Upcoming-section flex flex-col items-center">
+        <div className="relative w-full flex justify-center items-center">
+          {/* Bouton Gauche */}
+          <button
+            type="button"
+            onClick={prevGame}
+            className="absolute left-0 top-1/2 -translate-y-1/2 bg-primary text-white rounded-full shadow-md z-10 hidden md:flex"
+          >
+            <img src={arrowLeft} alt="" />
+          </button>
+
+          {/* Carrousel */}
+          <div className="relative flex w-[900px] h-[400px] items-center justify-center overflow-hidden">
+            {videoGames.map((videoGame, index) => {
+              const position =
+                (index - currentIndex + videoGames.length) % videoGames.length;
+
+              const translateX = (position - 2) * 250; // Ajustement horizontal + plus d'espace
+              let scale = 0.7; // Jeux éloignés sont plus petits
+              let opacity = 0.5;
+              let zIndex = 5; // Jeux en arrière-plan
+
+              if (position === 2) {
+                // Jeu central
+                scale = 1.3;
+                opacity = 1;
+                zIndex = 10; // Toujours au-dessus
+              } else if (position === 1 || position === 3) {
+                // Jeux juste à côté
+                scale = 1;
+                opacity = 0.8;
+                zIndex = 6;
+              }
+
+              return (
+                <Link
+                  to={`/SoloGame/${videoGame.id}`}
+                  key={videoGame.id}
+                  className="absolute transition-all duration-500"
+                  style={{
+                    transform: `translateX(${translateX}px) scale(${scale})`,
+                    opacity,
+                    zIndex,
+                  }}
+                >
+                  <div className="relative w-64 h-64 rounded-2xl overflow-hidden shadow-lg">
+                    <img
+                      src={videoGame.image1}
+                      alt={videoGame.title}
+                      className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                    />
+                    <div className="absolute bottom-0 left-0 w-full bg-black bg-opacity-40 text-white text-center p-2 backdrop-blur-md">
+                      <h3 className="text-sm font-title">{videoGame.title}</h3>
+                      <span className="font-text">{videoGame.price} €</span>
+                    </div>
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
+
+          {/* Bouton Droite */}
+          <button
+            type="button"
+            onClick={nextGame}
+            className="absolute right-0 top-1/2 -translate-y-1/2 bg-primary text-white rounded-full shadow-md z-10 hidden md:flex"
+          >
+            <img src={arrowRight} alt="" />
+          </button>
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 

@@ -6,10 +6,15 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 /* ************************************************************************* */
 
 import App from "./App";
+import AdminGameSection from "./components/Admin/AdminGameSection";
+import AdminUserSection from "./components/Admin/AdminUserSection";
 import NotFound from "./components/NotFound/NotFound";
 import { BasketProvider } from "./contexts/BasketContext";
 import BasketPage from "./pages/BasketPage";
-import ConnectionPage from "./pages/ConnectionPage";
+import AdminPage from "./pages/AdminPage";
+import { AuthProvider } from "./contexts/AuthContext";
+import { ThemeProvider } from "./contexts/ColorsContext";
+import ConnexionPage from "./pages/ConnexionPage";
 import HomePage from "./pages/HomePage";
 import PreorderPage from "./pages/PreorderPage";
 import ProfilePage from "./pages/ProfilePage";
@@ -25,7 +30,7 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       { path: "", element: <HomePage /> },
-      { path: "login", element: <ConnectionPage /> },
+      { path: "login", element: <ConnexionPage /> },
       { path: "soloGame/:id", element: <SoloGamePage /> },
       { path: "profile", element: <ProfilePage /> },
       { path: "*", element: <NotFound /> },
@@ -33,6 +38,14 @@ const router = createBrowserRouter([
       { path: "preorder", element: <PreorderPage /> },
       { path: "upcoming", element: <UpcomingPage /> },
       { path: "users/:id/basket", element: <BasketPage /> },
+      {
+        path: "admin",
+        element: <AdminPage />,
+        children: [
+          { path: "user", element: <AdminUserSection /> },
+          { path: "videoGames", element: <AdminGameSection /> },
+        ],
+      },
     ],
   },
 ]);
@@ -49,5 +62,10 @@ createRoot(rootElement).render(
     <BasketProvider>
       <RouterProvider router={router} />
     </BasketProvider>
+    <ThemeProvider>
+      <AuthProvider>
+        <RouterProvider router={router} />
+      </AuthProvider>
+    </ThemeProvider>
   </StrictMode>,
 );
