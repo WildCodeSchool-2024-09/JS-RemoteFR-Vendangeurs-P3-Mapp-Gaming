@@ -1,5 +1,6 @@
 //import { useState } from "react";
 import { Link } from "react-router-dom";
+import Favorite from "../assets/Icons/Favorite.svg";
 import User from "../assets/Icons/User.svg";
 import basket from "../assets/Icons/basket.svg";
 import logoB from "../assets/icons/logoB.svg";
@@ -38,6 +39,16 @@ export default function NavBar() {
             <img src={User} alt="User" className="w-9 h-9" />
           </div>
 
+          {/* Bouton Wishlist */}
+          <div className="relative">
+            <Link to="/users/:id/wishlist">
+              <img
+                src={Favorite}
+                alt="Favorite"
+                className="w-7 h-7 cursor-pointer"
+              />
+            </Link>
+          </div>
           {/* Bouton Basket avec compteur */}
           <div className="relative">
             <Link to="/users/:id/basket">
