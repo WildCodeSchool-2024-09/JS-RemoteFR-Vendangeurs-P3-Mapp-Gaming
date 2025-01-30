@@ -1,14 +1,28 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Favorite from "../assets/Icons/Favorite.svg";
 import User from "../assets/Icons/User.svg";
 import basket from "../assets/Icons/basket.svg";
 import logoB from "../assets/icons/logoB.svg";
-import { useAuth } from "../contexts/AuthContext";
-import { useBasket } from "../contexts/BasketContext";
+import { useAuth } from "../contexts/AuthContext"; // Importer le useAuth pour accéder à l'utilisateur
 
 export default function NavBar() {
-  const { itemCount } = useBasket();
-  const { user } = useAuth();
+  const navigate = useNavigate();
+  const { user } = useAuth(); // Accéder à l'utilisateur depuis le contexte
+  const itemCount = 0; // Nombre d'articles dans le panier, à adapter
+
+  const handleUserClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (!user) {
+      e.preventDefault(); // Empêche la navigation vers le profil si l'utilisateur n'est pas connecté
+      navigate("/connexion"); // Redirige vers la page de connexion
+    }
+  };
+
+  const handleWishlistClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (!user) {
+      e.preventDefault(); // Empêche la navigation vers la wishlist si l'utilisateur n'est pas connecté
+      navigate("/connexion"); // Redirige vers la page de connexion
+    }
+  };
 
   return (
     <>
@@ -32,6 +46,7 @@ export default function NavBar() {
         </div>
 
         <div className="flex items-center gap-4 text-primary">
+          {/* Affichage conditionnel de l'username ou de "CONNEXION" */}
           <Link
             to={user ? `/profile/${user.id}` : "/connexion"}
             className="flex items-center gap-2"
@@ -39,21 +54,28 @@ export default function NavBar() {
             <span className="font-title">
               {user ? user.username : "CONNEXION"}
             </span>
-            <img src={User} alt="User" className="w-9 h-9" />
           </Link>
+
+          {/* Image de l'utilisateur avec redirection conditionnelle */}
+          <a href="/profile" onClick={handleUserClick}>
+            <img src={User} alt="User" className="w-9 h-9" />
+          </a>
 
           {/* Bouton Wishlist */}
           <div className="relative">
-            <Link to={`/users/${user?.id}/wishlist`}>
+            <a
+              href={`/users/${user?.id}/wishlist`} // Utilisation de <a> pour éviter une double navigation
+              onClick={handleWishlistClick} // Gestion de clic
+            >
               <img
                 src={Favorite}
                 alt="Favorite"
                 className="w-7 h-7 cursor-pointer"
               />
-            </Link>
+            </a>
           </div>
 
-          {/* Bouton Basket avec compteur */}
+          {/* Bouton Basket */}
           <div className="relative">
             <Link to={`/users/${user?.id}/basket`}>
               <img

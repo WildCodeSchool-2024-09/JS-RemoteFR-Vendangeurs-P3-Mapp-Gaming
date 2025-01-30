@@ -1,4 +1,4 @@
-import WishList from "../components/WishList";
+import DecoButton from "../components/DecoButton";
 
 const ProfilePage = () => {
   return (
@@ -7,8 +7,8 @@ const ProfilePage = () => {
         Bienvenue sur ta page de profil
       </h1>
       <div>
-        <h2 className="mb-4 text-2xl font-semibold">Ta Wishlist</h2>
-        <WishList />
+        <h2 className="mb-4 text-2xl font-semibold">Mes informations</h2>
+        <DecoButton />
       </div>
     </div>
   );
