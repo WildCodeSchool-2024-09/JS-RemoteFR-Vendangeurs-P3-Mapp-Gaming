@@ -1,9 +1,9 @@
 //import { useState } from "react";
 import { Link } from "react-router-dom";
-import { useBasket } from "../contexts/BasketContext";
 import User from "../assets/Icons/User.svg";
 import basket from "../assets/Icons/basket.svg";
 import logoB from "../assets/icons/logoB.svg";
+import { useBasket } from "../contexts/BasketContext";
 
 export default function NavBar() {
   //const [isMenuOpen, setIsMenuOpen] = useState(false);
