@@ -1,5 +1,5 @@
-import { useBasket } from "../contexts/BasketContext";
 import { useState } from "react";
+import { useBasket } from "../contexts/BasketContext";
 
 function BasketPage() {
   const { basket, addToBasket, getTotalPrice } = useBasket();
@@ -78,7 +78,8 @@ function BasketPage() {
       {/* Total et bouton commande */}
       <div className="mt-6 flex justify-between items-center text-xl font-bold">
         <span>Total :</span>
-        <span>{getTotalPrice().toFixed(2)} €</span> {/* Total dynamique */}
+        <span>{getTotalPrice().toFixed(2) || "0.00"} €</span>{" "}
+        {/* Total dynamique */}
       </div>
 
       <button

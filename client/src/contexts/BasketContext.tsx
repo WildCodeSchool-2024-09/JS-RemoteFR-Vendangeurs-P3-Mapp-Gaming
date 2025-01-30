@@ -6,6 +6,7 @@ type Basket = { videoGames: VideoGame[]; userId: number };
 
 type BasketContextType = {
   basket: Basket;
+  itemCount: number;
   addToBasket: (videogame: VideoGame, userId: number) => void;
   getTotalPrice: () => number;
 };
@@ -16,6 +17,7 @@ export const BasketProvider = ({ children }: { children: ReactNode }) => {
   const [basket, setBasket] = useState<Basket>({ videoGames: [], userId: 0 });
 
   const addToBasket = (videoGame: VideoGame, userId: number) => {
+    console.info("Ajouté au panier :", videoGame);
     setBasket({
       videoGames: [...basket.videoGames, videoGame],
       userId: userId,
@@ -23,11 +25,13 @@ export const BasketProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const getTotalPrice = () => {
-    return basket.videoGames.reduce((total, game) => total + game.price, 0);
+    return basket.videoGames.reduce((total, game) => total + game.price, 0) || 0;
   };
 
+  const itemCount = basket.videoGames.length; // Calcul du nombre d'articles
+
   return (
-    <BasketContext.Provider value={{ basket, addToBasket, getTotalPrice }}>
+    <BasketContext.Provider value={{ basket, itemCount, addToBasket, getTotalPrice }}>
       {children}
     </BasketContext.Provider>
   );
@@ -35,7 +39,7 @@ export const BasketProvider = ({ children }: { children: ReactNode }) => {
 
 export const useBasket = () => {
   const context = useContext(BasketContext);
-  if (context === undefined) {
+  if (!context) {
     throw new Error("useBasket must be used within a BasketProvider");
   }
   return context;
