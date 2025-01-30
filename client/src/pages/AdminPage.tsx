@@ -8,10 +8,10 @@ const AdminPage = () => {
           <Link to="/admin">
             <h1>Page d'administration</h1>
           </Link>
-          <Link to="videoGames">
+          <Link to="tout-les-jeux">
             <button type="button">Tous les jeux</button>
           </Link>
-          <Link to="user">
+          <Link to="utilisateurs">
             <button type="button">Tous les utilisateurs</button>
           </Link>
         </div>

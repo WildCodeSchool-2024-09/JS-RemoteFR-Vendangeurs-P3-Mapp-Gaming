@@ -9,11 +9,13 @@ import App from "./App";
 import AdminGameSection from "./components/Admin/AdminGameSection";
 import AdminUserSection from "./components/Admin/AdminUserSection";
 import NotFound from "./components/NotFound/NotFound";
+
 import { BasketProvider } from "./contexts/BasketContext";
 import BasketPage from "./pages/BasketPage";
-import AdminPage from "./pages/AdminPage";
 import { AuthProvider } from "./contexts/AuthContext";
 import { ThemeProvider } from "./contexts/ColorsContext";
+import AdminCreateUserPage from "./pages/AdminCreateUserPage";
+import AdminPage from "./pages/AdminPage";
 import ConnexionPage from "./pages/ConnexionPage";
 import HomePage from "./pages/HomePage";
 import PreorderPage from "./pages/PreorderPage";
@@ -30,20 +32,30 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       { path: "", element: <HomePage /> },
-      { path: "login", element: <ConnexionPage /> },
-      { path: "soloGame/:id", element: <SoloGamePage /> },
+      { path: "connexion", element: <ConnexionPage /> },
+      { path: "achetez-votre-jeu-ici/:id", element: <SoloGamePage /> },
       { path: "profile", element: <ProfilePage /> },
       { path: "*", element: <NotFound /> },
-      { path: "trending", element: <TrendingPage /> },
-      { path: "preorder", element: <PreorderPage /> },
-      { path: "upcoming", element: <UpcomingPage /> },
+      { path: "tendance", element: <TrendingPage /> },
+      { path: "precommande", element: <PreorderPage /> },
+      { path: "a-venir", element: <UpcomingPage /> },
       { path: "users/:id/basket", element: <BasketPage /> },
+
       {
         path: "admin",
         element: <AdminPage />,
         children: [
-          { path: "user", element: <AdminUserSection /> },
-          { path: "videoGames", element: <AdminGameSection /> },
+          {
+            path: "utilisateurs",
+            element: <AdminUserSection />,
+            children: [
+              {
+                path: "creation-utilisateur",
+                element: <AdminCreateUserPage />,
+              },
+            ],
+          },
+          { path: "tout-les-jeux", element: <AdminGameSection /> },
         ],
       },
     ],
