@@ -52,7 +52,6 @@ const findCurrentUser: RequestHandler = async (req, res) => {
 
 const register: RequestHandler = async (req, res) => {
   const { username, email, password } = req.body;
-
   try {
     const hashedPassword = await argon2.hash(password);
 
@@ -61,7 +60,7 @@ const register: RequestHandler = async (req, res) => {
     const registeredUser = await authRepository.create(datasToRegister);
 
     res.status(201).json({
-      id: registeredUser.id,
+      userId: registeredUser.id,
       message: "Utilisateur correctement créé",
     });
   } catch (error: unknown) {
