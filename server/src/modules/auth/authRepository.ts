@@ -41,7 +41,7 @@ class AuthRepository {
 
   async readOneById(id: number) {
     const [row] = await databaseClient.query<Rows>(
-      "SELECT id, email, password, username, is_admin FROM user WHERE email = ? LIMIT 1",
+      "SELECT id, email, username, is_admin FROM user WHERE id = ? LIMIT 1",
       [id],
     );
     return row[0] as User;

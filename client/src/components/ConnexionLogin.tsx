@@ -31,12 +31,10 @@ const ConnexionLogin = () => {
       login,
       { withCredentials: true },
     );
-
     const currentUser = await axios.get(
       `${import.meta.env.VITE_API_URL}/auth/find/${result.data.userId}`,
       { withCredentials: true },
     );
-
     setUser(currentUser.data);
 
     setLogin({

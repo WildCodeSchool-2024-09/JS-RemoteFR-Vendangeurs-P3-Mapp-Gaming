@@ -55,7 +55,7 @@ const UpcomingSection = () => {
 
           {/* Carrousel */}
           <div className="relative flex w-[900px] h-[400px] items-center justify-center overflow-hidden">
-            {videoGames.map((videoGame, index) => {
+            {videoGames.map((game, index) => {
               const position =
                 (index - currentIndex + videoGames.length) % videoGames.length;
 
@@ -78,8 +78,8 @@ const UpcomingSection = () => {
 
               return (
                 <Link
-                  to={`/achetez-votre-jeu-ici/${videoGame.id}`}
-                  key={videoGame.id}
+                  to={`/achetez-votre-jeu-ici/${game.id}`}
+                  key={game.id}
                   className="absolute transition-all duration-500"
                   style={{
                     transform: `translateX(${translateX}px) scale(${scale})`,
@@ -89,13 +89,13 @@ const UpcomingSection = () => {
                 >
                   <div className="relative w-64 h-64 rounded-2xl overflow-hidden shadow-lg">
                     <img
-                      src={videoGame.image1}
-                      alt={videoGame.title}
+                      src={game.image1}
+                      alt={game.title}
                       className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
                     />
                     <div className="absolute bottom-0 left-0 w-full bg-black bg-opacity-40 text-white text-center p-2 backdrop-blur-md">
-                      <h3 className="text-sm font-title">{videoGame.title}</h3>
-                      <span className="font-text">{videoGame.price} €</span>
+                      <h3 className="text-sm font-title">{game.title}</h3>
+                      <span className="font-text">{game.price} €</span>
                     </div>
                   </div>
                 </Link>

@@ -23,7 +23,7 @@ const WishList = () => {
   }, []);
 
   return (
-    <div className="text-white flex flex-col items-center p-6 bg-[#1a1a2e] border border-orange-500 rounded-lg shadow-lg ">
+    <div className="text-white flex flex-col items-center p-6 bg-[#1a1a2e] border border-orange-500 rounded-lg shadow-lg">
       <h1 className="mb-6 text-3xl font-bold">ET POURQUOI PAS TA WISHLIST ?</h1>
       <div className="grid w-full max-w-6xl grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
         {videoGames.length > 0 ? (
