@@ -9,6 +9,8 @@ import App from "./App";
 import AdminGameSection from "./components/Admin/AdminGameSection";
 import AdminUserSection from "./components/Admin/AdminUserSection";
 import NotFound from "./components/NotFound/NotFound";
+import { BasketProvider } from "./contexts/BasketContext";
+import BasketPage from "./pages/BasketPage";
 import AdminPage from "./pages/AdminPage";
 import { AuthProvider } from "./contexts/AuthContext";
 import { ThemeProvider } from "./contexts/ColorsContext";
@@ -35,6 +37,7 @@ const router = createBrowserRouter([
       { path: "trending", element: <TrendingPage /> },
       { path: "preorder", element: <PreorderPage /> },
       { path: "upcoming", element: <UpcomingPage /> },
+      { path: "users/:id/basket", element: <BasketPage /> },
       {
         path: "admin",
         element: <AdminPage />,
@@ -56,6 +59,9 @@ if (rootElement == null) {
 
 createRoot(rootElement).render(
   <StrictMode>
+    <BasketProvider>
+      <RouterProvider router={router} />
+    </BasketProvider>
     <ThemeProvider>
       <AuthProvider>
         <RouterProvider router={router} />
