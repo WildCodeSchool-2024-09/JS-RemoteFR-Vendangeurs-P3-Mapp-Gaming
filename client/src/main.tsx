@@ -1,4 +1,3 @@
-// Import necessary modules from React and React Router
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
@@ -37,7 +36,7 @@ const router = createBrowserRouter([
       { path: "connexion", element: <ConnexionPage /> },
       { path: "inscription", element: <RegisterPage /> },
       { path: "achetez-votre-jeu-ici/:id", element: <SoloGamePage /> },
-      { path: "profile", element: <ProfilePage /> },
+      { path: "profile/:id", element: <ProfilePage /> },
       { path: "*", element: <NotFound /> },
       { path: "tendance", element: <TrendingPage /> },
       { path: "precommande", element: <PreorderPage /> },
