@@ -1,4 +1,4 @@
-import DecoButton from "../components/DecoButton";
+import Deconnexion from "../components/Deconnexion";
 
 const ProfilePage = () => {
   return (
@@ -8,7 +8,7 @@ const ProfilePage = () => {
       </h1>
       <div>
         <h2 className="mb-4 text-2xl font-semibold">Mes informations</h2>
-        <DecoButton />
+        <Deconnexion />
       </div>
     </div>
   );

@@ -46,68 +46,70 @@ const ConnexionLogin = () => {
   };
 
   return (
-    <div className="min-h-screen m-0 flex items-center justify-center relative z-10">
-      {/* FORMULAIRE */}
-      <div className="justify-center w-full max-w-md p-8 bg-[#1a1a2e] border border-orange-500 rounded-lg shadow-lg">
-        <form onSubmit={handleFormSubmit}>
-          <div className="flex-col">
-            <label
-              className="block text-gray-300 text-sm font-bold mb-2"
-              htmlFor="email"
-            >
-              EMAIL
-            </label>
-            <input
-              id="email"
-              name="email"
-              type="email"
-              className="w-full px-3 py-2 bg-black text-white border border-purple-500 rounded focus:outline-none focus:ring-2 focus:ring-orange-500 mb-4"
-              placeholder="Entrez votre email"
-              value={login.email}
-              onChange={handleInputsChange}
-              required
-            />
-          </div>
-          <div className="flex-col">
-            <label
-              className="block text-gray-300 text-sm font-bold mb-2"
-              htmlFor="password"
-            >
-              MOT DE PASSE
-            </label>
-            <input
-              id="password"
-              name="password"
-              type="password"
-              required
-              className="w-full px-3 py-2 bg-black text-white border border-purple-500 rounded focus:outline-none focus:ring-2 focus:ring-orange-500 mb-6"
-              placeholder="Entrez votre mot de passe"
-              value={login.password}
-              onChange={handleInputsChange}
-            />
-          </div>
+    <div className="{`${theme} bg-bg-primary text-color-text-primary min-h-screen relative overflow-hidden`}">
+      <div className="min-h-screen m-0 flex items-center justify-center relative z-10 ">
+        {/* FORMULAIRE */}
+        <div className="justify-center w-full max-w-md p-8 bg-bg-primary border border-primary rounded-lg shadow-lg">
+          <form onSubmit={handleFormSubmit} className=" mb-3">
+            <div className="flex-col">
+              <label
+                className="block text-color-text-primary text-sm font-title mb-2"
+                htmlFor="email"
+              >
+                EMAIL
+              </label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                className="w-full px-3 py-2 bg-bg-primary text-color-text-primary border border-primary rounded focus:outline-none focus:ring-2 focus:ring-orange-500 mb-4"
+                placeholder="Entrez votre email"
+                value={login.email}
+                onChange={handleInputsChange}
+                required
+              />
+            </div>
+            <div className="flex-col">
+              <label
+                className="block text-color-text-primary text-sm font-title mb-2"
+                htmlFor="password"
+              >
+                MOT DE PASSE
+              </label>
+              <input
+                id="password"
+                name="password"
+                type="password"
+                required
+                className="w-full px-3 py-2 bg-bg-primary text-color-text-primary border border-primary rounded focus:outline-none focus:ring-2 focus:ring-orange-500 mb-6"
+                placeholder="Entrez votre mot de passe"
+                value={login.password}
+                onChange={handleInputsChange}
+              />
+            </div>
 
-          {/* BOUTON */}
-          <div className="text-red-500 text-sm mb-4" />
+            {/* BOUTON */}
+            <div className="text-sm mb-4" />
+            <div className="flex justify-center">
+              <button
+                type="submit"
+                className="w-36 mr-2 px-4 py-2 bg-transparent border-primary border text-color-text-primary font-title rounded hover:bg-orange-600 focus:outline-none"
+              >
+                CONNEXION
+              </button>
+              {/* </Link> */}
+            </div>
+          </form>
           <div className="flex justify-center">
-            <button
-              type="submit"
-              className="w-1/2 mr-2 px-4 py-2 bg-transparent border-purple-500 border-2 text-white font-bold rounded hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-purple-500"
-            >
-              CONNEXION
-            </button>
-            {/* </Link> */}
+            <Link to="/inscription">
+              <button
+                type="button"
+                className="w-36 mr-2 px-4 py-2 bg-transparent border-primary border text-color-text-primary font-title rounded hover:bg-orange-600 focus:outline-none"
+              >
+                S'INSCRIRE
+              </button>
+            </Link>
           </div>
-        </form>
-        <div className="flex justify-center">
-          <Link to="/inscription">
-            <button
-              type="button"
-              className="w-1/2 mr-2 px-4 py-2 bg-transparent border-purple-500 border-2 text-white font-bold rounded hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-purple-500"
-            >
-              S'INSCRIRE
-            </button>
-          </Link>
         </div>
       </div>
     </div>

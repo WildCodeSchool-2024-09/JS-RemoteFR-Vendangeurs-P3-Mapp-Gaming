@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 
-export default function DecoButton() {
+export default function Deconnexion() {
   const { setUser } = useAuth(); // Accéder à la fonction setUser dans le context
   const navigate = useNavigate(); // Utiliser useNavigate pour rediriger après déconnexion
 

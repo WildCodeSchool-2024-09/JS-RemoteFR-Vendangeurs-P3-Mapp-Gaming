@@ -22,7 +22,6 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [user, setUser] = useState<User | null>(null);
 
-  // Charger l'utilisateur depuis le localStorage au démarrage de l'application
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
     if (storedUser) {
@@ -30,7 +29,6 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     }
   }, []);
 
-  // Mettre à jour le user dans le localStorage chaque fois que 'user' change
   useEffect(() => {
     if (user) {
       localStorage.setItem("user", JSON.stringify(user));

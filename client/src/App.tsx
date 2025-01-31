@@ -10,6 +10,7 @@ function App() {
   const isConnexionPage = location.pathname.startsWith("/connexion");
   const isWishlistPage = matchPath("/users/:id/wishlist", location.pathname);
   const isBasketPage = matchPath("/users/:id/basket", location.pathname);
+  const isProfilePage = matchPath("/profile/:id", location.pathname);
   const isRegister = location.pathname.startsWith("/inscription");
 
   return (
@@ -19,6 +20,7 @@ function App() {
         !isConnexionPage &&
         !isWishlistPage &&
         !isBasketPage &&
+        !isProfilePage &&
         !isRegister && <SupportsChoice />}
 
       <Outlet />
