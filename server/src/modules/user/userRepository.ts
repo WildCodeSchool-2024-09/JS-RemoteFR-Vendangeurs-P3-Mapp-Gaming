@@ -52,7 +52,7 @@ class userRepository {
   async update(user: User) {
     // Execute the SQL UPDATE query to update an existing user in the "user" table
     const [result] = await databaseClient.query<Result>(
-      "UPDATE user SET first_name = ?, last_name = ?, username = ?, email = ?, password = ?, date_of_creation = ?, membership = ?, WHERE id = ?",
+      "UPDATE user SET first_name = ?, last_name = ?, username = ?, email = ?, password = ?, date_of_creation = ?, membership = ? WHERE id = ?",
       [
         user.firstname,
         user.lastname,
