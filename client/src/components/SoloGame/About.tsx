@@ -22,10 +22,10 @@ export default function About({ gameId }: { gameId: string | undefined }) {
   if (!game) return <p>Chargement...</p>;
 
   return (
-    <div className="text-lg !bg-slate-900 !bg-opacity-40 p-7 rounded-2xl mt-10">
+    <div className="text-lg !bg-slate-900 !bg-opacity-40 p-7 rounded-2xl mt-10 relative">
       <h2 className="mt-8 mb-4 font-title">À PROPOS</h2>
-      <section className="flex gap-4 justify-center items-center">
-        <p className="font-text">{game.description}</p>
+      <section className="flex gap-4 justify-between items-center">
+        <p className="font-text w-2/4">{game.description}</p>
         <div className="flex flex-col gap-4 items-center">
           <SupportsMenu />
           <Price gameId={gameId} />

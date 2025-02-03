@@ -16,7 +16,7 @@ export default function Deconnexion() {
       <button
         type="button"
         onClick={handleLogout}
-        className="w-44 px-4 py-2 border-primary border text-color-text-primary font-title rounded hover:bg-slate-900/50 focus:outline-none"
+        className="w-44 px-4 mt-9 py-2 border-primary border text-color-text-primary font-title rounded hover:bg-slate-900/50 focus:outline-none"
       >
         Me déconnecter
       </button>
