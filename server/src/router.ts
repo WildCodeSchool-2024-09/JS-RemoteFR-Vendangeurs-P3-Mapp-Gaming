@@ -25,6 +25,7 @@ router.delete("/api/user/:id", userAction.remove);
 router.post("/auth/register", authActions.register);
 router.post("/auth/login", checkAuthDatas, authActions.login);
 router.get("/auth/find/:id", authActions.findCurrentUser);
+router.put("/auth/update/:id", authActions.UpdateUser);
 
 // Define item-related routes
 import itemActions from "./modules/item/itemActions";
