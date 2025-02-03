@@ -48,8 +48,7 @@ const ConnexionLogin = () => {
   return (
     <div className="{`${theme} bg-bg-primary text-color-text-primary min-h-screen relative overflow-hidden`}">
       <div className="min-h-screen m-0 flex items-center justify-center relative z-10 ">
-        {/* FORMULAIRE */}
-        <div className="justify-center w-full max-w-md p-8 bg-bg-primary border border-primary rounded-lg shadow-lg">
+        <div className="justify-center w-full max-w-md p-8 bg-slate-900/50 border border-primary rounded-lg shadow-lg">
           <form onSubmit={handleFormSubmit} className=" mb-3">
             <div className="flex-col">
               <label
@@ -62,7 +61,7 @@ const ConnexionLogin = () => {
                 id="email"
                 name="email"
                 type="email"
-                className="w-full px-3 py-2 bg-bg-primary text-color-text-primary border border-primary rounded focus:outline-none focus:ring-2 focus:ring-orange-500 mb-4"
+                className="w-full px-3 py-2 bg-bg-primary text-color-text-primary border border-primary rounded focus:outline-none mb-4"
                 placeholder="Entrez votre email"
                 value={login.email}
                 onChange={handleInputsChange}
@@ -81,30 +80,28 @@ const ConnexionLogin = () => {
                 name="password"
                 type="password"
                 required
-                className="w-full px-3 py-2 bg-bg-primary text-color-text-primary border border-primary rounded focus:outline-none focus:ring-2 focus:ring-orange-500 mb-6"
+                className="w-full px-3 py-2 bg-bg-primary text-color-text-primary border border-primary rounded focus:outline-none mb-6"
                 placeholder="Entrez votre mot de passe"
                 value={login.password}
                 onChange={handleInputsChange}
               />
             </div>
 
-            {/* BOUTON */}
             <div className="text-sm mb-4" />
             <div className="flex justify-center">
               <button
                 type="submit"
-                className="w-36 mr-2 px-4 py-2 bg-transparent border-primary border text-color-text-primary font-title rounded hover:bg-orange-600 focus:outline-none"
+                className="w-36 mr-2 px-4 py-2 bg-transparent border-primary border text-color-text-primary font-title rounded hover:bg-slate-900/50 focus:outline-none"
               >
                 CONNEXION
               </button>
-              {/* </Link> */}
             </div>
           </form>
           <div className="flex justify-center">
             <Link to="/inscription">
               <button
                 type="button"
-                className="w-36 mr-2 px-4 py-2 bg-transparent border-primary border text-color-text-primary font-title rounded hover:bg-orange-600 focus:outline-none"
+                className="w-36 mr-2 px-4 py-2 bg-transparent border-primary border text-color-text-primary font-title rounded hover:bg-slate-900/50 focus:outline-none"
               >
                 S'INSCRIRE
               </button>
