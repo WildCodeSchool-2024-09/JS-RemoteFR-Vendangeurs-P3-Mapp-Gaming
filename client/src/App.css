@@ -68,4 +68,8 @@
   .text-secondary {
     color: var(--color-secondary);
   }
+
+  .border-primary {
+    border-color: var(--color-primary);
+  }
 }

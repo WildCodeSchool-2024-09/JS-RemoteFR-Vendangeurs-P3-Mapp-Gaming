@@ -38,7 +38,7 @@ const PreorderSection = () => {
 
   return (
     <div className="Preorder-section px-6">
-      <Link to="/preorder">
+      <Link to="/precommande">
         <h2 className="text-2xl font-title mb-6">Précommandes</h2>
       </Link>
 
@@ -60,7 +60,7 @@ const PreorderSection = () => {
         >
           {videoGames.map((videoGame) => (
             <Link
-              to={`/SoloGame/${videoGame.id}`}
+              to={`/achetez-votre-jeu-ici/${videoGame.id}`}
               key={videoGame.id}
               className="snap-center flex-shrink-0"
             >

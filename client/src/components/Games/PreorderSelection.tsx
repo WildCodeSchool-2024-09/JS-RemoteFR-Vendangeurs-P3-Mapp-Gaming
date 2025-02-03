@@ -24,7 +24,7 @@ const PreorderSection = () => {
 
   return (
     <div className="Preorder-section p-6">
-      <Link to="/preorder">
+      <Link to="/precommande">
         <h2 className="text-2xl font-title mb-6">Précommandes</h2>
       </Link>
 
@@ -32,7 +32,7 @@ const PreorderSection = () => {
         <div className="grid grid-cols-4 gap-6 w-full">
           {videoGames.map((game) => (
             <Link
-              to={`/SoloGame/${game.id}`}
+              to={`/achetez-votre-jeu-ici/${game.id}`}
               key={game.id}
               className="flex flex-col items-center gap-3"
             >
