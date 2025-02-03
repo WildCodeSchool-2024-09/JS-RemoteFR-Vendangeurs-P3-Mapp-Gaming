@@ -12,8 +12,14 @@ export default function Deconnexion() {
   };
 
   return (
-    <button type="button" onClick={handleLogout} className="logout-button mt-8">
-      Me déconnecter
-    </button>
+    <div className="flex justify-center relative z-10">
+      <button
+        type="button"
+        onClick={handleLogout}
+        className="w-44 px-4 py-2 border-primary border text-color-text-primary font-title rounded hover:bg-slate-900/50 focus:outline-none"
+      >
+        Me déconnecter
+      </button>
+    </div>
   );
 }
