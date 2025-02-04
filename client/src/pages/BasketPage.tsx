@@ -41,9 +41,7 @@ function BasketPage() {
       <button
         type="button"
         className={`mt-4 w-full py-2 rounded flex justify-center items-center gap-2 transition ${
-          isOrderValidated
-            ? "bg-grey-700"
-            : "bg-orange-600 hover:bg-orange-500"
+          isOrderValidated ? "bg-grey-700" : "bg-orange-600 hover:bg-orange-500"
         }`}
         onClick={handleOrder}
       >
