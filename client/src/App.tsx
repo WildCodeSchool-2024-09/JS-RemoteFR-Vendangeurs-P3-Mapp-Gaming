@@ -8,7 +8,7 @@ function App() {
   const location = useLocation();
   const isAdminPage = location.pathname.startsWith("/admin");
   const isConnexionPage = location.pathname.startsWith("/connexion");
-  const isWishlistPage = matchPath("/users/:id/wishlist", location.pathname);
+  const isWishlistPage = matchPath("/user/:id/wishlist", location.pathname);
   const isBasketPage = matchPath("/users/:id/basket", location.pathname);
   const isProfilePage = matchPath("/profile/:id", location.pathname);
   const isRegister = location.pathname.startsWith("/inscription");

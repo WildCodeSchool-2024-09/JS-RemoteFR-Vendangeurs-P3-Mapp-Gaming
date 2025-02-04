@@ -55,8 +55,8 @@ router.delete("/api/videoGames/:id", videoGamesAction.remove);
 
 import wishlistActions from "./modules/whishlist/wishlistActions";
 
-router.get("/api/user/profile/:id/wishlist", wishlistActions.getWishlist);
-//router.get("/api/videoGames/basket", videoGamesAction.getBasket);
+router.get("/api/user/:id/wishlist", wishlistActions.getwishlist);
+router.post("/api/user/:id/wishlist", wishlistActions.addwishlist);
 
 /* ************************************************************************* */
 
