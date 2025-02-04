@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import trash from "../assets/icons/trash.svg";
 import { useAuth } from "../contexts/AuthContext";
 import { useBasket } from "../contexts/BasketContext";
 
@@ -24,6 +25,27 @@ const WishList = () => {
         setVideoGames(response.data);
       });
   }, [user?.id]);
+
+  // Fonction pour retirer un jeu de la wishlist
+  const removeFromWishlist = (gameId: number) => {
+    if (!user) {
+      alert("Vous devez être connecté pour retirer un jeu de la wishlist !");
+      return;
+    }
+
+    // Effectuer la suppression dans la wishlist via l'API
+    axios
+      .delete(`http://localhost:3310/api/user/${user.id}/wishlist`, {
+        data: { gameId }, // Passer l'ID du jeu à supprimer
+      })
+      .then(() => {
+        // Mettre à jour la liste des jeux en supprimant le jeu retiré
+        setVideoGames((prevGames) =>
+          prevGames.filter((game) => game.id !== gameId),
+        );
+      })
+      .catch((err) => console.error("Erreur suppression :", err));
+  };
 
   return (
     <div className="text-white flex flex-col items-center p-6 bg-[#1a1a2e] border border-orange-500 rounded-lg shadow-lg">
@@ -50,6 +72,18 @@ const WishList = () => {
                   }}
                 >
                   Ajouter au panier
+                </button>
+                {/* Bouton pour retirer du wishlist */}
+                <button
+                  type="button"
+                  className="ml-2 mt-2"
+                  onClick={() => removeFromWishlist(videoGame.id)}
+                >
+                  <img
+                    src={trash}
+                    alt="Supprimer"
+                    className="w-6 h-6 cursor-pointer"
+                  />
                 </button>
               </div>
             </div>
