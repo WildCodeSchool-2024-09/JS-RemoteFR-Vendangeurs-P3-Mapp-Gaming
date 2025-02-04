@@ -79,9 +79,9 @@ create table game_platforms(
 
 create table wishlist(
   id int unsigned primary key auto_increment not null,
-  profile_id int unsigned not null,
+  user_id int unsigned not null,
   game_id int unsigned not null,
-  foreign key (profile_id) references profile(id),
+  foreign key (user_id) references profile(id),
   foreign key (game_id) references videoGames(id)
 );
 
@@ -683,15 +683,6 @@ insert into profile (information, wallet, basket, comment, user_management, game
  false, 
  false, 
  1);
-
- insert into wishlist (profile_id, game_id)
-values 
-(1, 3), -- Marvin ajoute "Super Mario Odyssey"
-(1, 4), -- Marvin ajoute "The Witcher 3: Wild Hunt"
-(1, 2), -- Aurélia ajoute "The Legend of Zelda: Breath of the Wild"
-(1, 4), -- Aurélia ajoute "The Witcher 3: Wild Hunt"
-(1, 1), -- Pénélope ajoute "Tomb Raider Definitive Edition"
-(1, 5); -- Pénélope ajoute "Red Dead Redemption 2"
 
  INSERT INTO platforms (id, supported_platforms) VALUES 
 (1,"XBOX"),

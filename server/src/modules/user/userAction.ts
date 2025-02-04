@@ -37,7 +37,6 @@ const read: RequestHandler = async (req, res, next) => {
 // The E of BREAD - Edit operation
 const edit: RequestHandler = async (req, res, next) => {
   try {
-    console.info("🔍 Body reçu:", req.body); // Ajout du log
     const user = {
       id: Number(req.params.id),
       firstname: req.body.firstname,
@@ -68,7 +67,6 @@ const add: RequestHandler = async (
   next: NextFunction,
 ): Promise<void> => {
   try {
-    console.info("🔍 Body reçu:", req.body);
     // Extraire les données de la requête
     const {
       firstname,

@@ -1,7 +1,7 @@
 import databaseClient from "../../../database/client";
 import type { Rows } from "../../../database/client";
 
-type videoGames = {
+type VideoGame = {
   id: number;
   title: string;
   price: number;
@@ -17,20 +17,33 @@ type videoGames = {
   is_preorder: boolean;
 };
 
-class wishlistRepository {
-  // afficher la wishlist sur le profil de l'utilisateur basé
+class WishlistRepository {
   async readWishlist(profilId: number) {
     const [rows] = await databaseClient.query<Rows>(
       `
-    SELECT videoGames.*
-    FROM wishlist
-    JOIN videoGames ON wishlist.game_id = videoGames.id
-    WHERE wishlist.profile_id = ?
-    `,
+      SELECT vg.*
+      FROM wishlist w
+      JOIN videoGames vg ON w.game_id = vg.id
+      WHERE w.user_id = ?
+      `,
       [profilId],
     );
-    return rows as videoGames[];
+    return rows as VideoGame[];
+  }
+
+  async addGameToWishlist(userId: number, gameId: number) {
+    await databaseClient.query<Rows>(
+      "INSERT INTO wishlist (user_id, game_id) VALUES (?, ?)",
+      [userId, gameId],
+    );
+  }
+
+  async removeGameFromWishlist(userId: number, gameId: number) {
+    await databaseClient.query<Rows>(
+      "DELETE FROM wishlist WHERE user_id = ? AND game_id = ?",
+      [userId, gameId],
+    );
   }
 }
 
-export default new wishlistRepository();
+export default new WishlistRepository();

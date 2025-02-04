@@ -43,7 +43,7 @@ export default function NavBar() {
           </Link>
 
           <Link
-            to={user ? `/users/${user.id}/wishlist` : "/connexion"}
+            to={user ? `/user/${user.id}/wishlist` : "/connexion"}
             onClick={(e) => {
               if (!user) {
                 e.preventDefault();
