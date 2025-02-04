@@ -18,7 +18,6 @@ type VideoGame = {
 };
 
 class WishlistRepository {
-  // Récupérer la liste des jeux dans la wishlist d'un utilisateur
   async readWishlist(profilId: number) {
     const [rows] = await databaseClient.query<Rows>(
       `
@@ -35,6 +34,13 @@ class WishlistRepository {
   async addGameToWishlist(userId: number, gameId: number) {
     await databaseClient.query<Rows>(
       "INSERT INTO wishlist (user_id, game_id) VALUES (?, ?)",
+      [userId, gameId],
+    );
+  }
+
+  async removeGameFromWishlist(userId: number, gameId: number) {
+    await databaseClient.query<Rows>(
+      "DELETE FROM wishlist WHERE user_id = ? AND game_id = ?",
       [userId, gameId],
     );
   }
