@@ -39,7 +39,7 @@ export default function NavBar() {
             <span className="font-title">
               {user ? user.username : "CONNEXION"}
             </span>
-            <img src={User} alt="User" className="w-9 h-9" />
+            <img src={User} alt="User" className="w-10 h-10" />
           </Link>
 
           <Link
@@ -54,14 +54,14 @@ export default function NavBar() {
             <img
               src={Favorite}
               alt="Favorite"
-              className="w-7 h-7 cursor-pointer"
+              className="w-9 h-9 cursor-pointer"
             />
           </Link>
 
           <Link to={`/users/${user?.id}/basket`} className="relative">
-            <img src={basket} alt="Basket" className="w-7 h-7 cursor-pointer" />
+            <img src={basket} alt="Basket" className="w-8 h-8 cursor-pointer" />
             {itemCount > 0 && (
-              <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
+              <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full w-9 h-9 flex items-center justify-center">
                 {itemCount}
               </span>
             )}
