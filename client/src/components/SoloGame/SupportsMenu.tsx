@@ -17,7 +17,7 @@ export default function SupportsMenu() {
 
   return (
     <div
-      className={`${theme} bg-slate-950/80 text-color-text-primary p-4 w-96 rounded-lg shadow-lg transition-all absolute top-3 right-6`}
+      className={`${theme} bg-slate-950/80 text-color-text-primary p-4 w-96 rounded-lg shadow-lg transition-all absolute top-7 right-6`}
     >
       <div className="flex items-center justify-between">
         <button

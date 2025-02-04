@@ -13,8 +13,9 @@ create table videoGames (
   description TEXT not null,
   is_upcoming TINYINT(1) DEFAULT 0,
   is_preorder TINYINT(1) DEFAULT 0,
-  views int unsigned DEFAULT 0
-);
+  views int unsigned DEFAULT 0,
+  average_rating DECIMAL(3,1) DEFAULT 0
+  );
 
 create table user (
   id int unsigned primary key auto_increment not null,
@@ -45,7 +46,7 @@ create table profile (
 
 create table rating (
   id int unsigned primary key auto_increment not null,
-  rate int unsigned not null,
+  rate TINYINT UNSIGNED not null check(rate between 1 and 5),
   review TEXT not null,
   game_id int unsigned not null,
   user_id int unsigned not null,
@@ -84,7 +85,7 @@ create table wishlist(
   foreign key (game_id) references videoGames(id)
 );
 
- INSERT INTO videoGames (title, price, release_date, category, image1, image2, image3, image4, image5, description, is_upcoming, is_preorder, views) 
+ INSERT INTO videoGames (title, price, release_date, category, image1, image2, image3, image4, image5, description, is_upcoming, is_preorder, views, average_rating) 
 VALUES 
 (
 "Tomb Raider Definitive Edition", 
@@ -98,7 +99,8 @@ VALUES
 "http://localhost:3000/src/assets/images/tombraider5.webp","L'aventure qui force la jeune et inexpérimentée Lara Croft à devenir une survivanteendurcie a été remaniée pour les consoles nouvelle génération. Vous y retrouverez une Lara incroyablement détaillée et un environnement quiressemble à s'y méprendre au monde réel. Lara doit endurer des combats intenses, personnaliser ses armes et son équipement pour survivre à sapremière aventure et découvrir le secret mortel de l'île. La Definitive Edition du jeu d'action-aventure acclamé par la critique inclut descontenus bonus et regroupe tous les packs de contenu téléchargeable additionnels.",
 1,
 0,
-2870),
+2870,
+4.5),
 
 ("The Legend of Zelda: Breath of the Wild", 
 59.99, 
@@ -112,7 +114,8 @@ VALUES
  "Explorez un vaste monde ouvert rempli de mystères, d'énigmes et de dangers dans The Legend of Zelda: Breath of the Wild. Incarnez Link et partez à la recherche de la princesse Zelda pour affronter le maléfique Ganon. Découvrez des paysages variés, résolvez des sanctuaires et utilisez des pouvoirs spéciaux pour surmonter les défis.",
  0,
  1,
- 3640),
+ 3640,
+ 4.8),
 
 ("Super Mario Odyssey", 
 59.99, 
@@ -126,7 +129,8 @@ VALUES
  "Accompagnez Mario dans une aventure épique à travers divers royaumes pour sauver la princesse Peach de Bowser. Découvrez de nouveaux pouvoirs avec Cappy, voyagez à travers des mondes magnifiques et collectez des lunes pour alimenter votre vaisseau, l'Odyssée.",
  0,
  0,
- 4740),
+ 4740,
+ 4.7),
 
 ("The Witcher 3: Wild Hunt", 
 39.99, 
@@ -140,7 +144,8 @@ VALUES
  "Incarnez Geralt de Riv, un chasseur de monstres légendaire dans un monde riche et ouvert, rempli de quêtes et de mystères. Explorez des contrées fascinantes, combattez des créatures mythiques et prenez des décisions qui influenceront le destin de nombreux personnages.",
  0,
  1,
- 3920),
+ 3920,
+ 4.4),
 
 ("Red Dead Redemption 2", 
 59.99, 
@@ -154,7 +159,8 @@ VALUES
  "Plongez dans l'Ouest sauvage avec Arthur Morgan et la bande de Van der Linde, entre hors-la-loi et survie. Faites face à des dilemmes moraux, explorez un monde détaillé et interactif, et construisez votre propre légende dans ce western épique signé Rockstar Games.",
  1,
  1,
- 2538),
+ 2538,
+ 4.1),
 
 ("God of War", 
 49.99, 
@@ -168,7 +174,8 @@ VALUES
  "Kratos et son fils Atreus explorent la mythologie nordique dans une aventure riche en émotions et en combats épiques. Découvrez un gameplay innovant avec des affrontements brutaux, une narration poignante et une immersion totale dans un monde inspiré des mythes scandinaves.",
  1,
  0,
- 1928),
+ 1928,
+ 4.1),
 
 ("The Last of Us Part II", 
 59.99, 
@@ -182,7 +189,8 @@ VALUES
 "Dans cette suite acclamée de The Last of Us, suivez Ellie alors qu'elle entame une quête de vengeance brutale contre ceux qui ont bouleversé sa vie. Explorez un monde post-apocalyptique luxuriant mais dangereux, affrontez des infectés et des survivants hostiles, et découvrez une narration poignante où chaque choix a des conséquences. Le jeu propose une immersion totale avec des graphismes incroyables et une bande-son inoubliable.",
 0,
 0,
-4140),
+4140,
+4.9),
 
 ("Halo Infinite", 
 59.99, 
@@ -196,7 +204,8 @@ VALUES
 "Reprenez le rôle de Master Chief et explorez le plus vaste monde ouvert jamais créé dans l’univers de Halo. Halo Infinite propose une campagne solo intense et un mode multijoueur en free-to-play bourré d’action. Combattez les forces du Banished, utilisez des gadgets inédits comme le grappin, et plongez dans un scénario captivant qui remet le destin de l'humanité entre vos mains.",
 0,
 0,
-2850),
+2850,
+4.4),
 
 ("Forza Horizon 5", 
 59.99, 
@@ -210,7 +219,8 @@ VALUES
 "Découvrez le Mexique dans le plus grand et le plus varié des mondes ouverts de la série Forza Horizon. Conduisez une sélection impressionnante de véhicules dans des environnements dynamiques où le climat, les tempêtes de sable et les saisons influencent votre expérience de conduite. Participez à des courses effrénées, personnalisez vos voitures et profitez d’un mode multijoueur ultra fluide.",
 0,
 0,
-1320),
+1320,
+3.5),
 
 ("Cyberpunk 2077", 
 59.99, 
@@ -224,7 +234,8 @@ VALUES
 "Plongez dans Night City, une métropole futuriste grouillante de vie et de dangers. Incarnez V, un mercenaire en quête d’immortalité grâce à un implant cybernétique révolutionnaire. Faites des choix qui façonnent votre histoire, améliorez votre personnage avec des implants cybernétiques, et explorez un monde ouvert incroyablement détaillé regorgeant de quêtes et d'opportunités.",
 0,
 0,
-1980),
+1980,
+4.2),
 
 ("Death Stranding", 
 39.99, 
@@ -238,7 +249,8 @@ VALUES
 "Dans un monde post-apocalyptique où l’humanité est au bord de l’extinction, incarnez Sam Porter Bridges et traversez des paysages désolés pour reconnecter les derniers bastions de la civilisation. Death Stranding offre une expérience unique mêlant exploration, gestion de ressources et une narration profonde sur le lien entre les êtres humains.",
 0,
 0,
-960),
+960,
+3.8),
 
 ("Horizon Zero Dawn", 
 39.99, 
@@ -252,7 +264,8 @@ VALUES
 "Incarnez Aloy, une jeune chasseuse et archère évoluant dans un monde où d’étranges machines dominent la nature. Explorez un vaste monde ouvert, découvrez les mystères de l’ancien monde et combattez des créatures robotiques redoutables à l’aide d’armes et de pièges sophistiqués.",
 0,
 0,
-1425),
+1425,
+3.7),
 
 ("Uncharted 4: A Thief's End", 
 39.99, 
@@ -266,7 +279,8 @@ VALUES
 "Nathan Drake reprend du service pour une dernière aventure qui l’emmène à travers le monde à la recherche d’un trésor perdu. Uncharted 4 combine exploration, combats intenses et narration captivante pour offrir une expérience cinématographique inoubliable.",
 0,
 0,
-1280),
+1280,
+4.8),
 
 ("Bloodborne", 
 39.99, 
@@ -280,7 +294,8 @@ VALUES
 "Découvrez Yharnam, une ville sombre et maudite où des créatures cauchemardesques errent dans les rues. Bloodborne propose un gameplay exigeant, des combats rapides et viscéraux, et une ambiance gothique terrifiante inspirée des œuvres de Lovecraft.",
 0,
 0,
-1500),
+1500,
+4.3),
 
 ("Baldur's Gate III", 
 59.99, 
@@ -296,7 +311,8 @@ Partez à l’aventure avec des compagnons aux histoires complexes, affrontez de
 Forgez votre propre destin, influencez le monde grâce à vos dialogues et découvrez un scénario fascinant rempli de mystères et de quêtes secondaires immersives.",
 0,
 0,
-2200),
+2200,
+3.7),
 
 ("DOOM Eternal", 
 59.99, 
@@ -311,7 +327,8 @@ Forgez votre propre destin, influencez le monde grâce à vos dialogues et déco
 Exécutez vos ennemis avec des Glory Kills sanglants, utilisez votre grappin pour vous déplacer rapidement et maîtrisez la gestion des ressources en exploitant les points faibles des démons. Avec des niveaux gigantesques et un gameplay fluide en perpétuelle évolution, chaque seconde de combat est une montée d’adrénaline pure.",
 0,
 0,
-1800),
+1800,
+4.1),
 
 ("Resident Evil Village", 
 59.99, 
@@ -327,7 +344,8 @@ Affrontez des créatures cauchemardesques, dont la charismatique et redoutable L
 L’ambiance oppressante, les graphismes photoréalistes et le gameplay mélangeant action et horreur font de Resident Evil Village une expérience immersive et terrifiante.",
 0,
 0,
-2550),
+2550,
+4.8),
 
 ("Demon's Souls", 
 59.99, 
@@ -343,7 +361,8 @@ Affrontez des boss colossaux, surmontez des ennemis redoutables et explorez des 
 Chaque combat est un test de patience et de précision, où la moindre erreur peut être fatale. Faites preuve de persévérance, maîtrisez le système de combat exigeant et devenez une légende dans ce royaume maudit.",
 0,
 0,
-1400),
+1400,
+3.9),
 
 ("Assassin's Creed Valhalla", 
 59.99, 
@@ -360,7 +379,8 @@ Utilisez une large variété d’armes, personnalisez votre guerrier et prenez p
 Avec un vaste monde ouvert regorgeant d’activités, de quêtes secondaires et de secrets à découvrir, Assassin's Creed Valhalla vous offre une aventure immersive et mémorable.",
 0,
 0,
-2750),
+2750,
+4.6),
 
 ("Fallout 4", 
 29.99, 
@@ -376,7 +396,8 @@ Affrontez des mutants, bâtissez des colonies et prenez part à un système de c
 Avec un monde ouvert gigantesque, des factions rivales et d’innombrables quêtes, Fallout 4 vous plonge dans une aventure post-apocalyptique inoubliable.",
 0,
 0,
-1600),
+1600,
+4.1),
 
 ("The Elder Scrolls V: Skyrim", 
 39.99, 
@@ -393,7 +414,8 @@ Avec une liberté totale, forgez votre propre aventure en rejoignant diverses fa
 Skyrim vous offre un monde vivant, des centaines de quêtes et une profondeur de gameplay inégalée dans l’univers du jeu de rôle.",
 0,
 0,
-1100),
+1100,
+3.7),
 
 ("Grand Theft Auto V", 
 19.99, 
@@ -409,7 +431,8 @@ Avec une campagne solo captivante et un mode multijoueur en constante évolution
 Que ce soit en explorant librement ou en participant à des missions, chaque instant est une aventure inoubliable dans l’univers du crime et de la corruption.",
 0,
 0,
-4400),
+4400,
+4.5),
 
 ("Minecraft", 
 29.99, 
@@ -426,7 +449,8 @@ Affrontez des créatures hostiles, minez des ressources rares et créez des cons
 Avec ses innombrables mises à jour et sa communauté active, Minecraft est une expérience intemporelle, parfaite pour les aventuriers comme pour les bâtisseurs.",
 0,
 0,
-5000),
+5000,
+4.6),
 
 ("Starfield", 
 59.99, 
@@ -442,7 +466,8 @@ Explorez des planètes lointaines, construisez votre propre vaisseau et plongez 
 Avec une profondeur de personnalisation et un monde ouvert inédit, Starfield repousse les limites du genre RPG et vous offre un voyage inoubliable parmi les étoiles.",
 0,
 0,
-800),
+800,
+3.1),
 
 ("Valheim", 
 19.99, 
@@ -458,7 +483,8 @@ Construisez votre base, fabriquez des armes puissantes et affrontez des boss lé
 Avec un système de construction innovant et une direction artistique unique, Valheim est un jeu de survie exigeant et addictif.",
 0,
 0,
-600),
+600,
+3.1),
 
 ("Diablo 4", 
 49.99, 
@@ -474,7 +500,8 @@ Choisissez votre classe, affrontez des hordes démoniaques et explorez un monde 
 Avec un gameplay hack'n'slash raffiné, un mode multijoueur coopératif et une histoire captivante, Diablo IV est l'expérience ultime pour les amateurs d’action-RPG.",
 0,
 0,
-1100),
+1100,
+3.8),
 
 ("Call of Duty Black Ops 6", 
 69.99, 
@@ -490,7 +517,8 @@ Incarnez des agents d’élite, maîtrisez un arsenal moderne et plongez dans un
 Le mode multijoueur et les combats nerveux garantissent une expérience FPS explosive, fidèle à l’ADN de la série Black Ops.",
 1,
 1,
-4200),
+4200,
+4.6),
 
 ("Frostpunk", 
 29.99, 
@@ -505,7 +533,8 @@ Le mode multijoueur et les combats nerveux garantissent une expérience FPS expl
 Prenez des décisions difficiles, imposez des lois et gérez les ressources pour assurer la survie de votre peuple face au froid extrême et aux crises humanitaires.",
 0,
 0,
-900),
+900,
+3.9),
 
 ("Anno 1800", 
 59.99, 
@@ -520,7 +549,8 @@ Prenez des décisions difficiles, imposez des lois et gérez les ressources pour
 Construisez un empire commercial prospère, gérez vos ressources et explorez de nouvelles technologies pour assurer la croissance de votre civilisation dans un monde dynamique et compétitif.",
 0,
 0,
-1700),
+1700,
+3.2),
 
 ("Manor Lords", 
 39.99, 
@@ -535,7 +565,8 @@ Construisez un empire commercial prospère, gérez vos ressources et explorez de
 Gérez vos terres, développez votre économie et défendez votre territoire dans un monde ouvert réaliste inspiré du Moyen Âge.",
 1,
 1,
-1200),
+1200,
+4.1),
 
 ("Mount & Blade II Bannerlord", 
 49.99, 
@@ -550,7 +581,8 @@ Gérez vos terres, développez votre économie et défendez votre territoire dan
 Mount & Blade II: Bannerlord vous permet de diriger une armée, de bâtir votre propre empire et de vous engager dans des batailles stratégiques en temps réel.",
 0,
 0,
-700),
+700,
+4.1),
 
 ("Animal Crossing: New Horizons", 
 59.99, 
@@ -565,7 +597,8 @@ Mount & Blade II: Bannerlord vous permet de diriger une armée, de bâtir votre 
 Construisez, personnalisez et interagissez avec vos voisins animaux dans un monde ouvert et relaxant. Le jeu favorise la créativité et la gestion de votre espace, tout en suivant le rythme des saisons.",
 0,
 0,
-5000),
+5000,
+4.8),
 
 ("FIFA 24", 
 69.99, 
@@ -580,7 +613,8 @@ Construisez, personnalisez et interagissez avec vos voisins animaux dans un mond
 Profitez des dernières améliorations graphiques, des mécaniques de jeu affinées et d'un mode carrière où vous pouvez diriger votre équipe vers la gloire. Jouez en ligne avec vos amis ou affrontez des équipes du monde entier.",
 0,
 0,
-6000),
+6000,
+4.6),
 
 ("Mario Kart 8 Deluxe", 
 59.99, 
@@ -595,7 +629,8 @@ Profitez des dernières améliorations graphiques, des mécaniques de jeu affin�
 Avec des personnages emblématiques de l'univers Mario, le jeu propose des power-ups, des courses multijoueurs et des pistes inoubliables.",
 0,
 0,
-6000),
+6000,
+4.9),
 
 ("Super Smash Bros. Ultimate", 
 59.99, 
@@ -610,7 +645,8 @@ Avec des personnages emblématiques de l'univers Mario, le jeu propose des power
 Avec des mécaniques de jeu faciles à apprendre mais difficiles à maîtriser, il est parfait pour jouer seul ou en groupe.",
 0,
 0,
-4700),
+4700,
+4.8),
 
 ("Hogwarts Legacy", 
 59.99, 
@@ -625,7 +661,8 @@ Avec des mécaniques de jeu faciles à apprendre mais difficiles à maîtriser, 
 Dans ce RPG en monde ouvert, vous pouvez choisir votre propre aventure, apprendre la magie, explorer des lieux iconiques et percer les secrets de l'univers d'Harry Potter.",
 0,
 0,
-6000);
+6000,
+4.9);
 
  INSERT INTO user (firstname, lastname, username, email, password, date_of_creation, membership, is_admin)
  VALUES 

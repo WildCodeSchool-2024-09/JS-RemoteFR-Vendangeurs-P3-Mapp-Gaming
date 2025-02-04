@@ -16,26 +16,32 @@ type videoGames = {
   description: string;
   is_upcoming: boolean;
   is_preorder: boolean;
+  views: number;
+  average_rating: number;
 };
 
 class videoGamesRepository {
   // The C of CRUD - Create operation
-  async create(videoGames: Omit<videoGames, "id">) {
+  async create(videoGame: Omit<videoGames, "id">) {
     const [result] = await databaseClient.query<Result>(
-      "INSERT INTO videoGames (title, price, release_date, category, image1, image2, image3, image4, image5, description, is_upcoming, is_preorder) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+      `INSERT INTO videoGames 
+        (title, price, release_date, category, image1, image2, image3, image4, image5, description, is_upcoming, is_preorder, views, average_rating) 
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       [
-        videoGames.title,
-        videoGames.price,
-        videoGames.release_date,
-        videoGames.category,
-        videoGames.image1,
-        videoGames.image2,
-        videoGames.image3,
-        videoGames.image4,
-        videoGames.image5,
-        videoGames.description,
-        videoGames.is_upcoming ? 1 : 0,
-        videoGames.is_preorder ? 1 : 0,
+        videoGame.title,
+        videoGame.price,
+        videoGame.release_date,
+        videoGame.category,
+        videoGame.image1,
+        videoGame.image2,
+        videoGame.image3,
+        videoGame.image4,
+        videoGame.image5,
+        videoGame.description,
+        videoGame.is_upcoming ? 1 : 0,
+        videoGame.is_preorder ? 1 : 0,
+        videoGame.views,
+        videoGame.average_rating ?? 0,
       ],
     );
     return result.insertId;
