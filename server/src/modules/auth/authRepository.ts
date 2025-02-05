@@ -11,6 +11,12 @@ type User = {
   is_admin?: boolean;
 };
 
+type UpdateUser = {
+  id?: number;
+  email: string;
+  username: string;
+};
+
 class AuthRepository {
   async create(user: User) {
     try {
@@ -29,6 +35,24 @@ class AuthRepository {
       }
       throw error;
     }
+  }
+
+  async update(user: UpdateUser) {
+    if (user.id === undefined || user.id === null) {
+      throw new Error("User ID is required");
+    }
+    const existingUser = await this.readOneById(user.id);
+    if (!existingUser) throw new Error("User not found");
+
+    const newUsername = user.username || existingUser.username;
+    const newEmail = user.email || existingUser.email;
+
+    const [result] = await databaseClient.query<Result>(
+      "UPDATE user SET username = ?, email = ? WHERE id = ?",
+      [newUsername, newEmail, user.id],
+    );
+
+    return result.affectedRows;
   }
 
   async readOneByEmail(email: string) {

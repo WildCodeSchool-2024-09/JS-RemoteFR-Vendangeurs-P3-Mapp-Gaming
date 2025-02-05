@@ -47,6 +47,8 @@ const edit: RequestHandler = async (req, res, next) => {
       description: req.body.description,
       is_upcoming: req.body.isUpcoming,
       is_preorder: req.body.isPreorder,
+      views: req.body.views || 0,
+      average_rating: req.body.averageRating,
     };
 
     const affectedRows = await videoGamesRepository.update(videoGame);
@@ -77,6 +79,8 @@ const add: RequestHandler = async (req, res, next) => {
       description: req.body.description,
       is_upcoming: req.body.isUpcoming,
       is_preorder: req.body.isPreorder,
+      views: req.body.views || 0,
+      average_rating: req.body.averageRating,
     };
 
     const insertId = await videoGamesRepository.create(newVideoGame);

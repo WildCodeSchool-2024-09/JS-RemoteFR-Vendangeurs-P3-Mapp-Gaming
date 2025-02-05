@@ -52,7 +52,6 @@ const findCurrentUser: RequestHandler = async (req, res) => {
 
 const register: RequestHandler = async (req, res) => {
   const { username, email, password } = req.body;
-
   try {
     const hashedPassword = await argon2.hash(password);
 
@@ -61,7 +60,7 @@ const register: RequestHandler = async (req, res) => {
     const registeredUser = await authRepository.create(datasToRegister);
 
     res.status(201).json({
-      id: registeredUser.id,
+      userId: registeredUser.id,
       message: "Utilisateur correctement créé",
     });
   } catch (error: unknown) {
@@ -74,4 +73,30 @@ const register: RequestHandler = async (req, res) => {
   }
 };
 
-export default { login, findCurrentUser, register };
+const UpdateUser: RequestHandler = async (req, res) => {
+  const { id } = req.params;
+  const { username, email } = req.body;
+
+  try {
+    const existingUser = await authRepository.readOneById(Number(id));
+    const affectedRows = await authRepository.update({
+      id: Number(id),
+      username,
+      email,
+    });
+
+    if (affectedRows === 0) {
+      res.status(404).json({ message: "Utilisateur non trouvé" });
+      return;
+    }
+
+    // Renvoyer les nouvelles données mises à jour
+    const updatedUser = await authRepository.readOneById(Number(id));
+    res.status(200).json(updatedUser);
+  } catch (error) {
+    console.error("Erreur lors de la mise à jour :", error);
+    res.status(500).json({ message: "Erreur serveur" });
+  }
+};
+
+export default { login, findCurrentUser, register, UpdateUser };
