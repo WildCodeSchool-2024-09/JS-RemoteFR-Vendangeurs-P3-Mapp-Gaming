@@ -5,14 +5,17 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 /* ************************************************************************* */
 
 import App from "./App";
-import AdminGameSection from "./components/Admin/AdminGameSection";
-import AdminUserSection from "./components/Admin/AdminUserSection";
+import AdminGameSection from "./components/Admin/Game/AdminGameSection";
+import AdminUserSection from "./components/Admin/User/AdminUserSection";
 import NotFound from "./components/NotFound/NotFound";
 
 import { AuthProvider } from "./contexts/AuthContext";
 import { BasketProvider } from "./contexts/BasketContext";
 import { ThemeProvider } from "./contexts/ColorsContext";
+import AdminCreateGamePage from "./pages/AdminCreateGamePage";
 import AdminCreateUserPage from "./pages/AdminCreateUserPage";
+import AdminEditGamePage from "./pages/AdminEditGamePage";
+import AdminEditUserPage from "./pages/AdminEditUserPage";
 import AdminPage from "./pages/AdminPage";
 import BasketPage from "./pages/BasketPage";
 import ConnexionPage from "./pages/ConnexionPage";
@@ -48,17 +51,16 @@ const router = createBrowserRouter([
         path: "admin",
         element: <AdminPage />,
         children: [
+          { path: "utilisateurs", element: <AdminUserSection /> },
+          { path: "creation-utilisateur", element: <AdminCreateUserPage /> },
           {
-            path: "utilisateurs",
-            element: <AdminUserSection />,
-            children: [
-              {
-                path: "creation-utilisateur",
-                element: <AdminCreateUserPage />,
-              },
-            ],
+            path: "modification-utilisateur/:id",
+            element: <AdminEditUserPage />,
           },
-          { path: "tout-les-jeux", element: <AdminGameSection /> },
+
+          { path: "tous-les-jeux", element: <AdminGameSection /> },
+          { path: "creation-jeu", element: <AdminCreateGamePage /> },
+          { path: "modification-jeu/:id", element: <AdminEditGamePage /> },
         ],
       },
     ],

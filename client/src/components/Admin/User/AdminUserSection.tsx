@@ -30,24 +30,6 @@ const AdminUserSection = () => {
     });
   };
 
-  const editUser = (id: number) => {
-    const updatedUser = {
-      firstname: "Updated",
-      lastname: "User",
-      username: "updated_user",
-    };
-
-    axios
-      .put(`http://localhost:3310/api/user/${id}`, updatedUser)
-      .then((response) => {
-        console.info(response);
-        setUsers(users.map((user) => (user.id === id ? response.data : user)));
-      })
-      .catch((error) => {
-        console.error("Error editing user:", error);
-      });
-  };
-
   // Search functionality
   useEffect(() => {
     const lowerSearch = searchTerm.trim().toLowerCase();
@@ -90,7 +72,7 @@ const AdminUserSection = () => {
   };
 
   return (
-    <div className="AdminUserSection">
+    <div className="z-10">
       {/* recherche */}
       <div className="flex justify-center">
         <input
@@ -134,13 +116,13 @@ const AdminUserSection = () => {
               </div>
               <div className="flex flex-row gap-2">
                 <div>
-                  <button type="button" onClick={() => editUser(user.id)}>
-                    Edit
-                  </button>
+                  <Link to={`/admin/modification-utilisateur/${user.id}`}>
+                    Modifier
+                  </Link>
                 </div>
                 <div>
                   <button type="button" onClick={() => deleteUser(user.id)}>
-                    Delete
+                    Supprimer
                   </button>
                 </div>
               </div>
@@ -149,9 +131,7 @@ const AdminUserSection = () => {
         ))}
       </div>
       <div>
-        <Link to="/admin/utilisateurs/creation-utilisateur">
-          Ajouter un utilisateur
-        </Link>
+        <Link to="/admin/creation-utilisateur">Ajouter un utilisateur</Link>
       </div>
     </div>
   );

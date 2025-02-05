@@ -1,5 +1,6 @@
 import axios from "axios";
 import react, { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 interface videoGame {
   id: number;
@@ -28,24 +29,6 @@ const AdminGameSection = () => {
         console.info(response);
         setVideoGames(videoGames.filter((videoGame) => videoGame.id !== id));
       });
-  };
-
-  const addGame = () => {
-    axios.post("http://localhost:3310/api/videoGames").then((response) => {
-      console.info(response);
-      setVideoGames([...videoGames, response.data]);
-    });
-  };
-
-  const editGame = (id: number) => {
-    axios.put(`http://localhost:3310/api/videoGames/${id}`).then((response) => {
-      console.info(response);
-      setVideoGames(
-        videoGames.map((videoGame) =>
-          videoGame.id === id ? response.data : videoGame,
-        ),
-      );
-    });
   };
 
   // Search functionality
@@ -87,7 +70,7 @@ const AdminGameSection = () => {
   };
 
   return (
-    <div className="AdminGameSection">
+    <div className="z-10">
       {/* recherche */}
       <div className="flex justify-center">
         <input
@@ -115,8 +98,11 @@ const AdminGameSection = () => {
         )}
       </div>
 
-      {/* tout les jeux*/}
-      <h2>Tous les jeux</h2>
+      {/* tous les jeux*/}
+      <div className="flex justify-between">
+        <h2>Tous les jeux</h2>
+        <Link to="/admin/creation-jeu"> Créer un jeu</Link>
+      </div>
       <div className="flex flex-col justify-center items-center gap-2 border-2 border-orange-500">
         {videoGames.map((videoGame) => (
           <div key={videoGame.id}>
@@ -133,16 +119,16 @@ const AdminGameSection = () => {
               </div>
               <div className="flex flex-row gap-2">
                 <div>
-                  <button type="button" onClick={() => editGame(videoGame.id)}>
-                    Edit
-                  </button>
+                  <Link to={`/admin/modification-jeu/${videoGame.id}`}>
+                    Modifier
+                  </Link>
                 </div>
                 <div>
                   <button
                     type="button"
                     onClick={() => deleteGame(videoGame.id)}
                   >
-                    Delete
+                    Supprimer
                   </button>
                 </div>
               </div>
@@ -150,9 +136,6 @@ const AdminGameSection = () => {
           </div>
         ))}
       </div>
-      <button type="button" onClick={addGame}>
-        Ajouter
-      </button>
     </div>
   );
 };

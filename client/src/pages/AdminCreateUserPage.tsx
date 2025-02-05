@@ -1,7 +1,11 @@
-import AdminCreateUser from "../components/Admin/AdminCreateUser";
+import AdminCreateUser from "../components/Admin/User/AdminCreateUser";
 
 const AdminCreateUserPage = () => {
-  return <AdminCreateUser />;
+  return (
+    <div>
+      <AdminCreateUser />
+    </div>
+  );
 };
 
 export default AdminCreateUserPage;
