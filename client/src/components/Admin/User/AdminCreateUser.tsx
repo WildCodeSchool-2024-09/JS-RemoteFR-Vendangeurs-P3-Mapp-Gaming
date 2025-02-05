@@ -12,6 +12,11 @@ const AdminCreateUser: React.FC = () => {
   const [isAdmin, setIsAdmin] = useState(false);
 
   const addUser = async () => {
+    if (!firstname || !lastname || !username || !email || !password) {
+      alert("Veuillez remplir tous les champs obligatoires.");
+      return;
+    }
+
     const newUser = {
       firstname,
       lastname,
@@ -28,6 +33,8 @@ const AdminCreateUser: React.FC = () => {
         "http://localhost:3310/api/user",
         newUser,
       );
+
+      // Réinitialisation du formulaire après l'ajout
       console.info(response.data);
       setFirstname("");
       setLastname("");
@@ -37,13 +44,15 @@ const AdminCreateUser: React.FC = () => {
       setMembership("Basic");
       setIsAdmin(false);
     } catch (error) {
-      console.error("There was an error creating the user!", error);
+      console.error("erreur lors de la création de l'utilisateur!", error);
     }
   };
 
   return (
-    <div>
-      <h2>Ajouter un utilisateur</h2>
+    <div className="flex flex-col gap-10">
+      <div className="flex justify-center">
+        <h1>Créer un utilisateur</h1>
+      </div>
       <form
         className="flex flex-col gap-2"
         onSubmit={(e) => {
@@ -56,6 +65,7 @@ const AdminCreateUser: React.FC = () => {
           type="text"
           id="firstname"
           value={firstname}
+          className="text-black"
           onChange={(e) => setFirstname(e.target.value)}
           required
         />
@@ -65,6 +75,7 @@ const AdminCreateUser: React.FC = () => {
           type="text"
           id="lastname"
           value={lastname}
+          className="text-black"
           onChange={(e) => setLastname(e.target.value)}
           required
         />
@@ -74,6 +85,7 @@ const AdminCreateUser: React.FC = () => {
           type="text"
           id="username"
           value={username}
+          className="text-black"
           onChange={(e) => setUsername(e.target.value)}
           required
         />
@@ -83,6 +95,7 @@ const AdminCreateUser: React.FC = () => {
           type="email"
           id="email"
           value={email}
+          className="text-black"
           onChange={(e) => setEmail(e.target.value)}
           required
         />
@@ -92,6 +105,7 @@ const AdminCreateUser: React.FC = () => {
           type="password"
           id="password"
           value={password}
+          className="text-black"
           onChange={(e) => setPassword(e.target.value)}
           required
         />
@@ -100,10 +114,11 @@ const AdminCreateUser: React.FC = () => {
         <select
           id="membership"
           value={membership}
+          className="bg-slate-600 text-slate-200"
           onChange={(e) => setMembership(e.target.value as "Basic" | "Premium")}
           required
         >
-          <option value="Basic">Basic</option>
+          <option value="Basic">Standard</option>
           <option value="Premium">Premium</option>
         </select>
 
@@ -114,7 +129,7 @@ const AdminCreateUser: React.FC = () => {
           checked={isAdmin}
           onChange={(e) => setIsAdmin(e.target.checked)}
         />
-        <div>
+        <div className="flex justify-center gap-10">
           <button type="submit">Ajouter</button>
           <Link to="/admin/utilisateurs">Retour</Link>
         </div>

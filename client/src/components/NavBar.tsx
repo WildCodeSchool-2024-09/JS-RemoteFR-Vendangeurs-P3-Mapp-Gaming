@@ -33,7 +33,13 @@ export default function NavBar() {
 
         <div className="flex items-center gap-4 text-primary">
           <Link
-            to={user ? `/profile/${user.id}` : "/connexion"}
+            to={
+              user
+                ? user.is_admin
+                  ? "/admin"
+                  : `/profile/${user.id}`
+                : "/connexion"
+            }
             className="flex items-center gap-2"
           >
             <span className="font-title">

@@ -1,16 +1,16 @@
 -- SQLBook: Code
 create table videoGames (
   id int unsigned primary key auto_increment not null,
-  title varchar(255) not null,
-  price decimal(10, 2) not null,
-  release_date date not null,
-  category varchar(100) not null,
-  image1 varchar(255) not null,
-  image2 varchar(255) not null,
-  image3 varchar(255) not null,
-  image4 varchar(255) not null,
-  image5 varchar(255) not null,
-  description TEXT not null,
+  title varchar(255) null,
+  price decimal(10, 2) null,
+  release_date date null,
+  category varchar(100) null,
+  image1 varchar(255) null,
+  image2 varchar(255) null,
+  image3 varchar(255) null,
+  image4 varchar(255) null,
+  image5 varchar(255) null,
+  description TEXT null,
   is_upcoming TINYINT(1) DEFAULT 0,
   is_preorder TINYINT(1) DEFAULT 0,
   views int unsigned DEFAULT 0,
@@ -693,4 +693,3 @@ insert into profile (information, wallet, basket, comment, user_management, game
 INSERT INTO rating (rate, review, game_id, user_id) VALUES
 (4, "super jeu, très bon jeu d'aventure" , 1, 1),
 (2, "super jeu, très bon rapport qualité prix", 1, 2);
-

@@ -8,7 +8,7 @@ const AdminPage = () => {
           <Link to="/admin">
             <h1>Page d'administration</h1>
           </Link>
-          <Link to="tout-les-jeux">
+          <Link to="tous-les-jeux">
             <button type="button">Tous les jeux</button>
           </Link>
           <Link to="utilisateurs">
