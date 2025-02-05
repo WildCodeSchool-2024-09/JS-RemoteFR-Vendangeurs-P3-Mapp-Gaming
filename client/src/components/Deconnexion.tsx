@@ -2,18 +2,24 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 
 export default function Deconnexion() {
-  const { setUser } = useAuth(); // Accéder à la fonction setUser dans le context
-  const navigate = useNavigate(); // Utiliser useNavigate pour rediriger après déconnexion
+  const { setUser } = useAuth();
+  const navigate = useNavigate();
 
   const handleLogout = () => {
-    setUser(null); // Supprimer l'utilisateur du context
-    localStorage.removeItem("user"); // Supprimer l'utilisateur du localStorage
-    navigate("/connexion"); // Rediriger vers la page de connexion
+    setUser(null);
+    localStorage.removeItem("user");
+    navigate("/connexion");
   };
 
   return (
-    <button type="button" onClick={handleLogout} className="logout-button">
-      Se déconnecter
-    </button>
+    <div className="flex justify-center relative z-10">
+      <button
+        type="button"
+        onClick={handleLogout}
+        className="w-44 px-4 mt-9 py-2 border-primary border text-color-text-primary font-title rounded hover:bg-slate-900/50 focus:outline-none"
+      >
+        Me déconnecter
+      </button>
+    </div>
   );
 }

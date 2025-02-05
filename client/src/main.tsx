@@ -45,7 +45,7 @@ const router = createBrowserRouter([
       { path: "precommande", element: <PreorderPage /> },
       { path: "a-venir", element: <UpcomingPage /> },
       { path: "users/:id/basket", element: <BasketPage /> },
-      { path: "users/:id/wishlist", element: <WishlistPage /> },
+      { path: "user/:id/wishlist", element: <WishlistPage /> },
 
       {
         path: "admin",

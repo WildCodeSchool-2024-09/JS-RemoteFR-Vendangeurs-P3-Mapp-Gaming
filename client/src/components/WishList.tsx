@@ -1,7 +1,11 @@
 import axios from "axios";
-import react, { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import trash from "../assets/icons/trash.svg";
+import { useAuth } from "../contexts/AuthContext";
 import { useBasket } from "../contexts/BasketContext";
-interface videoGames {
+
+interface VideoGame {
   id: number;
   title: string;
   image1: string;
@@ -9,54 +13,97 @@ interface videoGames {
 }
 
 const WishList = () => {
-  const [videoGames, setVideoGames] = react.useState<videoGames[]>([]);
+  const [videoGames, setVideoGames] = useState<VideoGame[]>([]);
   const { addToBasket } = useBasket();
-  const userId = 0;
+  const { user } = useAuth();
 
   useEffect(() => {
-    // Changer l'ID 1 par celui de l'utilisateur connecté
+    if (!user?.id) return;
+
     axios
-      .get("http://localhost:3310/api/user/profile/1/wishlist")
+      .get(`http://localhost:3310/api/user/${user.id}/wishlist`)
       .then((response) => {
         setVideoGames(response.data);
       });
-  }, []);
+  }, [user?.id]);
+
+  const removeFromWishlist = (gameId: number) => {
+    if (!user) {
+      alert("Vous devez être connecté pour retirer un jeu de la wishlist !");
+      return;
+    }
+
+    axios
+      .delete(`http://localhost:3310/api/user/${user.id}/wishlist`, {
+        data: { gameId },
+      })
+      .then(() => {
+        setVideoGames((prevGames) =>
+          prevGames.filter((game) => game.id !== gameId),
+        );
+      })
+      .catch((err) => console.error("Erreur suppression :", err));
+  };
 
   return (
-    <div className="text-white flex flex-col items-center p-6 bg-[#1a1a2e] border border-orange-500 rounded-lg shadow-lg">
-      <h1 className="mb-6 text-3xl font-bold">ET POURQUOI PAS TA WISHLIST ?</h1>
-      <div className="grid w-full max-w-6xl grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
+    <section className="px-6">
+      <h1 className="text-3xl font-title mb-16">MA WISHLIST</h1>
+
+      <div className="grid w-full max-w-6xl mx-auto grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {videoGames.length > 0 ? (
-          videoGames.map((videoGame, index) => (
-            <div
-              key={`${videoGame.id}-${index}`}
-              className="overflow-hidden transition duration-300 transform bg-gray-800 rounded-lg shadow-md hover:scale-105"
-            >
-              <img
-                src={videoGame.image1}
-                alt={videoGame.title}
-                className="object-cover w-full h-40"
-              />
-              <div className="p-4 text-center">
-                <h2 className="text-lg font-semibold">{videoGame.title}</h2>
+          videoGames.map((videoGame) => (
+            <div key={videoGame.id} className="w-full">
+              <Link
+                to={`/achetez-votre-jeu-ici/${videoGame.id}`}
+                className="block rounded-2xl overflow-hidden bg-gray-800 shadow-md"
+              >
+                <div className="relative group">
+                  <img
+                    src={videoGame.image1}
+                    alt={videoGame.title}
+                    className="w-full h-72 object-cover transition-transform duration-300 group-hover:scale-110"
+                  />
+                  <div className="absolute bottom-0 left-0 w-full bg-black bg-opacity-30 text-white text-center p-2 backdrop-blur-md">
+                    <h3 className="text-sm font-title truncate">
+                      {videoGame.title}
+                    </h3>
+                    <span className="font-text">{videoGame.price} €</span>
+                  </div>
+                </div>
+              </Link>
+
+              {/* Boutons séparés */}
+              <div className="flex justify-center gap-4 mt-4">
                 <button
                   type="button"
-                  className="px-4 py-2 mt-4 text-white bg-orange-500 rounded hover:bg-orange-600"
-                  onClick={() => {
-                    console.info("Ajout au panier :", videoGame);
-                    addToBasket(videoGame, userId);
+                  className="px-4 py-2 text-color-text-primary font-text border border-primary rounded-lg bg-slate-900/25 hover:bg-slate-900/50 transition"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    addToBasket(videoGame, user?.id || 0);
                   }}
                 >
                   Ajouter au panier
+                </button>
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    removeFromWishlist(videoGame.id);
+                  }}
+                  className="flex items-center justify-center w-10 h-10 border border-primary rounded-lg bg-slate-900/25 hover:bg-slate-900/50 transition"
+                >
+                  <img src={trash} alt="Supprimer" className="w-7 h-7" />
                 </button>
               </div>
             </div>
           ))
         ) : (
-          <p className="text-gray-400">Votre wishlist est vide.</p>
+          <p className="text-color-text-primary text-center col-span-3">
+            Votre wishlist est vide.
+          </p>
         )}
       </div>
-    </div>
+    </section>
   );
 };
 
