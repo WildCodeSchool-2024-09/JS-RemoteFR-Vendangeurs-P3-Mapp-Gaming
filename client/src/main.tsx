@@ -17,6 +17,7 @@ import AdminCreateUserPage from "./pages/AdminCreateUserPage";
 import AdminEditGamePage from "./pages/AdminEditGamePage";
 import AdminEditUserPage from "./pages/AdminEditUserPage";
 import AdminPage from "./pages/AdminPage";
+import AccessAdmin from "./pages/AdminPage";
 import BasketPage from "./pages/BasketPage";
 import ConnexionPage from "./pages/ConnexionPage";
 import HomePage from "./pages/HomePage";
@@ -49,8 +50,9 @@ const router = createBrowserRouter([
 
       {
         path: "admin",
-        element: <AdminPage />,
+        element: <AccessAdmin />,
         children: [
+          { path: "", element: <AdminPage /> },
           { path: "utilisateurs", element: <AdminUserSection /> },
           { path: "creation-utilisateur", element: <AdminCreateUserPage /> },
           {

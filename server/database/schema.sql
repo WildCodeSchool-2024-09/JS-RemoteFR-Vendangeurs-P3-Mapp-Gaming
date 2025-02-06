@@ -32,14 +32,14 @@ create table user (
 create table profile (
   id int unsigned primary key auto_increment not null,
   information VARCHAR(255) not null,
-  wallet decimal(10, 2) not null,
+  -- wallet decimal(10, 2) not null,
   basket VARCHAR(255) not null,
   -- wishlist VARCHAR(255) not null,
-  comment VARCHAR(255) not null,
-  user_management BOOLEAN DEFAULT false,
-  games_management BOOLEAN DEFAULT false,
-  articles_management BOOLEAN DEFAULT false,
-  activity_report BOOLEAN DEFAULT false,
+  -- comment VARCHAR(255) not null,
+  -- user_management BOOLEAN DEFAULT false,
+  -- games_management BOOLEAN DEFAULT false,
+  -- articles_management BOOLEAN DEFAULT false,
+  -- activity_report BOOLEAN DEFAULT false,
   user_id int unsigned not null,
   foreign key (user_id) references user(id) on delete cascade
 );
@@ -671,18 +671,14 @@ Dans ce RPG en monde ouvert, vous pouvez choisir votre propre aventure, apprendr
   ('Aurélia', 'Martin', 'AureliaM', 'aurelia.martin@gmail.com', '$argon2id$v=19$m=65536,t=3,p=4$WIn1Abx0Q+6lN7h/dTVb4A$U2q6ZL7ntryVpMIV9bXyvghJkLZCe6RUY8ehaCUKfcQ', '2025-01-02', 'Premium', false),
   ('Pénélope', 'Teixeira', 'PennyT', 'penelope.teixeira@gmail.com', '$argon2id$v=19$m=65536,t=3,p=4$653qCkPsQJuByI4w8kuFCQ$NYKG+hZlr3TzV9LN4t+WihKnzLWLcFy95KtzCDMO2CI', '2025-01-03', 'Basic', false);
 
-insert into profile (information, wallet, basket, comment, user_management, games_management, articles_management, activity_report, user_id)
- values (
- "Admin, System, admin, admin@mappgaming.com, Adminpa2word",
- 23.98, 
- "Tomb raider Definitive Edition", 
---  "Tomb raider Definitive Edition", 
- "super jeu, très bon rapport qualité prix", 
- false, 
- false, 
- false, 
- false, 
- 1);
+INSERT INTO profile (information, basket, user_id)
+VALUES
+('Admin, System, admin, admin@mappgaming.com', '', 1),
+('Marvin, Dupont, MarvD, marvin.dupont@gmail.com', '', 2),
+('Aurélia, Martin, AureliaM, aurelia.martin@gmail.com', '', 3),
+('Pénélope, Teixeira, PennyT, penelope.teixeira@gmail.com', '', 4);
+
+
 
  INSERT INTO platforms (id, supported_platforms) VALUES 
 (1,"XBOX"),

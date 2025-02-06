@@ -61,4 +61,12 @@ router.delete("/api/user/:id/wishlist", wishlistActions.removeGameFromWishlist);
 
 /* ************************************************************************* */
 
+import basketActions from "./modules/basket/basketActions";
+
+router.get("/api/users/:id/basket", basketActions.getBasket);
+router.post("/api/users/:id/basket", basketActions.addBasket);
+router.delete("/api/users/:id/basket", basketActions.removeGameFromBasket);
+
+/* ************************************************************************* */
+
 export default router;

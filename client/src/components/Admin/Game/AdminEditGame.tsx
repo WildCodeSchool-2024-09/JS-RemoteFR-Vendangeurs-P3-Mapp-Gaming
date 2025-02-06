@@ -52,7 +52,7 @@ const AdminEditGame = () => {
           type="text"
           name="title"
           value={gameData.title}
-          className="text-black"
+          className="text-black p-2"
           onChange={handleChange}
           placeholder="Titre du jeu"
           required
@@ -61,7 +61,7 @@ const AdminEditGame = () => {
           type="number"
           name="price"
           value={gameData.price}
-          className="text-black"
+          className="text-black p-2"
           onChange={handleChange}
           placeholder="Prix"
         />
@@ -69,7 +69,7 @@ const AdminEditGame = () => {
           type="date"
           name="release_date"
           value={gameData.release_date}
-          className="text-black"
+          className="text-black p-2"
           onChange={handleChange}
         />
         <select
@@ -119,7 +119,7 @@ const AdminEditGame = () => {
           type="text"
           name="image1"
           value={gameData.image1}
-          className="text-black"
+          className="text-black p-2"
           onChange={handleChange}
           placeholder="URL de l'image"
         />
@@ -127,7 +127,7 @@ const AdminEditGame = () => {
           type="text"
           name="image2"
           value={gameData.image2}
-          className="text-black"
+          className="text-black p-2"
           onChange={handleChange}
           placeholder="URL de l'image"
         />
@@ -135,7 +135,7 @@ const AdminEditGame = () => {
           type="text"
           name="image3"
           value={gameData.image3}
-          className="text-black"
+          className="text-black p-2"
           onChange={handleChange}
           placeholder="URL de l'image"
         />
@@ -143,7 +143,7 @@ const AdminEditGame = () => {
           type="text"
           name="image4"
           value={gameData.image4}
-          className="text-black"
+          className="text-black p-2"
           onChange={handleChange}
           placeholder="URL de l'image"
         />
@@ -151,14 +151,14 @@ const AdminEditGame = () => {
           type="text"
           name="image5"
           value={gameData.image5}
-          className="text-black"
+          className="text-black p-2"
           onChange={handleChange}
           placeholder="URL de l'image"
         />
         <textarea
           name="description"
           value={gameData.description}
-          className="text-black"
+          className="text-black p-2"
           onChange={handleChange}
           placeholder="Description"
         />

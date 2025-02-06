@@ -1,7 +1,7 @@
 import { createContext, useContext, useState } from "react";
 import type { ReactNode } from "react";
 
-type VideoGame = { id: number; title: string; price: number };
+type VideoGame = { id: number; title: string; price: number; image1: string };
 type Basket = { videoGames: VideoGame[]; userId: number };
 
 type BasketContextType = {
@@ -17,20 +17,35 @@ export const BasketProvider = ({ children }: { children: ReactNode }) => {
   const [basket, setBasket] = useState<Basket>({ videoGames: [], userId: 0 });
 
   const addToBasket = (videoGame: VideoGame, userId: number) => {
-    console.info("Ajouté au panier :", videoGame);
-    setBasket({
-      videoGames: [...basket.videoGames, videoGame],
-      userId: userId,
+    setBasket((prevBasket) => {
+      const alreadyInBasket = prevBasket.videoGames.some(
+        (game) => game.id === videoGame.id,
+      );
+      if (alreadyInBasket) {
+        return prevBasket; // Pas d'ajout si déjà dans le panier
+      }
+      return {
+        videoGames: [...prevBasket.videoGames, videoGame],
+        userId: userId,
+      };
     });
   };
 
   const getTotalPrice = () => {
-    return (
-      basket.videoGames.reduce((total, game) => total + game.price, 0) || 0
-    );
+    // Assurez-vous que chaque prix est un nombre valide avant de l'ajouter
+    const total = basket.videoGames.reduce((total, game) => {
+      // Si le prix du jeu n'est pas un nombre valide, ne l'ajoutez pas
+      const gamePrice = Number(game.price);
+      if (!Number.isNaN(gamePrice)) {
+        return total + gamePrice;
+      }
+      return total;
+    }, 0);
+
+    return total; // Retourne le total de manière sûre
   };
 
-  const itemCount = basket.videoGames.length; // Calcul du nombre d'articles
+  const itemCount = basket.videoGames.length;
 
   return (
     <BasketContext.Provider
