@@ -15,15 +15,23 @@ interface VideoGame {
 const WishList = () => {
   const [videoGames, setVideoGames] = useState<VideoGame[]>([]);
   const { addToBasket } = useBasket();
-  const { user } = useAuth();
+  const { user } = useAuth(); // Récupérer l'utilisateur authentifié
 
   useEffect(() => {
-    if (!user?.id) return;
+    if (!user?.id) {
+      alert("Vous devez être connecté pour accéder à votre wishlist !");
+      return;
+    }
 
+    // Récupérer les jeux de la wishlist de l'utilisateur
     axios
       .get(`http://localhost:3310/api/user/${user.id}/wishlist`)
       .then((response) => {
         setVideoGames(response.data);
+      })
+      .catch((err) => {
+        console.error("Erreur lors de la récupération de la wishlist", err);
+        alert("Impossible de récupérer votre wishlist.");
       });
   }, [user?.id]);
 
@@ -42,7 +50,9 @@ const WishList = () => {
           prevGames.filter((game) => game.id !== gameId),
         );
       })
-      .catch((err) => console.error("Erreur suppression :", err));
+      .catch((err) => {
+        console.error("Erreur suppression de la wishlist :", err);
+      });
   };
 
   return (
@@ -72,7 +82,7 @@ const WishList = () => {
                 </div>
               </Link>
 
-              {/* Boutons séparés */}
+              {/* Boutons */}
               <div className="flex justify-center gap-4 mt-4">
                 <button
                   type="button"

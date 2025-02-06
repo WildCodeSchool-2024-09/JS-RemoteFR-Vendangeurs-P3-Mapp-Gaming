@@ -1,12 +1,13 @@
 import { useState } from "react";
+import { useAuth } from "../contexts/AuthContext";
 import { useBasket } from "../contexts/BasketContext";
 import { useTheme } from "../contexts/ColorsContext";
 
-function BasketPage() {
+const BasketPage = () => {
   const { theme } = useTheme();
-  const { basket, addToBasket, getTotalPrice } = useBasket();
-  const userId = 0;
-  const [isOrderValidated, setIsOrderValidated] = useState(false); // Commande validée !
+  const { basket, getTotalPrice } = useBasket();
+  const { user } = useAuth(); // Récupérer l'utilisateur authentifié
+  const [isOrderValidated, setIsOrderValidated] = useState(false);
 
   const handleOrder = () => {
     setIsOrderValidated(true);
@@ -19,95 +20,62 @@ function BasketPage() {
     >
       <div
         id="BasketPageContainer"
-        className="min-h-screen bg-gradient-to-b from-black via-gray-900 to-orange-900 text-white p-6 relative z-10"
+        className="min-h-screen bg-slate-900/50 text-color-text-primary p-6 relative z-10"
       >
         <h1 className="text-center text-3xl font-bold text-orange-400 mb-6">
           PANIER
         </h1>
-
-        <p>Panier de l'utilisateur {userId}</p>
+        {user && <p>Panier de l'utilisateur {user.username}</p>}
 
         {basket.videoGames.length === 0 ? (
           <p className="text-center text-lg font-semibold mt-10">
-            {" "}
             Rien à voir pour l'instant 👻
           </p>
         ) : (
-          <ul>
+          <div className="grid w-full max-w-6xl mx-auto grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             {basket.videoGames.map((videoGame) => (
-              <li key={videoGame.id}>
-                {videoGame.title} - {videoGame.price} €
-              </li>
+              <div key={videoGame.id} className="w-full">
+                <div className="block rounded-2xl overflow-hidden bg-gray-800 shadow-md">
+                  <div className="relative group">
+                    <img
+                      src={videoGame.image1}
+                      alt={videoGame.title}
+                      className="w-full h-72 object-cover transition-transform duration-300 group-hover:scale-110"
+                    />
+                    <div className="absolute bottom-0 left-0 w-full bg-black bg-opacity-30 text-white text-center p-2 backdrop-blur-md">
+                      <h3 className="text-sm font-title truncate">
+                        {videoGame.title}
+                      </h3>
+                      <span className="font-text">{videoGame.price} €</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
             ))}
-          </ul>
+          </div>
         )}
-        <div>
-          <p>Tomb Raider</p>
-          <button
-            type="button"
-            className="text-pink-500 hover:text-red-400"
-            onClick={() =>
-              addToBasket(
-                {
-                  id: 1,
-                  title: "Tomb Raider",
-                  price: 20,
-                },
-                1,
-              )
-            }
-          >
-            🕹️🕹️ Ajoute ce jeu 🕹️🕹️
-          </button>
-        </div>
 
-        <div>
-          <p>The Witcher</p>
-          <button
-            type="button"
-            className="text-pink-500 hover:text-red-400"
-            onClick={() =>
-              addToBasket(
-                {
-                  id: 4,
-                  title: "The Witcher",
-                  price: 30,
-                },
-                1,
-              )
-            }
-          >
-            🕹️🕹️ Ajoute ce jeu 🕹️🕹️
-          </button>
-        </div>
-        {/* Total et bouton commande */}
         <div className="mt-6 flex justify-between items-center text-xl font-bold">
           <span>Total :</span>
-          <span>{getTotalPrice().toFixed(2) || "0.00"} €</span>{" "}
-          {/* Total dynamique */}
+          <span>{Number(getTotalPrice()).toFixed(2) || "0.00"} €</span>
         </div>
 
         <button
           type="button"
-          className={`mt-4 w-full py-2 rounded flex justify-center items-center gap-2 transition ${
-            isOrderValidated
-              ? "bg-green-700"
-              : "bg-orange-600 hover:bg-orange-500"
-          }`}
+          className={`mt-4 w-full py-2 rounded flex justify-center items-center gap-2 transition ${isOrderValidated ? "bg-green-700" : "bg-orange-600 hover:bg-orange-500"}`}
           onClick={handleOrder}
         >
           {isOrderValidated ? "✅ Commande validée !" : "PASSER COMMANDE 🛒"}
         </button>
 
-        {/* Popup conditionnelle */}
         {isOrderValidated && (
           <div className="fixed top-5 left-1/2 transform -translate-x-1/2 bg-green-600 text-white py-2 px-4 rounded shadow-lg">
-            Félicitation ! 🎉
+            Félicitations ! 🎉
           </div>
         )}
       </div>
     </div>
   );
-}
+};
 
 export default BasketPage;
