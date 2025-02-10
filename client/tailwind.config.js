@@ -28,7 +28,7 @@ export default {
           text: "#e3fff4",
         },
         green: {
-          primary: "#00ffb3",
+          primary: "#00E600",
           secondary: "#8402ff",
           bg: "#050c1a",
           text: "#e3fff4",
