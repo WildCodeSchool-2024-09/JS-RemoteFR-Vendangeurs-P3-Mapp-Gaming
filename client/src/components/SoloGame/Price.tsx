@@ -5,6 +5,7 @@ import FavoriteP from "../../assets/icons/FavoriteP.svg";
 import basket from "../../assets/icons/basket.svg";
 import { useAuth } from "../../contexts/AuthContext";
 import { useBasket } from "../../contexts/BasketContext";
+import SupportsMenu from "./SupportsMenu";
 
 interface Game {
   id: number;
@@ -20,6 +21,7 @@ export default function Price({ gameId }: { gameId: string | undefined }) {
   const { addToBasket } = useBasket();
   const [addedToBasket, setAddedToBasket] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
+  const [selectedConsole, setSelectedConsole] = useState<string | null>(null);
 
   useEffect(() => {
     if (!gameId) return;
@@ -49,7 +51,7 @@ export default function Price({ gameId }: { gameId: string | undefined }) {
 
   const handleFavoriteClick = useCallback(async () => {
     if (!user) {
-      setShowPopup(true); // Affiche la pop-up si l'utilisateur n'est pas connecté
+      setShowPopup(true);
       return;
     }
 
@@ -70,10 +72,18 @@ export default function Price({ gameId }: { gameId: string | undefined }) {
   }, [isFavorite, gameId, user]);
 
   const handleAddToBasket = () => {
+    if (!selectedConsole) {
+      alert("Veuillez sélectionner un support avant d'ajouter au panier.");
+      return;
+    }
+
     if (game) {
-      addToBasket(game, user?.id ?? 0); // Ajoute le jeu même sans utilisateur connecté
+      const gameWithConsole = { ...game, console: selectedConsole } as Game & {
+        console: string;
+      };
+      addToBasket(gameWithConsole, user?.id ?? 0);
       setAddedToBasket(true);
-      setTimeout(() => setAddedToBasket(false), 2000);
+      setTimeout(() => setAddedToBasket(false), 3000);
     }
   };
 
@@ -81,6 +91,7 @@ export default function Price({ gameId }: { gameId: string | undefined }) {
 
   return (
     <section className="flex flex-col items-center justify-center gap-4">
+      <SupportsMenu onSelect={setSelectedConsole} />
       <h2 className="text-xl font-title">{game.price}€</h2>
       <div className="flex gap-4">
         <button
@@ -106,7 +117,7 @@ export default function Price({ gameId }: { gameId: string | undefined }) {
       {/* Pop-up pour les utilisateurs non connectés */}
       {showPopup && (
         <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-white p-6 rounded-lg shadow-lg text-center">
+          <div className="bg-slate-900/85 border border-primary p-6 rounded-lg shadow-lg text-center">
             <p className="text-lg font-semibold">
               Vous devez être connecté pour ajouter un jeu à votre wishlist !
             </p>
