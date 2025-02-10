@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Price from "./Price";
-import SupportsMenu from "./SupportsMenu";
 
 interface Game {
   id: number;
@@ -27,7 +26,6 @@ export default function About({ gameId }: { gameId: string | undefined }) {
       <section className="flex gap-4 justify-between items-center">
         <p className="font-text w-2/4">{game.description}</p>
         <div className="flex flex-col gap-4 items-center">
-          <SupportsMenu />
           <Price gameId={gameId} />
         </div>
       </section>

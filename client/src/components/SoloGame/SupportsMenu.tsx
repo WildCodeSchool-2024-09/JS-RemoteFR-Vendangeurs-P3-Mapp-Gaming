@@ -3,7 +3,9 @@ import ArrowDown from "../../assets/Icons/ArrowDown.svg";
 import ArrowUp from "../../assets/Icons/ArrowUp.svg";
 import { useTheme } from "../../contexts/ColorsContext";
 
-export default function SupportsMenu() {
+export default function SupportsMenu({
+  onSelect,
+}: { onSelect: (support: string) => void }) {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedConsole, setSelectedConsole] = useState<string | null>(null);
   const { theme, changeTheme } = useTheme();
@@ -45,6 +47,7 @@ export default function SupportsMenu() {
                   setSelectedConsole(support.title);
                   changeTheme(support.theme);
                   setIsOpen(false);
+                  onSelect(support.title);
                 }}
               >
                 {support.title}

@@ -5,7 +5,7 @@ import { useBasket } from "../contexts/BasketContext";
 const BasketPage = () => {
   const { theme } = useTheme();
   const { basket, getTotalPrice } = useBasket();
-  const { user } = useAuth(); // Récupérer l'utilisateur authentifié
+  const { user } = useAuth();
   const [isOrderValidated, setIsOrderValidated] = useState(false);
 
   const handleOrder = () => {
@@ -19,16 +19,14 @@ const BasketPage = () => {
     >
       <div
         id="BasketPageContainer"
-        className="min-h-screen bg-slate-900/50 text-color-text-primary p-6 relative z-10"
+        className="min-h-screen text-color-text-primary font-title p-6 relative z-10"
       >
-        <h1 className="text-center text-3xl font-bold text-orange-400 mb-6">
-          PANIER
-        </h1>
+        <h1 className="text-3xl text-color-text-primary mb-10">PANIER</h1>
         {user && <p>Panier de l'utilisateur {user.username}</p>}
 
         {basket.videoGames.length === 0 ? (
           <p className="text-center text-lg font-semibold mt-10">
-            Rien à voir pour l'instant 👻
+            Votre panier est vide
           </p>
         ) : (
           <div className="grid w-full max-w-6xl mx-auto grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
@@ -61,14 +59,14 @@ const BasketPage = () => {
 
         <button
           type="button"
-          className={`mt-4 w-full py-2 rounded flex justify-center items-center gap-2 transition ${isOrderValidated ? "bg-green-700" : "bg-orange-600 hover:bg-orange-500"}`}
+          className={`mt-4 w-full py-3 rounded flex justify-center items-center gap-2 transition ${isOrderValidated ? "bg-primary" : "bg-slate-900/50 hover:bg-slate-700/50 border border-primary"}`}
           onClick={handleOrder}
         >
-          {isOrderValidated ? "✅ Commande validée !" : "PASSER COMMANDE 🛒"}
+          {isOrderValidated ? "✅ Commande validée !" : "PASSER COMMANDE "}
         </button>
 
         {isOrderValidated && (
-          <div className="fixed top-5 left-1/2 transform -translate-x-1/2 bg-green-600 text-white py-2 px-4 rounded shadow-lg">
+          <div className="fixed top-5 left-1/2 transform -translate-x-1/2 bg-primary text-white py-2 px-4 rounded shadow-lg">
             Félicitations ! 🎉
           </div>
         )}
