@@ -4,20 +4,26 @@ import User from "../assets/Icons/User.svg";
 import basket from "../assets/Icons/basket.svg";
 import logoB from "../assets/icons/logoB.svg";
 import { useAuth } from "../contexts/AuthContext";
+import { useTheme } from "../contexts/ColorsContext";
 
 export default function NavBar() {
   const navigate = useNavigate();
   const { user } = useAuth();
   const itemCount = 0;
+  const { changeTheme } = useTheme();
 
   return (
     <>
       <header className="bg-background text-xs flex justify-between items-center px-4 py-2">
         <div className="flex items-center gap-8">
-          <Link to="/">
+          <Link to="/" onClick={() => changeTheme("theme-orange")}>
             <img src={logoB} alt="Logo" className="w-h-14 h-14" />
           </Link>
-          <Link to="/" className="transition hover:scale-105">
+          <Link
+            to="/"
+            className="transition hover:scale-105"
+            onClick={() => changeTheme("theme-orange")}
+          >
             <span className="font-title">ACCUEIL</span>
           </Link>
           <Link to="/tendance" className="transition hover:scale-105">
@@ -41,6 +47,7 @@ export default function NavBar() {
                 : "/connexion"
             }
             className="flex items-center gap-2"
+            onClick={() => user?.is_admin && changeTheme("theme-grey")}
           >
             <span className="font-title">
               {user ? user.username : "CONNEXION"}
