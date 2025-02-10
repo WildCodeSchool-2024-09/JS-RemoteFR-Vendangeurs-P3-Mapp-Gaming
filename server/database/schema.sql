@@ -66,15 +66,15 @@ create table buy (
 
 create table platforms(
   id int unsigned primary key auto_increment not null,
-  supported_platforms varchar(255) not null
+  label varchar(255) not null
 );
 
 create table game_platforms(
-  id int unsigned primary key not null,
+  id int unsigned primary key auto_increment not null,
   game_id int unsigned not null,
   platform_id int unsigned not null,
-  foreign key (game_id) references videoGames(id),
-  foreign key (platform_id) references platforms(id)
+  foreign key (game_id) references videoGames(id) on delete cascade,
+  foreign key (platform_id) references platforms(id) on delete cascade
 );
 
 create table wishlist(
@@ -679,8 +679,7 @@ VALUES
 ('Pénélope, Teixeira, PennyT, penelope.teixeira@gmail.com', '', 4);
 
 
-
- INSERT INTO platforms (id, supported_platforms) VALUES 
+ INSERT INTO platforms (id, label) VALUES 
 (1,"XBOX"),
 (2,"PS"),
 (3,"SWITCH"),
@@ -689,3 +688,8 @@ VALUES
 INSERT INTO rating (rate, review, game_id, user_id) VALUES
 (4, "super jeu, très bon jeu d'aventure" , 1, 1),
 (2, "super jeu, très bon rapport qualité prix", 1, 2);
+
+INSERT INTO game_platforms (game_id, platform_id) 
+VALUES 
+  (1, 1); -- FIFA 24 sur Xbox Series X
+
