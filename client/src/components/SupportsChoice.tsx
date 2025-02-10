@@ -4,6 +4,7 @@ import PlaystationNeon from "../assets/Icons/PlaystationNeon.svg";
 import SwitchNeon from "../assets/Icons/SwitchNeon.svg";
 import XboxNeon from "../assets/Icons/XboxNeon.svg";
 import { useTheme } from "../contexts/ColorsContext";
+import HomeSearchBar from "./HomeSearchBar";
 
 type Theme = "theme-red" | "theme-blue" | "theme-green" | "theme-purple";
 
@@ -36,13 +37,13 @@ export default function SupportsChoice() {
         </div>
       )}
 
-      <section className="flex flex-col items-center justify-center text-center mt-10">
+      <section className="flex flex-col items-center justify-center text-center mt-10 ">
         <h1 className="text-3xl font-title text-primary mb-6">
           VIENS DÉCOUVRIR UN LARGE CHOIX DE JEUX SUR NOS DIFFÉRENTES PLATEFORMES
           !
         </h1>
 
-        <div className="flex gap-4">
+        <div className=" relative flex gap-4 border-2 border-primary rounded-full p-2.5 bg-primary">
           <button
             type="button"
             className="px-6 py-3 bg-primary text-color-text-primary font-title rounded-lg transition hover:scale-105"
@@ -74,6 +75,10 @@ export default function SupportsChoice() {
           >
             PC
           </button>
+
+          <div id="search-bar" className="w-[60px] h-[60px]">
+            <HomeSearchBar />
+          </div>
         </div>
       </section>
     </div>
