@@ -40,6 +40,13 @@
   --color-text-primary: #e3fff4;
 }
 
+.theme-grey {
+  --color-primary: #b9ab99;
+  --color-secondary: #ff8c00;
+  --color-bg-primary: #050c1a;
+  --color-text-primary: #e3fff4;
+}
+
 @layer utilities {
   .bg-bg-primary {
     background-color: var(--color-bg-primary);

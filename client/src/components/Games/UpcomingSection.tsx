@@ -15,6 +15,14 @@ interface VideoGame {
   description: string;
 }
 
+// Fonction pour générer un slug à partir du titre
+const generateSlug = (title: string) => {
+  return title
+    .toLowerCase()
+    .replace(/[\s_]+/g, "-") // Remplace espaces et underscores par des tirets
+    .replace(/[^\w-]+/g, ""); // Supprime les caractères spéciaux
+};
+
 const UpcomingSection = () => {
   const [videoGames, setVideoGames] = useState<VideoGame[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -78,7 +86,7 @@ const UpcomingSection = () => {
 
               return (
                 <Link
-                  to={`/achetez-votre-jeu-ici/${game.id}`}
+                  to={`/${generateSlug(game.title)}/${game.id}`}
                   key={game.id}
                   className="absolute transition-all duration-500"
                   style={{

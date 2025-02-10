@@ -12,7 +12,7 @@ const BasketPage = () => {
 
   const handleOrder = () => {
     setIsOrderValidated(true);
-    setTimeout(() => setIsOrderValidated(false), 3000);
+    setTimeout(() => setIsOrderValidated(false), 3000); // Cache la popup après 3 sec
   };
 
   return (
