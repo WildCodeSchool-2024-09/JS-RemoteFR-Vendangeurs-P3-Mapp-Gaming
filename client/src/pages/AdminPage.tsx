@@ -4,7 +4,7 @@ const AdminPage = () => {
   return (
     <div>
       <nav>
-        <div className="flex flex-row gap-10">
+        <div className="flex flex-row mt-10 mb-10 justify-center gap-10">
           <Link to="/admin">
             <h1>Page d'administration</h1>
           </Link>
