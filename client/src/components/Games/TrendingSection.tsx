@@ -11,6 +11,14 @@ interface VideoGame {
   image1: string;
 }
 
+// Fonction pour générer un slug à partir du titre
+const generateSlug = (title: string) => {
+  return title
+    .toLowerCase()
+    .replace(/[\s_]+/g, "-") // Remplace espaces et underscores par des tirets
+    .replace(/[^\w-]+/g, ""); // Supprime les caractères spéciaux
+};
+
 const TrendingSection = () => {
   const [videoGames, setVideoGames] = useState<VideoGame[]>([]);
 
@@ -32,7 +40,7 @@ const TrendingSection = () => {
         <section className="flex flex-col items-center justify-center gap-4">
           <div className="grid grid-cols-5 grid-rows-2 gap-6 w-3/4">
             <Link
-              to={`/achetez-votre-jeu-ici/${videoGames[0].id}`}
+              to={`/${generateSlug(videoGames[0].title)}/${videoGames[0].id}`}
               className="col-span-2 row-span-2"
             >
               <div className="relative overflow-hidden rounded-2xl h-full w-full">
@@ -62,7 +70,7 @@ const TrendingSection = () => {
 
               return (
                 <Link
-                  to={`/achetez-votre-jeu-ici/${game.id}`}
+                  to={`/${generateSlug(game.title)}/${game.id}`}
                   key={game.id}
                   className={`col-start-${positions[index].col} row-start-${positions[index].row} h-full w-full`}
                 >

@@ -4,7 +4,7 @@ import GameBanner from "../components/SoloGame/GameBanner";
 import { useTheme } from "../contexts/ColorsContext";
 
 export default function SoloGamePage() {
-  const { id } = useParams<{ id: string }>();
+  const { id } = useParams<{ slug: string; id: string }>();
   const { theme } = useTheme();
 
   return (
