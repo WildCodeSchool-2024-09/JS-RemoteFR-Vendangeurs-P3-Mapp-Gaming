@@ -63,7 +63,7 @@ const AdminCreateGame: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col gap-10">
+    <div className="flex flex-col gap-10 relative z-10 bg-slate-900/50 p-9 rounded-lg mb-6">
       <div className="flex justify-center">
         <h1>Créer un jeu</h1>
       </div>
@@ -74,20 +74,20 @@ const AdminCreateGame: React.FC = () => {
           addGame(); // Appeler la fonction addGame lors de la soumission du formulaire
         }}
       >
-        <label htmlFor="title">Title :</label>
+        <label htmlFor="title">Titre :</label>
         <input
           type="text"
           id="title"
           value={title}
-          className="text-black"
+          className="text-black p-2 rounded-lg"
           onChange={(e) => setTitle(e.target.value)}
         />
-        <label htmlFor="price">Price :</label>
+        <label htmlFor="price">Prix :</label>
         <input
           type="number"
           id="price"
           value={price}
-          className="text-black"
+          className="text-black p-2 rounded-lg"
           onChange={(e) =>
             setPrice(e.target.value ? Number.parseFloat(e.target.value) : "")
           }
@@ -100,14 +100,14 @@ const AdminCreateGame: React.FC = () => {
           type="date"
           id="release_date"
           value={release_date}
-          className="text-black"
+          className="text-black p-2 rounded-lg"
           onChange={(e) => setRelease_date(e.target.value)}
         />
-        <label htmlFor="category">Category :</label>
+        <label htmlFor="category">Categorie :</label>
         <select
           id="category"
           value={category}
-          className="bg-slate-600 text-slate-200"
+          className="bg-slate-600 text-slate-200 p-2 rounded-lg"
           onChange={(e) =>
             setCategory(
               e.target.value as
@@ -151,7 +151,7 @@ const AdminCreateGame: React.FC = () => {
           type="text"
           id="image1"
           value={image1}
-          className="text-black"
+          className="text-black p-2 rounded-lg"
           onChange={(e) => setImage1(e.target.value)}
           placeholder="Entrer l'url de l'image"
         />
@@ -160,7 +160,7 @@ const AdminCreateGame: React.FC = () => {
           type="url"
           id="image2"
           value={image2}
-          className="text-black"
+          className="text-black p-2 rounded-lg"
           onChange={(e) => setImage2(e.target.value)}
           placeholder="Entrer l'url de l'image"
         />
@@ -169,7 +169,7 @@ const AdminCreateGame: React.FC = () => {
           type="url"
           id="image3"
           value={image3}
-          className="text-black"
+          className="text-black p-2 rounded-lg"
           onChange={(e) => setImage3(e.target.value)}
           placeholder="Entrer l'url de l'image"
         />
@@ -178,7 +178,7 @@ const AdminCreateGame: React.FC = () => {
           type="url"
           id="image4"
           value={image4}
-          className="text-black"
+          className="text-black p-2 rounded-lg"
           onChange={(e) => setImage4(e.target.value)}
           placeholder="Entrer l'url de l'image"
         />
@@ -187,7 +187,7 @@ const AdminCreateGame: React.FC = () => {
           type="url"
           id="image5"
           value={image5}
-          className="text-black"
+          className="text-black p-2 rounded-lg"
           onChange={(e) => setImage5(e.target.value)}
           placeholder="Entrer l'url de l'image"
         />
@@ -196,17 +196,17 @@ const AdminCreateGame: React.FC = () => {
           type="text"
           id="description"
           value={description}
-          className="text-black"
+          className="text-black p-2 rounded-lg"
           onChange={(e) => setDescription(e.target.value)}
         />
-        <label htmlFor="is_upcoming">Is Upcoming :</label>
+        <label htmlFor="is_upcoming">À venir :</label>
         <input
           type="checkbox"
           id="is_upcoming"
           checked={is_upcoming}
           onChange={(e) => setIs_upcoming(e.target.checked)}
         />
-        <label htmlFor="is_preorder">Is Preorder :</label>
+        <label htmlFor="is_preorder">Précommande :</label>
         <input
           type="checkbox"
           id="is_preorder"

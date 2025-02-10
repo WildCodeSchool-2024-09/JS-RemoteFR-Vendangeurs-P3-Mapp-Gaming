@@ -49,7 +49,7 @@ const AdminCreateUser: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col gap-10">
+    <div className="flex flex-col gap-10 relative z-10 bg-slate-900/50 p-9 rounded-lg mb-6">
       <div className="flex justify-center">
         <h1>Créer un utilisateur</h1>
       </div>
@@ -60,32 +60,32 @@ const AdminCreateUser: React.FC = () => {
           addUser(); // Appeler la fonction addUser lors de la soumission du formulaire
         }}
       >
-        <label htmlFor="firstname">Firstname :</label>
+        <label htmlFor="firstname">Prénom :</label>
         <input
           type="text"
           id="firstname"
           value={firstname}
-          className="text-black"
+          className="text-black p-2 rounded-lg"
           onChange={(e) => setFirstname(e.target.value)}
           required
         />
 
-        <label htmlFor="lastname">Lastname :</label>
+        <label htmlFor="lastname">Nom de famille :</label>
         <input
           type="text"
           id="lastname"
           value={lastname}
-          className="text-black"
+          className="text-black p-2 rounded-lg"
           onChange={(e) => setLastname(e.target.value)}
           required
         />
 
-        <label htmlFor="username">Username :</label>
+        <label htmlFor="username">Pseudo :</label>
         <input
           type="text"
           id="username"
           value={username}
-          className="text-black"
+          className="text-black p-2 rounded-lg"
           onChange={(e) => setUsername(e.target.value)}
           required
         />
@@ -95,22 +95,22 @@ const AdminCreateUser: React.FC = () => {
           type="email"
           id="email"
           value={email}
-          className="text-black"
+          className="text-black p-2 rounded-lg"
           onChange={(e) => setEmail(e.target.value)}
           required
         />
 
-        <label htmlFor="password">Password :</label>
+        <label htmlFor="password">Mot de passe :</label>
         <input
           type="password"
           id="password"
           value={password}
-          className="text-black"
+          className="text-black p-2 rounded-lg"
           onChange={(e) => setPassword(e.target.value)}
           required
         />
 
-        <label htmlFor="membership">Membership :</label>
+        <label htmlFor="membership">Statut :</label>
         <select
           id="membership"
           value={membership}
@@ -122,7 +122,7 @@ const AdminCreateUser: React.FC = () => {
           <option value="Premium">Premium</option>
         </select>
 
-        <label htmlFor="isAdmin">Is Admin :</label>
+        <label htmlFor="isAdmin">Est Admin :</label>
         <input
           type="checkbox"
           id="isAdmin"

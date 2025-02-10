@@ -8,6 +8,7 @@ type BasketContextType = {
   basket: Basket;
   itemCount: number;
   addToBasket: (videogame: VideoGame, userId: number) => void;
+  removeFromBasket: (gameId: number) => void;
   getTotalPrice: () => number;
 };
 
@@ -31,25 +32,33 @@ export const BasketProvider = ({ children }: { children: ReactNode }) => {
     });
   };
 
+  const removeFromBasket = (gameId: number) => {
+    setBasket((prevBasket) => ({
+      ...prevBasket,
+      videoGames: prevBasket.videoGames.filter((game) => game.id !== gameId),
+    }));
+  };
+
   const getTotalPrice = () => {
-    // Assurez-vous que chaque prix est un nombre valide avant de l'ajouter
     const total = basket.videoGames.reduce((total, game) => {
-      // Si le prix du jeu n'est pas un nombre valide, ne l'ajoutez pas
       const gamePrice = Number(game.price);
-      if (!Number.isNaN(gamePrice)) {
-        return total + gamePrice;
-      }
-      return total;
+      return Number.isNaN(gamePrice) ? total : total + gamePrice;
     }, 0);
 
-    return total; // Retourne le total de manière sûre
+    return total;
   };
 
   const itemCount = basket.videoGames.length;
 
   return (
     <BasketContext.Provider
-      value={{ basket, itemCount, addToBasket, getTotalPrice }}
+      value={{
+        basket,
+        itemCount,
+        addToBasket,
+        removeFromBasket,
+        getTotalPrice,
+      }}
     >
       {children}
     </BasketContext.Provider>
