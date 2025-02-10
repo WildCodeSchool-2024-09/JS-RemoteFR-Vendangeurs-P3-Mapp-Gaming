@@ -39,6 +39,12 @@ export default {
           bg: "#050c1a",
           text: "#e3fff4",
         },
+        grey: {
+          primary: "#B9AB99",
+          secondary: "#FF8C00",
+          bg: "#050c1a",
+          text: "#e3fff4",
+        },
       },
     },
   },
