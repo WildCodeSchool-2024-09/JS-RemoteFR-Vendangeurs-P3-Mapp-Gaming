@@ -14,7 +14,7 @@
 
 .theme-red {
   --color-primary: #ff0062;
-  --color-secondary: #00ffb3;
+  --color-secondary: #00e600;
   --color-bg-primary: #050c1a;
   --color-text-primary: #e3fff4;
 }
@@ -27,7 +27,7 @@
 }
 
 .theme-green {
-  --color-primary: #00ffb3;
+  --color-primary: #00e600;
   --color-secondary: #8402ff;
   --color-bg-primary: #050c1a;
   --color-text-primary: #e3fff4;
@@ -35,7 +35,7 @@
 
 .theme-purple {
   --color-primary: #8402ff;
-  --color-secondary: #00ffb3;
+  --color-secondary: #00e600;
   --color-bg-primary: #050c1a;
   --color-text-primary: #e3fff4;
 }
