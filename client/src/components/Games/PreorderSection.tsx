@@ -13,6 +13,14 @@ interface VideoGame {
   image1: string;
 }
 
+// Fonction pour générer le slug à partir du titre
+const generateSlug = (title: string) => {
+  return title
+    .toLowerCase()
+    .replace(/[\s_]+/g, "-") // Remplace les espaces et underscores par des tirets
+    .replace(/[^\w-]+/g, ""); // Supprime les caractères spéciaux
+};
+
 const PreorderSection = () => {
   const [videoGames, setVideoGames] = useState<VideoGame[]>([]);
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -58,29 +66,31 @@ const PreorderSection = () => {
           className="flex overflow-x-auto snap-x snap-mandatory gap-6 px-6 py-4 scrollbar-none"
           style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
         >
-          {videoGames.map((videoGame) => (
-            <Link
-              to={`/achetez-votre-jeu-ici/${videoGame.id}`}
-              key={videoGame.id}
-              className="snap-center flex-shrink-0"
-            >
-              <div className="relative w-72 h-72 rounded-2xl overflow-hidden">
-                <img
-                  src={videoGame.image1}
-                  alt={videoGame.title}
-                  className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
-                />
+          {videoGames.map((game) => {
+            return (
+              <Link
+                to={`/${generateSlug(game.title)}/${game.id}`}
+                key={game.id}
+                className="snap-center flex-shrink-0"
+              >
+                <div className="relative w-72 h-72 rounded-2xl overflow-hidden">
+                  <img
+                    src={game.image1}
+                    alt={game.title}
+                    className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+                  />
 
-                {/* Conteneur du texte avec effet flouté */}
-                <div className="absolute bottom-0 left-0 w-full bg-black bg-opacity-30 text-white text-center p-2 backdrop-blur-md">
-                  <h3 className="text-sm font-title overflow-hidden whitespace-nowrap text-ellipsis w-full">
-                    {videoGame.title}
-                  </h3>
-                  <span className=" font-text">{videoGame.price} €</span>
+                  {/* Conteneur du texte avec effet flouté */}
+                  <div className="absolute bottom-0 left-0 w-full bg-black bg-opacity-30 text-white text-center p-2 backdrop-blur-md">
+                    <h3 className="text-sm font-title overflow-hidden whitespace-nowrap text-ellipsis w-full">
+                      {game.title}
+                    </h3>
+                    <span className=" font-text">{game.price} €</span>
+                  </div>
                 </div>
-              </div>
-            </Link>
-          ))}
+              </Link>
+            );
+          })}
         </div>
 
         {/* Bouton droit */}
