@@ -33,7 +33,7 @@ const TrendingSection = () => {
   return (
     <div className="tendance-section p-6">
       <Link to="/tendance">
-        <h2 className="text-2xl font-title mb-6">Tendance</h2>
+        <h2 className="text-2xl font-title mb-6">Tendances</h2>
       </Link>
 
       {videoGames.length >= 7 && (

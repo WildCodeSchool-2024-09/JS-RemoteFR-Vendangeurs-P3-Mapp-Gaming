@@ -63,7 +63,7 @@ const AdminCreateGame: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col gap-10 relative z-10 bg-slate-900/50 p-9 rounded-lg mb-6">
+    <div className="flex flex-col gap-10 relative z-10 bg-slate-900/50 border border-primary p-9 rounded-lg mb-6">
       <div className="flex justify-center">
         <h1>Créer un jeu</h1>
       </div>

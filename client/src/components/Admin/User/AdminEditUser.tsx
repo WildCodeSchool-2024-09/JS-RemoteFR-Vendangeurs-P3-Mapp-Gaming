@@ -39,7 +39,7 @@ const AdminEditUser = () => {
   };
 
   return (
-    <div className="AdminEditUser flex flex-col gap-10 p-9 relative z-10 bg-slate-900/50 rounded-lg mb-6">
+    <div className="AdminEditUser flex flex-col gap-10 p-9 relative z-10 bg-slate-900/50 border border-primary rounded-lg mb-6">
       <h2>Modifier l'utilisateur</h2>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <input

@@ -45,7 +45,7 @@ const AdminEditGame = () => {
   };
 
   return (
-    <div className="AdminEditGame relative z-10 bg-slate-900/50 p-9 rounded-lg mb-6">
+    <div className="AdminEditGame relative z-10 bg-slate-900/50 border border-primary p-9 rounded-lg mb-6">
       <h2 className="mb-4">Modifier le jeu</h2>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <input
@@ -75,7 +75,7 @@ const AdminEditGame = () => {
         <select
           name="category"
           value={gameData.category}
-          className="bg-slate-600 text-slate-200"
+          className="bg-slate-600 text-slate-200 p-2 rounded-lg"
           onChange={(e) =>
             setGameData((prevData) => ({
               ...prevData,
