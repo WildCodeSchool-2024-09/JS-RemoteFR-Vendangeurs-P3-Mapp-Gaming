@@ -4,6 +4,7 @@ import PlaystationNeon from "../assets/Icons/PlaystationNeon.svg";
 import SwitchNeon from "../assets/Icons/SwitchNeon.svg";
 import XboxNeon from "../assets/Icons/XboxNeon.svg";
 import { useTheme } from "../contexts/ColorsContext";
+import LoadingText from "./Games/LoadingText";
 
 type Theme = "theme-red" | "theme-blue" | "theme-green" | "theme-purple";
 
@@ -25,13 +26,13 @@ export default function SupportsChoice() {
     <div>
       {/* Modale de chargement */}
       {showModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-          <div className="bg-bg-primary flex flex-col items-center text-center w-full h-full justify-center">
+        <div className="fixed inset-0 bg-slate-900/70 backdrop-blur-md flex justify-center items-center z-50">
+          <div className="flex flex-col items-center text-center w-full h-full justify-center">
             {/* Affichage du logo en fonction de la plateforme */}
             {logo && (
               <img src={logo} alt="Logo plateforme" className="w-h-24 h-24" />
             )}
-            <p className="mt-10 text-4xl font-title">Chargement du thème...</p>
+            <LoadingText />
           </div>
         </div>
       )}

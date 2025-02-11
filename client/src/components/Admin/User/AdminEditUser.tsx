@@ -39,14 +39,14 @@ const AdminEditUser = () => {
   };
 
   return (
-    <div className="AdminEditUser">
+    <div className="AdminEditUser flex flex-col gap-10 p-9 relative z-10 bg-slate-900/50 border border-primary rounded-lg mb-6">
       <h2>Modifier l'utilisateur</h2>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <input
           type="text"
           name="firstname"
           value={userData.firstname}
-          className="text-black"
+          className="text-black p-2 rounded-lg"
           onChange={handleChange}
           placeholder="Prénom"
           required
@@ -55,7 +55,7 @@ const AdminEditUser = () => {
           type="text"
           name="lastname"
           value={userData.lastname}
-          className="text-black"
+          className="text-black p-2 rounded-lg"
           onChange={handleChange}
           placeholder="Nom"
           required
@@ -64,7 +64,7 @@ const AdminEditUser = () => {
           type="text"
           name="username"
           value={userData.username}
-          className="text-black"
+          className="text-black p-2 rounded-lg"
           onChange={handleChange}
           placeholder="Nom d'utilisateur"
           required
@@ -73,7 +73,7 @@ const AdminEditUser = () => {
           type="email"
           name="email"
           value={userData.email}
-          className="text-black"
+          className="text-black p-2 rounded-lg"
           onChange={handleChange}
           placeholder="Adresse email"
           required
@@ -82,14 +82,14 @@ const AdminEditUser = () => {
           type="password"
           name="password"
           value={userData.password}
-          className="text-black"
+          className="text-black p-2 rounded-lg"
           onChange={handleChange}
           placeholder="Mot de passe"
         />
         <select
           name="membership"
           value={userData.membership}
-          className="bg-slate-600 text-slate-200"
+          className="bg-slate-600 text-slate-200 p-2 rounded-lg"
           onChange={(e) =>
             setUserData((prevData) => ({
               ...prevData,

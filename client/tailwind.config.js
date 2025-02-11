@@ -17,7 +17,7 @@ export default {
         },
         red: {
           primary: "#ff0062",
-          secondary: "#00ffb3",
+          secondary: "#00E600",
           bg: "#050c1a",
           text: "#e3fff4",
         },
@@ -35,7 +35,7 @@ export default {
         },
         purple: {
           primary: "#8402ff",
-          secondary: "#00ffb3",
+          secondary: "#00E600",
           bg: "#050c1a",
           text: "#e3fff4",
         },

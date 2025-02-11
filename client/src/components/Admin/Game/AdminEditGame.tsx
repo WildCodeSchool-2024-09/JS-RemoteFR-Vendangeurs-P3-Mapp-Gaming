@@ -45,14 +45,14 @@ const AdminEditGame = () => {
   };
 
   return (
-    <div className="AdminEditGame">
-      <h2>Modifier le jeu</h2>
+    <div className="AdminEditGame relative z-10 bg-slate-900/50 border border-primary p-9 rounded-lg mb-6">
+      <h2 className="mb-4">Modifier le jeu</h2>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <input
           type="text"
           name="title"
           value={gameData.title}
-          className="text-black p-2"
+          className="text-black p-2 rounded-lg"
           onChange={handleChange}
           placeholder="Titre du jeu"
           required
@@ -61,7 +61,7 @@ const AdminEditGame = () => {
           type="number"
           name="price"
           value={gameData.price}
-          className="text-black p-2"
+          className="text-black p-2 rounded-lg"
           onChange={handleChange}
           placeholder="Prix"
         />
@@ -69,13 +69,13 @@ const AdminEditGame = () => {
           type="date"
           name="release_date"
           value={gameData.release_date}
-          className="text-black p-2"
+          className="text-black p-2 rounded-lg"
           onChange={handleChange}
         />
         <select
           name="category"
           value={gameData.category}
-          className="bg-slate-600 text-slate-200"
+          className="bg-slate-600 text-slate-200 p-2 rounded-lg"
           onChange={(e) =>
             setGameData((prevData) => ({
               ...prevData,
@@ -119,7 +119,7 @@ const AdminEditGame = () => {
           type="text"
           name="image1"
           value={gameData.image1}
-          className="text-black p-2"
+          className="text-black p-2 rounded-lg"
           onChange={handleChange}
           placeholder="URL de l'image"
         />
@@ -127,7 +127,7 @@ const AdminEditGame = () => {
           type="text"
           name="image2"
           value={gameData.image2}
-          className="text-black p-2"
+          className="text-black p-2 rounded-lg"
           onChange={handleChange}
           placeholder="URL de l'image"
         />
@@ -135,7 +135,7 @@ const AdminEditGame = () => {
           type="text"
           name="image3"
           value={gameData.image3}
-          className="text-black p-2"
+          className="text-black p-2 rounded-lg"
           onChange={handleChange}
           placeholder="URL de l'image"
         />
@@ -143,7 +143,7 @@ const AdminEditGame = () => {
           type="text"
           name="image4"
           value={gameData.image4}
-          className="text-black p-2"
+          className="text-black p-2 rounded-lg"
           onChange={handleChange}
           placeholder="URL de l'image"
         />
@@ -151,14 +151,14 @@ const AdminEditGame = () => {
           type="text"
           name="image5"
           value={gameData.image5}
-          className="text-black p-2"
+          className="text-black p-2 rounded-lg"
           onChange={handleChange}
           placeholder="URL de l'image"
         />
         <textarea
           name="description"
           value={gameData.description}
-          className="text-black p-2"
+          className="text-black p-2 rounded-lg"
           onChange={handleChange}
           placeholder="Description"
         />
