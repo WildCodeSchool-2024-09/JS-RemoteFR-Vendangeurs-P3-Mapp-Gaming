@@ -1,8 +1,8 @@
 import { Outlet, matchPath, useLocation } from "react-router-dom";
 import "./App.css";
-import Footer from "./components/Footer";
-import NavBar from "./components/NavBar";
-import SupportsChoice from "./components/SupportsChoice";
+import Copyright from "./assets/Icons/Copyright.svg";
+import NavBar from "./components/Common/NavBar";
+import SupportsChoice from "./components/Common/SupportsChoice";
 
 function App() {
   const location = useLocation();
@@ -17,6 +17,7 @@ function App() {
   return (
     <div>
       <NavBar />
+
       {!isAdminPage &&
         !isConnexionPage &&
         !isWishlistPage &&
@@ -26,7 +27,13 @@ function App() {
         !isRegister && <SupportsChoice />}
 
       <Outlet />
-      <Footer />
+
+      {/* <Footer /> */}
+
+      <div className="bg-bg-primary text-primary text-xs flex justify-center items-center gap-2 p-4">
+        <img src={Copyright} alt="" />
+        <span className="font-text">Mapp Gaming 2024</span>
+      </div>
 
       <div className="fixed bottom-[-50px] left-1/2 -translate-x-1/2 w-[100vw] h-[40vh] bg-primary opacity-30 rounded-full blur-[100px] pointer-events-none !z-0" />
       <div className="fixed bottom-[-30px] left-1/2 -translate-x-1/2 w-[80vw] h-[30vh] bg-primary opacity-90 rounded-full blur-[60px] pointer-events-none !z-0" />
