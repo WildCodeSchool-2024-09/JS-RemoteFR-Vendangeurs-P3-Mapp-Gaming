@@ -9,13 +9,13 @@ import AdminGameSection from "./components/Admin/Game/AdminGameSection";
 import AdminUserSection from "./components/Admin/User/AdminUserSection";
 import NotFound from "./components/NotFound/NotFound";
 
+import AccessAdmin from "./components/Admin/User/AccessAdmin";
+import ProfilInformations from "./components/ProfilInformations";
 import { AuthProvider } from "./contexts/AuthContext";
 import { BasketProvider } from "./contexts/BasketContext";
 import { ThemeProvider } from "./contexts/ColorsContext";
-import AdminCreateGamePage from "./pages/AdminCreateGamePage";
-import AdminCreateUserPage from "./pages/AdminCreateUserPage";
-import AdminEditGamePage from "./pages/AdminEditGamePage";
-import AdminEditUserPage from "./pages/AdminEditUserPage";
+import AdminManageGamePage from "./pages/AdminManageGamePage";
+import AdminManageUserPage from "./pages/AdminManageUserPage";
 import AdminPage from "./pages/AdminPage";
 import BasketPage from "./pages/BasketPage";
 import ConnexionPage from "./pages/ConnexionPage";
@@ -49,18 +49,25 @@ const router = createBrowserRouter([
 
       {
         path: "admin",
-        element: <AdminPage />,
+        element: <AccessAdmin />,
         children: [
-          { path: "utilisateurs", element: <AdminUserSection /> },
-          { path: "creation-utilisateur", element: <AdminCreateUserPage /> },
           {
-            path: "modification-utilisateur/:id",
-            element: <AdminEditUserPage />,
-          },
+            path: "",
+            element: <AdminPage />,
+            children: [
+              { path: "mon-profile", element: <ProfilInformations /> },
 
-          { path: "tous-les-jeux", element: <AdminGameSection /> },
-          { path: "creation-jeu", element: <AdminCreateGamePage /> },
-          { path: "modification-jeu/:id", element: <AdminEditGamePage /> },
+              { path: "utilisateurs", element: <AdminUserSection /> },
+              { path: "gestion-utilisateur", element: <AdminManageUserPage /> },
+              {
+                path: "gestion-utilisateur/:id",
+                element: <AdminManageUserPage />,
+              },
+              { path: "tous-les-jeux", element: <AdminGameSection /> },
+              { path: "gestion-jeu", element: <AdminManageGamePage /> },
+              { path: "gestion-jeu/:id", element: <AdminManageGamePage /> },
+            ],
+          },
         ],
       },
     ],

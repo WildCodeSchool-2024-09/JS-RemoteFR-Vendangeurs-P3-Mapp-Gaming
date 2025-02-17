@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 
-const AdminEditUser = () => {
+const AdminManageUser = () => {
   const { id } = useParams();
   const [userData, setUserData] = useState({
     firstname: "",
@@ -10,37 +10,72 @@ const AdminEditUser = () => {
     username: "",
     email: "",
     password: "",
-    membership: "",
+    membership: "Basic" as "Basic" | "Premium",
   });
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:3310/api/user/${id}`)
-      .then((response) => setUserData(response.data))
-      .catch((error) =>
-        console.error("Erreur lors du chargement de l'utilisateur:", error),
-      );
+    if (id) {
+      axios
+        .get(`http://localhost:3310/api/user/${id}`)
+        .then((response) => setUserData(response.data))
+        .catch((error) =>
+          console.error(
+            "Erreur lors du chargement des données de l'utilisateur :",
+            error,
+          ),
+        );
+    }
   }, [id]);
 
   const handleChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >,
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
   ) => {
     const { name, value } = e.target;
     setUserData((prevData) => ({ ...prevData, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    axios
-      .put(`http://localhost:3310/api/user/${id}`, userData)
-      .catch((error) => console.error("Erreur lors de la mise à jour:", error));
+
+    if (
+      !userData.firstname ||
+      !userData.lastname ||
+      !userData.username ||
+      !userData.email ||
+      !userData.password
+    ) {
+      alert("Veuillez remplir tous les champs obligatoires.");
+      return;
+    }
+
+    try {
+      if (id) {
+        // Si un ID existe, on fait une mise à jour (édition)
+        await axios.put(`http://localhost:3310/api/user/${id}`, userData);
+      } else {
+        // Sinon, on crée un nouvel utilisateur
+        await axios.post("http://localhost:3310/api/user", userData);
+      }
+
+      // Réinitialiser le formulaire après la soumission (pour un nouvel utilisateur)
+      if (!id) {
+        setUserData({
+          firstname: "",
+          lastname: "",
+          username: "",
+          email: "",
+          password: "",
+          membership: "Basic",
+        });
+      }
+    } catch (error) {
+      console.error("Erreur lors de la soumission du formulaire:", error);
+    }
   };
 
   return (
-    <div className="AdminEditUser flex flex-col gap-10 p-9 relative z-10 bg-slate-900/50 border border-primary rounded-lg mb-6">
-      <h2>Modifier l'utilisateur</h2>
+    <div className="AdminManageUser flex flex-col gap-10 p-9 relative z-10 bg-slate-900/50 border border-primary rounded-lg mb-6">
+      <h2>{id ? "Modifier un utilisateur" : "Créer un utilisateur"}</h2>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <input
           type="text"
@@ -85,24 +120,20 @@ const AdminEditUser = () => {
           className="text-black p-2 rounded-lg"
           onChange={handleChange}
           placeholder="Mot de passe"
+          required={!id} // Le mot de passe est obligatoire en création
         />
         <select
           name="membership"
           value={userData.membership}
           className="bg-slate-600 text-slate-200 p-2 rounded-lg"
-          onChange={(e) =>
-            setUserData((prevData) => ({
-              ...prevData,
-              membership: e.target.value as "Basic" | "Premium",
-            }))
-          }
+          onChange={handleChange}
           required
         >
           <option value="Basic">Standard</option>
           <option value="Premium">Premium</option>
         </select>
         <div className="flex gap-10">
-          <button type="submit">Enregistrer</button>
+          <button type="submit">{id ? "Mettre à jour" : "Ajouter"}</button>
           <Link to="/admin/utilisateurs">Retour</Link>
         </div>
       </form>
@@ -110,4 +141,4 @@ const AdminEditUser = () => {
   );
 };
 
-export default AdminEditUser;
+export default AdminManageUser;
