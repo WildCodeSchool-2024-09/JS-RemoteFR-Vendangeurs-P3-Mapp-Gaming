@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 
-const AdminEditGame = () => {
+const AdminGameForm = () => {
   const { id } = useParams();
   const [gameData, setGameData] = useState({
     title: "",
@@ -20,12 +20,14 @@ const AdminEditGame = () => {
   });
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:3310/api/videoGames/${id}`)
-      .then((response) => setGameData(response.data))
-      .catch((error) =>
-        console.error("Erreur lors du chargement du jeu:", error),
-      );
+    if (id) {
+      axios
+        .get(`http://localhost:3310/api/videoGames/${id}`)
+        .then((response) => setGameData(response.data))
+        .catch((error) =>
+          console.error("Erreur lors du chargement du jeu:", error),
+        );
+    }
   }, [id]);
 
   const handleChange = (
@@ -39,20 +41,24 @@ const AdminEditGame = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    axios
-      .put(`http://localhost:3310/api/videoGames/${id}`, gameData)
-      .catch((error) => console.error("Erreur lors de la mise à jour:", error));
+    const request = id
+      ? axios.put(`http://localhost:3310/api/videoGames/${id}`, gameData)
+      : axios.post("http://localhost:3310/api/videoGames", gameData);
+
+    request.catch((error) =>
+      console.error("Erreur lors de la sauvegarde du jeu:", error),
+    );
   };
 
   return (
-    <div className="AdminEditGame">
-      <h2>Modifier le jeu</h2>
+    <div className="AdminGameForm relative z-10 bg-slate-900/50 border border-primary p-9 rounded-lg mb-6">
+      <h2 className="mb-4">{id ? "Modifier" : "Créer un jeu"}</h2>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <input
           type="text"
           name="title"
           value={gameData.title}
-          className="text-black p-2"
+          className="text-black p-2 rounded-lg"
           onChange={handleChange}
           placeholder="Titre du jeu"
           required
@@ -61,7 +67,7 @@ const AdminEditGame = () => {
           type="number"
           name="price"
           value={gameData.price}
-          className="text-black p-2"
+          className="text-black p-2 rounded-lg"
           onChange={handleChange}
           placeholder="Prix"
         />
@@ -69,34 +75,14 @@ const AdminEditGame = () => {
           type="date"
           name="release_date"
           value={gameData.release_date}
-          className="text-black p-2"
+          className="text-black p-2 rounded-lg"
           onChange={handleChange}
         />
         <select
           name="category"
           value={gameData.category}
-          className="bg-slate-600 text-slate-200"
-          onChange={(e) =>
-            setGameData((prevData) => ({
-              ...prevData,
-              category: e.target.value as
-                | "Action-Adventure"
-                | "Platformer"
-                | "Action-RPG"
-                | "FPS"
-                | "Racing"
-                | "Survival Horror"
-                | "Sandbox"
-                | "Survival"
-                | "Survival-City Builder"
-                | "City Builder"
-                | "Strategy-RPG"
-                | "Simulation"
-                | "Sports"
-                | "Fighting"
-                | "RPG",
-            }))
-          }
+          className="bg-slate-600 text-slate-200 p-2 rounded-lg"
+          onChange={handleChange}
           required
         >
           <option value="Action-Adventure">Action-Adventure</option>
@@ -119,7 +105,7 @@ const AdminEditGame = () => {
           type="text"
           name="image1"
           value={gameData.image1}
-          className="text-black p-2"
+          className="text-black p-2 rounded-lg"
           onChange={handleChange}
           placeholder="URL de l'image"
         />
@@ -127,7 +113,7 @@ const AdminEditGame = () => {
           type="text"
           name="image2"
           value={gameData.image2}
-          className="text-black p-2"
+          className="text-black p-2 rounded-lg"
           onChange={handleChange}
           placeholder="URL de l'image"
         />
@@ -135,7 +121,7 @@ const AdminEditGame = () => {
           type="text"
           name="image3"
           value={gameData.image3}
-          className="text-black p-2"
+          className="text-black p-2 rounded-lg"
           onChange={handleChange}
           placeholder="URL de l'image"
         />
@@ -143,7 +129,7 @@ const AdminEditGame = () => {
           type="text"
           name="image4"
           value={gameData.image4}
-          className="text-black p-2"
+          className="text-black p-2 rounded-lg"
           onChange={handleChange}
           placeholder="URL de l'image"
         />
@@ -151,19 +137,19 @@ const AdminEditGame = () => {
           type="text"
           name="image5"
           value={gameData.image5}
-          className="text-black p-2"
+          className="text-black p-2 rounded-lg"
           onChange={handleChange}
           placeholder="URL de l'image"
         />
         <textarea
           name="description"
           value={gameData.description}
-          className="text-black p-2"
+          className="text-black p-2 rounded-lg"
           onChange={handleChange}
           placeholder="Description"
         />
         <div className="flex gap-10">
-          <button type="submit">Enregistrer</button>
+          <button type="submit">{id ? "Enregistrer" : "Créer le jeu"}</button>
           <Link to="/admin/tous-les-jeux">Retour</Link>
         </div>
       </form>
@@ -171,4 +157,4 @@ const AdminEditGame = () => {
   );
 };
 
-export default AdminEditGame;
+export default AdminGameForm;

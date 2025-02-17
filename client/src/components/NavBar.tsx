@@ -42,7 +42,7 @@ export default function NavBar() {
             to={
               user
                 ? user.is_admin
-                  ? "/admin"
+                  ? "/admin/mon-profile"
                   : `/profile/${user.id}`
                 : "/connexion"
             }

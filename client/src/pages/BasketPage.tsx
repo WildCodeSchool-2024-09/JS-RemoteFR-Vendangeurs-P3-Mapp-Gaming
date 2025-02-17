@@ -1,11 +1,12 @@
 import { useState } from "react";
+import trash from "../assets/icons/trash.svg";
 import { useAuth } from "../contexts/AuthContext";
 import { useBasket } from "../contexts/BasketContext";
 import { useTheme } from "../contexts/ColorsContext";
 
 const BasketPage = () => {
   const { theme } = useTheme();
-  const { basket, getTotalPrice } = useBasket();
+  const { basket, getTotalPrice, removeFromBasket } = useBasket();
   const { user } = useAuth();
   const [isOrderValidated, setIsOrderValidated] = useState(false);
 
@@ -32,7 +33,10 @@ const BasketPage = () => {
         ) : (
           <div className="grid w-full max-w-6xl mx-auto grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             {basket.videoGames.map((videoGame) => (
-              <div key={videoGame.id} className="w-full">
+              <div
+                key={videoGame.id}
+                className="w-full flex flex-col items-center"
+              >
                 <div className="block rounded-2xl overflow-hidden bg-gray-800 shadow-md">
                   <div className="relative group">
                     <img
@@ -48,6 +52,13 @@ const BasketPage = () => {
                     </div>
                   </div>
                 </div>
+                <button
+                  type="button"
+                  onClick={() => removeFromBasket(videoGame.id)}
+                  className="mt-2 flex items-center justify-center w-10 h-10 border border-primary rounded-lg bg-slate-900/25 hover:bg-slate-900/50 transition"
+                >
+                  <img src={trash} alt="Supprimer" className="w-7 h-7" />
+                </button>
               </div>
             ))}
           </div>
@@ -60,7 +71,7 @@ const BasketPage = () => {
 
         <button
           type="button"
-          className={`mt-4 w-full py-3 rounded flex justify-center items-center gap-2 transition ${isOrderValidated ? "bg-primary" : "bg-slate-900/50 hover:bg-slate-700/50 border border-primary"}`}
+          className={`mt-4 w-full py-3 rounded flex justify-center items-center gap-2 transition ${isOrderValidated ? "bg-primary" : "bg-slate-900/50 hover:bg-slate-700/50 border border-secondary"}`}
           onClick={handleOrder}
         >
           {isOrderValidated ? "✅ Commande validée !" : "PASSER COMMANDE "}

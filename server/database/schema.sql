@@ -66,15 +66,15 @@ create table buy (
 
 create table platforms(
   id int unsigned primary key auto_increment not null,
-  supported_platforms varchar(255) not null
+  label varchar(255) not null
 );
 
 create table game_platforms(
-  id int unsigned primary key not null,
+  id int unsigned primary key auto_increment not null,
   game_id int unsigned not null,
   platform_id int unsigned not null,
-  foreign key (game_id) references videoGames(id),
-  foreign key (platform_id) references platforms(id)
+  foreign key (game_id) references videoGames(id) on delete cascade,
+  foreign key (platform_id) references platforms(id) on delete cascade
 );
 
 create table wishlist(
@@ -662,7 +662,100 @@ Dans ce RPG en monde ouvert, vous pouvez choisir votre propre aventure, apprendr
 0,
 0,
 6000,
-4.9);
+4.9),
+
+("Frostpunk 2",
+45.99,
+"2024-09-20",
+"Survival-City Builder",
+"http://localhost:3000/src/assets/images/frostpunk2_1.jpg",
+"http://localhost:3000/src/assets/images/frostpunk2_2.webp",
+"http://localhost:3000/src/assets/images/frostpunk2_3.webp",
+"http://localhost:3000/src/assets/images/frostpunk2_4.webp",
+"http://localhost:3000/src/assets/images/frostpunk2_5.jpg",
+"Frostpunk 2 élève le genre de la survie de ville à un nouveau niveau. Incarnez un Intendant et dirigez votre ville à travers une cascade de calamités dans un décor postapocalyptique et enneigé. Construisez de grands quartiers avec leur cortège de besoins et de demandes sans fin. Naviguez entre les intérêts conflictuels des factions qui peuplent votre métropole. Alors que les besoins de la ville augmentent et que le pouvoir des factions s'accroît, vous êtes le seul à pouvoir diriger la société vers un avenir incertain.",
+0,
+0,
+3338,
+4.8),
+
+("Kingdom Come Deliverance 2",
+59.99,
+"2025-02-04",
+"Action-RPG",
+"http://localhost:3000/src/assets/images/kingdom-come-deliverance2_1.jpg",
+"http://localhost:3000/src/assets/images/kingdom-come-deliverance2_2.jpg",
+"http://localhost:3000/src/assets/images/kingdom-come-deliverance2_3.webp",
+"http://localhost:3000/src/assets/images/kingdom-come-deliverance2_4.webp",
+"http://localhost:3000/src/assets/images/kingdom-come-deliverance2_5.jpg",
+"Un jeu de rôle et d'action à l'histoire captivante, dans un monde ouvert très riche, se déroulant dans l'Europe du XVe siècle. Vivez l'aventure médiévale ultime en incarnant le jeune Henry, et lancez-vous dans un périple aux proportions épiques.",
+0,
+0,
+7328,
+4.9),
+
+("Grand Theft Auto VI",
+69.99,
+"2025-09-17",
+"Action-Adventure",
+"http://localhost:3000/src/assets/images/gta6_1.jpg",
+"http://localhost:3000/src/assets/images/gta6_2.jpg",
+"http://localhost:3000/src/assets/images/gta6_3.jpg",
+"http://localhost:3000/src/assets/images/gta6_4.jpg",
+"http://localhost:3000/src/assets/images/gta6_5.webp",
+"Comme toujours, le jeu se déroule dans un monde ouvert, dans une version fictive de Miami, en Floride, appelée Vice City, Leonida. Vous incarnez Lucia, le tout premier personnage principal féminin de la série. Son complice (au sens propre du terme) , quant à lui, est un personnage masculin. Ensemble, ils partent à la conquête de Vice City, enfin, du moins, assez pour s'offrir des voitures rapides, de la bonne nourriture et éviter la prison locale.",
+1,
+1,
+11238,
+4.9),
+
+("Fable IV",
+59.99,
+"2025-11-17",
+"Action-RPG",
+"http://localhost:3000/src/assets/images/fable4_1.jpg",
+"http://localhost:3000/src/assets/images/fable4_2.jpg",
+"http://localhost:3000/src/assets/images/fable4_3.jpg",
+"http://localhost:3000/src/assets/images/fable4_4.jpg",
+"http://localhost:3000/src/assets/images/fable4_5.jpg",
+"Un nouveau départ pour la franchise légendaire Que signifie l’héroïsme ? C’est ce que vous vivrez dans le pays des fées d’Albion. Lorsque le monde est menacé et que la réputation du héros est primordiale, le destin d’Albion est entièrement entre vos mains.",
+1,
+1,
+7328,
+4.9),
+
+("Monster Hunter wilds",
+59.99,
+"2025-02-28",
+"Action-RPG",
+"http://localhost:3000/src/assets/images/monster-hunter-wilds_1.jpg",
+"http://localhost:3000/src/assets/images/monster-hunter-wilds_2.jpg",
+"http://localhost:3000/src/assets/images/monster-hunter-wilds_3.jpg",
+"http://localhost:3000/src/assets/images/monster-hunter-wilds_4.jpg",
+"http://localhost:3000/src/assets/images/monster-hunter-wilds_5.jpg",
+"Arpentez des environnements qui se transforment radicalement d'un moment à l'autre sous l'effet de la force indomptable d'une nature sans cesse déchaînée.
+Plongez dans une histoire de monstres et d'humains luttant pour vivre en harmonie dans un monde de dualités.
+Accomplissez votre devoir de Chasseur en traquant et en triomphant de monstres puissants, forgez de nouvelles armes et armures toujours plus redoutables avec les matériaux récupérés sur vos proies, et découvrez le lien unissant les habitants des Forbidden Lands aux lieux où ils vivent.
+L'expérience de chasse ultime vous attend dans Monster Hunter Wilds.",
+1,
+1,
+6920,
+4.9),
+
+("Assassin's Creed Shadows",
+59.99,
+"2025-11-17",
+"Action-Adventure",
+"http://localhost:3000/src/assets/images/AC-shadows_1.jpg",
+"http://localhost:3000/src/assets/images/AC-shadows_2.jpg",
+"http://localhost:3000/src/assets/images/AC-shadows_3.jpg",
+"http://localhost:3000/src/assets/images/AC-shadows_4.jpg",
+"http://localhost:3000/src/assets/images/AC-shadows_5.jpg",
+"Plongez dans une épopée d'action-aventure au cœur du Japon féodal ! Incarnez une Assassin shinobi meurtrière et un puissant samouraï légendaire tout en explorant un magnifique monde ouvert plongé dans le chaos. Alternez entre ces deux alliés inattendus et découvrez le destin qui les unit. Maîtrisez des styles de jeu complémentaires, créez votre ligue de shinobi, personnalisez votre repaire et entrez dans une nouvelle ère pour le Japon.",
+1,
+1,
+5328,
+4.7);
 
  INSERT INTO user (firstname, lastname, username, email, password, date_of_creation, membership, is_admin)
  VALUES 
@@ -679,8 +772,7 @@ VALUES
 ('Pénélope, Teixeira, PennyT, penelope.teixeira@gmail.com', '', 4);
 
 
-
- INSERT INTO platforms (id, supported_platforms) VALUES 
+ INSERT INTO platforms (id, label) VALUES 
 (1,"XBOX"),
 (2,"PS"),
 (3,"SWITCH"),
@@ -689,3 +781,8 @@ VALUES
 INSERT INTO rating (rate, review, game_id, user_id) VALUES
 (4, "super jeu, très bon jeu d'aventure" , 1, 1),
 (2, "super jeu, très bon rapport qualité prix", 1, 2);
+
+INSERT INTO game_platforms (game_id, platform_id) 
+VALUES 
+  (1, 1); -- FIFA 24 sur Xbox Series X
+

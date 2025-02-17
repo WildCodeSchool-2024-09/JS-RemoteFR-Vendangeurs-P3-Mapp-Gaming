@@ -115,7 +115,7 @@ const AdminUserSection = () => {
 
       <div className="flex flex-row gap-10 my-6">
         <Link
-          to="/admin/creation-utilisateur"
+          to="/admin/gestion-utilisateur"
           className="border border-primary p-2 bg-slate-800/70 rounded-lg"
         >
           Ajouter un utilisateur
@@ -123,27 +123,25 @@ const AdminUserSection = () => {
       </div>
 
       <div className="flex-grow">
-        {" "}
-        {/* Added flex-grow to ensure remaining space is used */}
         {[
           {
             title: "Utilisateurs Standard",
             users: standardUsers,
-            border: "border-orange-500",
+            border: "border-primary",
           },
           {
             title: "Administrateurs",
             users: adminUsers,
-            border: "border-blue-500",
+            border: "border-primary",
           },
         ].map((group) => (
           <div key={group.title}>
-            <h2>{group.title}</h2>
+            <h2 className="my-4">{group.title}</h2>
             {group.users.length === 0 ? (
               <p>Aucun {group.title.toLowerCase()} trouvé.</p>
             ) : (
               <div
-                className={`flex flex-col justify-center items-center gap-2 border-2 ${group.border}`}
+                className={`flex flex-col justify-center items-center gap-2 border rounded-lg p-6 bg-slate-900/50 ${group.border}`}
               >
                 {group.users.map((user) => (
                   <div key={user.id} className="w-full px-4 py-6">
@@ -155,7 +153,7 @@ const AdminUserSection = () => {
                       </div>
                       <div className="flex flex-row gap-2">
                         <Link
-                          to={`/admin/modification-utilisateur/${user.id}`}
+                          to={`/admin/gestion-utilisateur/${user.id}`}
                           className="border border-primary p-2 rounded-lg"
                         >
                           Modifier
