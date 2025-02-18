@@ -34,8 +34,10 @@ const ProfilePage = () => {
   };
   return (
     <div className="p-6">
-      <h1 className="text-2xl font-title mb-4">Mes informations</h1>
-      <div className="min-h-screen flex flex-col items-center justify-center bg-bg-primary text-color-text-primary">
+      <h1 className="text-2xl font-title mb-4 justify-center flex">
+        Mes informations
+      </h1>
+      <div className="min-h-screen flex flex-col items-center bg-bg-primary text-color-text-primary">
         <div className="w-full max-w-md flex flex-col items-center gap-4">
           <div className="flex flex-col items-center justify-center relative z-10 gap-6">
             <div className="w-full max-w-lg p-8 bg-slate-900/50 border border-primary rounded-lg shadow-lg">

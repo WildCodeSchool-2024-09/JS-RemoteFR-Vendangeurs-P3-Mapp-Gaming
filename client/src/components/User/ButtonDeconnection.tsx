@@ -1,9 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
+import { useTheme } from "../../contexts/ColorsContext";
 
 export default function Deconnexion() {
   const { setUser } = useAuth();
   const navigate = useNavigate();
+  const { changeTheme } = useTheme();
 
   const handleLogout = () => {
     setUser(null);
@@ -15,7 +17,10 @@ export default function Deconnexion() {
     <div className="flex justify-center relative z-10">
       <button
         type="button"
-        onClick={handleLogout}
+        onClick={() => {
+          handleLogout();
+          changeTheme("theme-orange");
+        }}
         className="w-44 px-4 mt-9 py-2 border-primary border text-color-text-primary font-title rounded hover:bg-slate-900/50 focus:outline-none"
       >
         Me déconnecter
