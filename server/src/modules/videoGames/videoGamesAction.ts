@@ -142,6 +142,18 @@ const getUpcoming: RequestHandler = async (req, res, next) => {
   }
 };
 
+// Read operation for games associated with a platform
+const getPlatformGames: RequestHandler = async (req, res, next) => {
+  try {
+    const platform_Id = Number(req.params.platform_Id);
+    const platformGames =
+      await videoGamesRepository.readPlatformGames(platform_Id);
+    res.json(platformGames);
+  } catch (err) {
+    next(err);
+  }
+};
+
 export default {
   browse,
   read,
@@ -152,5 +164,6 @@ export default {
   getTrendingNoLimit,
   getPreorder,
   getUpcoming,
+  getPlatformGames,
   //getBasket,
 };

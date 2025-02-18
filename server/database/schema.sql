@@ -774,15 +774,54 @@ VALUES
 
  INSERT INTO platforms (id, label) VALUES 
 (1,"XBOX"),
-(2,"PS"),
-(3,"SWITCH"),
+(2,"PlayStation"),
+(3,"Switch"),
 (4,"PC");
 
 INSERT INTO rating (rate, review, game_id, user_id) VALUES
 (4, "super jeu, très bon jeu d'aventure" , 1, 1),
 (2, "super jeu, très bon rapport qualité prix", 1, 2);
 
-INSERT INTO game_platforms (game_id, platform_id) 
-VALUES 
-  (1, 1); -- FIFA 24 sur Xbox Series X
-
+INSERT INTO game_platforms (game_id, platform_id) VALUES
+(1, 1), (1, 2), (1, 3), (1, 4),  -- Tomb Raider Definitive Edition
+(2, 3),  -- The Legend of Zelda: Breath of the Wild
+(3, 3),  -- Super Mario Odyssey
+(4, 1), (4, 4),  -- The Witcher 3: Wild Hunt
+(5, 1), (5, 2), (5, 4),  -- Red Dead Redemption 2
+(6, 1), (6, 2), (6, 4),  -- God of War
+(7, 1), (7, 2), (7, 4),  -- The Last of Us Part II
+(8, 1), (8, 4),  -- Halo Infinite
+(9, 1), (9, 4),  -- Forza Horizon 5
+(10, 1), (10, 2), (10, 4),  -- Cyberpunk 2077
+(11, 1), (11, 2), (11, 4),  -- Death Stranding
+(12, 2), (12, 4),  -- Horizon Zero Dawn
+(13, 2), (13, 4),  -- Uncharted 4: A Thief's End
+(14, 1), (14, 2), (14, 4),  -- Bloodborne
+(15, 1), (15, 2), (15, 4),  -- Baldur's Gate III
+(16, 1), (16, 4),  -- DOOM Eternal
+(17, 1), (17, 2), (17, 4),  -- Resident Evil Village
+(18, 1), (18, 2), (18, 4),  -- Demon's Souls
+(19, 1), (19, 2), (19, 4),  -- Assassin's Creed Valhalla
+(20, 1), (20, 2), (20, 4),  -- Fallout 4
+(21, 1), (21, 2), (21, 4),  -- The Elder Scrolls V: Skyrim
+(22, 1), (22, 2), (22, 4),  -- Grand Theft Auto V
+(23, 1), (23, 2), (23, 3), (23, 4),  -- Minecraft
+(24, 1), (24, 4),  -- Starfield
+(25, 1), (25, 2), (25, 4),  -- Valheim
+(26, 1), (26, 2), (26, 4),  -- Diablo 4
+(27, 1), (27, 2), (27, 4),  -- Call of Duty Black Ops 6
+(28, 1), (28, 2), (28, 4),  -- Frostpunk
+(29, 4),  -- Anno 1800
+(30, 1), (30, 2), (30, 4),  -- Manor Lords
+(31, 1), (31, 2), (31, 4),  -- Mount & Blade II Bannerlord
+(32, 3),  -- Animal Crossing: New Horizons
+(33, 1), (33, 2), (33, 4),  -- FIFA 24
+(34, 3),  -- Mario Kart 8 Deluxe
+(35, 3),  -- Super Smash Bros. Ultimate
+(36, 1), (36, 2), (36, 3), (36, 4),  -- Hogwarts Legacy
+(37, 1), (37, 2), (37, 4),  -- Frostpunk 2
+(38, 1), (38, 2), (38, 4),  -- Kingdom Come Deliverance 2
+(39, 1), (39, 2),  -- Grand Theft Auto VI
+(40, 1), (40, 4),  -- Fable IV
+(41, 1), (41, 2), (41, 4),  -- Monster Hunter Wilds
+(42, 1), (42, 2), (42, 4);  -- Assassin's Creed Shadows

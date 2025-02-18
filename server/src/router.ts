@@ -51,6 +51,11 @@ router.get("/api/videoGames/:id", videoGamesAction.read);
 router.put("/api/videoGames/:id", videoGamesAction.edit);
 router.post("/api/videoGames", videoGamesAction.add);
 router.delete("/api/videoGames/:id", videoGamesAction.remove);
+
+router.get(
+  "/api/videoGames/platform/:platform_Id",
+  videoGamesAction.getPlatformGames,
+);
 /* ************************************************************************* */
 
 import wishlistActions from "./modules/whishlist/wishlistActions";

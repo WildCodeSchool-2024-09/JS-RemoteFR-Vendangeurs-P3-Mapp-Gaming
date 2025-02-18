@@ -20,6 +20,7 @@ import AdminPage from "./pages/AdminPage";
 import BasketPage from "./pages/BasketPage";
 import ConnexionPage from "./pages/ConnexionPage";
 import HomePage from "./pages/HomePage";
+import PlatformGamesPage from "./pages/PlatformGamesPage";
 import PreorderPage from "./pages/PreorderPage";
 import ProfilePage from "./pages/ProfilePage";
 import RegisterPage from "./pages/RegisterPage";
@@ -46,6 +47,7 @@ const router = createBrowserRouter([
       { path: "a-venir", element: <UpcomingPage /> },
       { path: "users/:id/basket", element: <BasketPage /> },
       { path: "user/:id/wishlist", element: <WishlistPage /> },
+      { path: "platform/:platform_Id", element: <PlatformGamesPage /> },
 
       {
         path: "admin",
