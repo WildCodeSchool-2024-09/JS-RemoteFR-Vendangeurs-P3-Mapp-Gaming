@@ -47,6 +47,7 @@ const router = createBrowserRouter([
       { path: "tendance", element: <TrendingPage /> },
       { path: "precommande", element: <PreorderPage /> },
       { path: "a-venir", element: <UpcomingPage /> },
+      { path: "profile/:id", element: <ProfilePage /> },
       { path: "users/:id/basket", element: <BasketPage /> },
       { path: "user/:id/wishlist", element: <WishlistPage /> },
       { path: "platform/:platform_Id", element: <PlatformGamesPage /> },

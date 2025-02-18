@@ -38,7 +38,7 @@ export default function PlatformGamesPage() {
   }, [platform_Id]);
 
   return (
-    <div className="platform-section p-6">
+    <div className="platform-section p-6 relative z-10">
       <section className="flex flex-col items-center justify-center gap-4">
         <div className="grid grid-cols-4 gap-6 w-full">
           {videoGames.map((game) => (
