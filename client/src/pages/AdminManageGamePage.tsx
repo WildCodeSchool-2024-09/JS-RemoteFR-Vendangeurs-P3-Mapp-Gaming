@@ -1,4 +1,4 @@
-import AdminManageGame from "../components/Admin/Game/AdminManageGame";
+import AdminManageGame from "../components/Admin/AdminManageGame";
 
 const AdminManageGamePage = () => {
   return (

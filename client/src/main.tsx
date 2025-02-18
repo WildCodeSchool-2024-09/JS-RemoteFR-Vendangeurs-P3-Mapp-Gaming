@@ -5,30 +5,33 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 /* ************************************************************************* */
 
 import App from "./App";
-import AdminGameSection from "./components/Admin/Game/AdminGameSection";
-import AdminUserSection from "./components/Admin/User/AdminUserSection";
-import NotFound from "./components/NotFound/NotFound";
 
-import AccessAdmin from "./components/Admin/User/AccessAdmin";
-import ProfilInformations from "./components/ProfilInformations";
 import { AuthProvider } from "./contexts/AuthContext";
 import { BasketProvider } from "./contexts/BasketContext";
 import { ThemeProvider } from "./contexts/ColorsContext";
+import ConnexionPage from "./pages/Common/ConnexionPage";
+import HomePage from "./pages/Common/HomePage";
+import PreorderPage from "./pages/Common/PreorderPage";
+import PlatformGamesPage from "./pages/PlatformGamesPage";
+
+import AccessAdmin from "./components/Admin/AccessAdmin";
+
 import AdminManageGamePage from "./pages/AdminManageGamePage";
 import AdminManageUserPage from "./pages/AdminManageUserPage";
-import AdminPage from "./pages/AdminPage";
-import BasketPage from "./pages/BasketPage";
-import ConnexionPage from "./pages/ConnexionPage";
-import HomePage from "./pages/HomePage";
-import PlatformGamesPage from "./pages/PlatformGamesPage";
-import PreorderPage from "./pages/PreorderPage";
-import ProfilePage from "./pages/ProfilePage";
-import RegisterPage from "./pages/RegisterPage";
-import SoloGamePage from "./pages/SoloGamePage";
-import TrendingPage from "./pages/TrendingPage";
-import UpcomingPage from "./pages/UpcomingPage";
-import WishlistPage from "./pages/WishlistPage";
 
+import AdminPage from "./pages/AdminPage";
+
+import RegisterPage from "./pages/Common/RegisterPage";
+import SoloGamePage from "./pages/Common/SoloGamePage";
+import TrendingPage from "./pages/Common/TrendingPage";
+import UpcomingPage from "./pages/Common/UpcomingPage";
+import BasketPage from "./pages/User/BasketPage";
+import ProfilePage from "./pages/User/ProfilePage";
+import WishlistPage from "./pages/User/WishlistPage";
+
+import AdminGameSection from "./components/Admin/AdminGameSection";
+import AdminUserSection from "./components/Admin/AdminUserSection";
+import NotFoundPage from "./pages/Common/NotFoundPage";
 /* ************************************************************************* */
 
 const router = createBrowserRouter([
@@ -36,19 +39,21 @@ const router = createBrowserRouter([
     path: "/",
     element: <App />,
     children: [
+      // ROUTES PUBLIQUES
       { path: "", element: <HomePage /> },
       { path: "connexion", element: <ConnexionPage /> },
       { path: "inscription", element: <RegisterPage /> },
-      { path: ":slug/:id", element: <SoloGamePage /> },
-      { path: "profile/:id", element: <ProfilePage /> },
-      { path: "*", element: <NotFound /> },
+      { path: ":jeux/:id", element: <SoloGamePage /> },
       { path: "tendance", element: <TrendingPage /> },
       { path: "precommande", element: <PreorderPage /> },
       { path: "a-venir", element: <UpcomingPage /> },
+      { path: "profile/:id", element: <ProfilePage /> },
       { path: "users/:id/basket", element: <BasketPage /> },
       { path: "user/:id/wishlist", element: <WishlistPage /> },
       { path: "platform/:platform_Id", element: <PlatformGamesPage /> },
+      { path: "*", element: <NotFoundPage /> },
 
+      // ROUTES USERS
       {
         path: "admin",
         element: <AccessAdmin />,
@@ -57,8 +62,7 @@ const router = createBrowserRouter([
             path: "",
             element: <AdminPage />,
             children: [
-              { path: "mon-profile", element: <ProfilInformations /> },
-
+              { path: "mon-profile", element: <ProfilePage /> },
               { path: "utilisateurs", element: <AdminUserSection /> },
               { path: "gestion-utilisateur", element: <AdminManageUserPage /> },
               {
