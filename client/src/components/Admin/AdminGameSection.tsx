@@ -127,7 +127,9 @@ const AdminGameSection = () => {
       </div>
       <div className="flex justify-between mt-6">
         <h2>Tous les jeux</h2>
-        <Link to="/admin/creation-jeu">Créer un jeu</Link>
+        <div className="border border-primary p-2 rounded-lg">
+          <Link to="/admin/gestion-jeu">Créer un jeu</Link>
+        </div>
       </div>
       <div className="border-2 border-primary bg-slate-900/50 p-4 rounded-lg mt-10">
         <div className="flex flex-col justify-center items-start gap-6">
@@ -151,7 +153,7 @@ const AdminGameSection = () => {
               </div>
               <div className="flex flex-row gap-4">
                 <div className="border border-primary p-2 rounded-lg">
-                  <Link to={`/admin/modification-jeu/${videoGame.id}`}>
+                  <Link to={`/admin/gestion-jeu/${videoGame.id}`}>
                     Modifier
                   </Link>
                 </div>

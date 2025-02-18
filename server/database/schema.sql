@@ -662,7 +662,100 @@ Dans ce RPG en monde ouvert, vous pouvez choisir votre propre aventure, apprendr
 0,
 0,
 6000,
-4.9);
+4.9),
+
+("Frostpunk 2",
+45.99,
+"2024-09-20",
+"Survival-City Builder",
+"http://localhost:3000/src/assets/images/frostpunk2_1.jpg",
+"http://localhost:3000/src/assets/images/frostpunk2_2.webp",
+"http://localhost:3000/src/assets/images/frostpunk2_3.webp",
+"http://localhost:3000/src/assets/images/frostpunk2_4.webp",
+"http://localhost:3000/src/assets/images/frostpunk2_5.jpg",
+"Frostpunk 2 élève le genre de la survie de ville à un nouveau niveau. Incarnez un Intendant et dirigez votre ville à travers une cascade de calamités dans un décor postapocalyptique et enneigé. Construisez de grands quartiers avec leur cortège de besoins et de demandes sans fin. Naviguez entre les intérêts conflictuels des factions qui peuplent votre métropole. Alors que les besoins de la ville augmentent et que le pouvoir des factions s'accroît, vous êtes le seul à pouvoir diriger la société vers un avenir incertain.",
+0,
+0,
+3338,
+4.8),
+
+("Kingdom Come Deliverance 2",
+59.99,
+"2025-02-04",
+"Action-RPG",
+"http://localhost:3000/src/assets/images/kingdom-come-deliverance2_1.jpg",
+"http://localhost:3000/src/assets/images/kingdom-come-deliverance2_2.jpg",
+"http://localhost:3000/src/assets/images/kingdom-come-deliverance2_3.webp",
+"http://localhost:3000/src/assets/images/kingdom-come-deliverance2_4.webp",
+"http://localhost:3000/src/assets/images/kingdom-come-deliverance2_5.jpg",
+"Un jeu de rôle et d'action à l'histoire captivante, dans un monde ouvert très riche, se déroulant dans l'Europe du XVe siècle. Vivez l'aventure médiévale ultime en incarnant le jeune Henry, et lancez-vous dans un périple aux proportions épiques.",
+0,
+0,
+7328,
+4.9),
+
+("Grand Theft Auto VI",
+69.99,
+"2025-09-17",
+"Action-Adventure",
+"http://localhost:3000/src/assets/images/gta6_1.jpg",
+"http://localhost:3000/src/assets/images/gta6_2.jpg",
+"http://localhost:3000/src/assets/images/gta6_3.jpg",
+"http://localhost:3000/src/assets/images/gta6_4.jpg",
+"http://localhost:3000/src/assets/images/gta6_5.webp",
+"Comme toujours, le jeu se déroule dans un monde ouvert, dans une version fictive de Miami, en Floride, appelée Vice City, Leonida. Vous incarnez Lucia, le tout premier personnage principal féminin de la série. Son complice (au sens propre du terme) , quant à lui, est un personnage masculin. Ensemble, ils partent à la conquête de Vice City, enfin, du moins, assez pour s'offrir des voitures rapides, de la bonne nourriture et éviter la prison locale.",
+1,
+1,
+11238,
+4.9),
+
+("Fable IV",
+59.99,
+"2025-11-17",
+"Action-RPG",
+"http://localhost:3000/src/assets/images/fable4_1.jpg",
+"http://localhost:3000/src/assets/images/fable4_2.jpg",
+"http://localhost:3000/src/assets/images/fable4_3.jpg",
+"http://localhost:3000/src/assets/images/fable4_4.jpg",
+"http://localhost:3000/src/assets/images/fable4_5.jpg",
+"Un nouveau départ pour la franchise légendaire Que signifie l’héroïsme ? C’est ce que vous vivrez dans le pays des fées d’Albion. Lorsque le monde est menacé et que la réputation du héros est primordiale, le destin d’Albion est entièrement entre vos mains.",
+1,
+1,
+7328,
+4.9),
+
+("Monster Hunter wilds",
+59.99,
+"2025-02-28",
+"Action-RPG",
+"http://localhost:3000/src/assets/images/monster-hunter-wilds_1.jpg",
+"http://localhost:3000/src/assets/images/monster-hunter-wilds_2.jpg",
+"http://localhost:3000/src/assets/images/monster-hunter-wilds_3.jpg",
+"http://localhost:3000/src/assets/images/monster-hunter-wilds_4.jpg",
+"http://localhost:3000/src/assets/images/monster-hunter-wilds_5.jpg",
+"Arpentez des environnements qui se transforment radicalement d'un moment à l'autre sous l'effet de la force indomptable d'une nature sans cesse déchaînée.
+Plongez dans une histoire de monstres et d'humains luttant pour vivre en harmonie dans un monde de dualités.
+Accomplissez votre devoir de Chasseur en traquant et en triomphant de monstres puissants, forgez de nouvelles armes et armures toujours plus redoutables avec les matériaux récupérés sur vos proies, et découvrez le lien unissant les habitants des Forbidden Lands aux lieux où ils vivent.
+L'expérience de chasse ultime vous attend dans Monster Hunter Wilds.",
+1,
+1,
+6920,
+4.9),
+
+("Assassin's Creed Shadows",
+59.99,
+"2025-11-17",
+"Action-Adventure",
+"http://localhost:3000/src/assets/images/AC-shadows_1.jpg",
+"http://localhost:3000/src/assets/images/AC-shadows_2.jpg",
+"http://localhost:3000/src/assets/images/AC-shadows_3.jpg",
+"http://localhost:3000/src/assets/images/AC-shadows_4.jpg",
+"http://localhost:3000/src/assets/images/AC-shadows_5.jpg",
+"Plongez dans une épopée d'action-aventure au cœur du Japon féodal ! Incarnez une Assassin shinobi meurtrière et un puissant samouraï légendaire tout en explorant un magnifique monde ouvert plongé dans le chaos. Alternez entre ces deux alliés inattendus et découvrez le destin qui les unit. Maîtrisez des styles de jeu complémentaires, créez votre ligue de shinobi, personnalisez votre repaire et entrez dans une nouvelle ère pour le Japon.",
+1,
+1,
+5328,
+4.7);
 
  INSERT INTO user (firstname, lastname, username, email, password, date_of_creation, membership, is_admin)
  VALUES 
@@ -681,15 +774,54 @@ VALUES
 
  INSERT INTO platforms (id, label) VALUES 
 (1,"XBOX"),
-(2,"PS"),
-(3,"SWITCH"),
+(2,"PlayStation"),
+(3,"Switch"),
 (4,"PC");
 
 INSERT INTO rating (rate, review, game_id, user_id) VALUES
 (4, "super jeu, très bon jeu d'aventure" , 1, 1),
 (2, "super jeu, très bon rapport qualité prix", 1, 2);
 
-INSERT INTO game_platforms (game_id, platform_id) 
-VALUES 
-  (1, 1); -- FIFA 24 sur Xbox Series X
-
+INSERT INTO game_platforms (game_id, platform_id) VALUES
+(1, 1), (1, 2), (1, 3), (1, 4),  -- Tomb Raider Definitive Edition
+(2, 3),  -- The Legend of Zelda: Breath of the Wild
+(3, 3),  -- Super Mario Odyssey
+(4, 1), (4, 4),  -- The Witcher 3: Wild Hunt
+(5, 1), (5, 2), (5, 4),  -- Red Dead Redemption 2
+(6, 1), (6, 2), (6, 4),  -- God of War
+(7, 1), (7, 2), (7, 4),  -- The Last of Us Part II
+(8, 1), (8, 4),  -- Halo Infinite
+(9, 1), (9, 4),  -- Forza Horizon 5
+(10, 1), (10, 2), (10, 4),  -- Cyberpunk 2077
+(11, 1), (11, 2), (11, 4),  -- Death Stranding
+(12, 2), (12, 4),  -- Horizon Zero Dawn
+(13, 2), (13, 4),  -- Uncharted 4: A Thief's End
+(14, 1), (14, 2), (14, 4),  -- Bloodborne
+(15, 1), (15, 2), (15, 4),  -- Baldur's Gate III
+(16, 1), (16, 4),  -- DOOM Eternal
+(17, 1), (17, 2), (17, 4),  -- Resident Evil Village
+(18, 1), (18, 2), (18, 4),  -- Demon's Souls
+(19, 1), (19, 2), (19, 4),  -- Assassin's Creed Valhalla
+(20, 1), (20, 2), (20, 4),  -- Fallout 4
+(21, 1), (21, 2), (21, 4),  -- The Elder Scrolls V: Skyrim
+(22, 1), (22, 2), (22, 4),  -- Grand Theft Auto V
+(23, 1), (23, 2), (23, 3), (23, 4),  -- Minecraft
+(24, 1), (24, 4),  -- Starfield
+(25, 1), (25, 2), (25, 4),  -- Valheim
+(26, 1), (26, 2), (26, 4),  -- Diablo 4
+(27, 1), (27, 2), (27, 4),  -- Call of Duty Black Ops 6
+(28, 1), (28, 2), (28, 4),  -- Frostpunk
+(29, 4),  -- Anno 1800
+(30, 1), (30, 2), (30, 4),  -- Manor Lords
+(31, 1), (31, 2), (31, 4),  -- Mount & Blade II Bannerlord
+(32, 3),  -- Animal Crossing: New Horizons
+(33, 1), (33, 2), (33, 4),  -- FIFA 24
+(34, 3),  -- Mario Kart 8 Deluxe
+(35, 3),  -- Super Smash Bros. Ultimate
+(36, 1), (36, 2), (36, 3), (36, 4),  -- Hogwarts Legacy
+(37, 1), (37, 2), (37, 4),  -- Frostpunk 2
+(38, 1), (38, 2), (38, 4),  -- Kingdom Come Deliverance 2
+(39, 1), (39, 2),  -- Grand Theft Auto VI
+(40, 1), (40, 4),  -- Fable IV
+(41, 1), (41, 2), (41, 4),  -- Monster Hunter Wilds
+(42, 1), (42, 2), (42, 4);  -- Assassin's Creed Shadows

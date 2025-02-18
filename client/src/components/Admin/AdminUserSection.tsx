@@ -115,7 +115,7 @@ const AdminUserSection = () => {
 
       <div className="flex flex-row gap-10 my-6">
         <Link
-          to="/admin/creation-utilisateur"
+          to="/admin/gestion-utilisateur"
           className="border border-primary p-2 bg-slate-800/70 rounded-lg"
         >
           Ajouter un utilisateur
@@ -153,7 +153,7 @@ const AdminUserSection = () => {
                       </div>
                       <div className="flex flex-row gap-2">
                         <Link
-                          to={`/admin/modification-utilisateur/${user.id}`}
+                          to={`/admin/gestion-utilisateur/${user.id}`}
                           className="border border-primary p-2 rounded-lg"
                         >
                           Modifier

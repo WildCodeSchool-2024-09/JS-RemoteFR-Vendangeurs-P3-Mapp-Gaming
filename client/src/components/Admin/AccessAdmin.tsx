@@ -8,7 +8,7 @@ const AccessAdmin = () => {
     return <Navigate to="/connexion" replace />;
   }
 
-  if (user.is_admin === false) {
+  if (!user.is_admin) {
     return <Navigate to="/" replace />;
   }
 

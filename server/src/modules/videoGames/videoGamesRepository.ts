@@ -126,7 +126,18 @@ class videoGamesRepository {
     );
     return rows as videoGames[];
   }
+
+  // Récupérer les jeux associés à une plateforme
+  async readPlatformGames(platform_Id: number) {
+    const [rows] = await databaseClient.query<Rows>(
+      `SELECT vg.id, vg.title, vg.price, vg.release_date, vg.category, vg.image1, vg.image2, vg.image3, vg.image4, vg.image5, vg.description, vg.is_upcoming, vg.is_preorder, vg.views, vg.average_rating
+      FROM videoGames vg
+      JOIN game_platforms gp ON vg.id = gp.game_Id
+      WHERE gp.platform_Id = ?`,
+      [platform_Id],
+    );
+    return rows as videoGames[];
+  }
 }
-// afficher le contenu du basket
 
 export default new videoGamesRepository();
