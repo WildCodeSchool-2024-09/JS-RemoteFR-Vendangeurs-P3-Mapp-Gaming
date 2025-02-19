@@ -17,7 +17,7 @@ export default {
         },
         red: {
           primary: "#ff0062",
-          secondary: "#00ffb3",
+          secondary: "#00E600",
           bg: "#050c1a",
           text: "#e3fff4",
         },
@@ -28,14 +28,20 @@ export default {
           text: "#e3fff4",
         },
         green: {
-          primary: "#00ffb3",
+          primary: "#00E600",
           secondary: "#8402ff",
           bg: "#050c1a",
           text: "#e3fff4",
         },
         purple: {
           primary: "#8402ff",
-          secondary: "#00ffb3",
+          secondary: "#00E600",
+          bg: "#050c1a",
+          text: "#e3fff4",
+        },
+        grey: {
+          primary: "#B9AB99",
+          secondary: "#FF8C00",
           bg: "#050c1a",
           text: "#e3fff4",
         },

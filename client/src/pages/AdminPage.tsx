@@ -4,11 +4,11 @@ const AdminPage = () => {
   return (
     <div>
       <nav>
-        <div className="flex flex-row gap-10">
-          <Link to="/admin">
-            <h1>Page d'administration</h1>
+        <div className="flex flex-row mt-10 mb-10 justify-center gap-10">
+          <Link to="/admin/mon-profile">
+            <h1>Mon profile</h1>
           </Link>
-          <Link to="tout-les-jeux">
+          <Link to="tous-les-jeux">
             <button type="button">Tous les jeux</button>
           </Link>
           <Link to="utilisateurs">
@@ -16,6 +16,7 @@ const AdminPage = () => {
           </Link>
         </div>
       </nav>
+
       <div className="flex flex-col items-center">
         <Outlet />
       </div>

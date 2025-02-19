@@ -1,14 +1,5 @@
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
 
-type AuthContextType = {
-  user: User | null;
-  setUser: React.Dispatch<React.SetStateAction<User | null>>;
-};
-
-type AuthProviderProps = {
-  children: React.ReactNode;
-};
-
 type User = {
   id?: number;
   username: string;
@@ -17,17 +8,18 @@ type User = {
   is_admin?: boolean;
 };
 
+type AuthContextType = {
+  user: User | null;
+  setUser: React.Dispatch<React.SetStateAction<User | null>>;
+};
+
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-export const AuthProvider = ({ children }: AuthProviderProps) => {
-  const [user, setUser] = useState<User | null>(null);
-
-  useEffect(() => {
+export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
+  const [user, setUser] = useState<User | null>(() => {
     const storedUser = localStorage.getItem("user");
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
-    }
-  }, []);
+    return storedUser ? JSON.parse(storedUser) : null;
+  });
 
   useEffect(() => {
     if (user) {

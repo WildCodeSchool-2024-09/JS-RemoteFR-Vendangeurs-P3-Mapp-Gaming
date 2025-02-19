@@ -18,15 +18,15 @@ class userRepository {
   // The C of CRUD - Create operation
   async create(user: Omit<User, "id">) {
     const [result] = await databaseClient.query<Result>(
-      "INSERT INTO user (first_name, last_name, username, email, password) VALUES (?, ?, ?, ?, ?, ?, ?)",
+      "INSERT INTO user (firstname, lastname, username, email, password, membership, is_admin) VALUES (?, ?, ?, ?, ?, ?, ?)",
       [
         user.firstname,
         user.lastname,
         user.username,
         user.email,
         user.password,
-        user.date_of_creation,
         user.membership,
+        user.is_admin,
       ],
     );
     return result.insertId;
@@ -52,14 +52,14 @@ class userRepository {
   async update(user: User) {
     // Execute the SQL UPDATE query to update an existing user in the "user" table
     const [result] = await databaseClient.query<Result>(
-      "UPDATE user SET first_name = ?, last_name = ?, username = ?, email = ?, password = ?, date_of_creation = ?, membership = ? WHERE id = ?",
+      "UPDATE user SET firstname = ?, lastname = ?, username = ?, email = ?, password = ?, membership = ? WHERE id = ?",
+
       [
         user.firstname,
         user.lastname,
         user.username,
         user.email,
         user.password,
-        user.date_of_creation,
         user.membership,
         user.id,
       ],

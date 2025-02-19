@@ -47,6 +47,8 @@ const edit: RequestHandler = async (req, res, next) => {
       description: req.body.description,
       is_upcoming: req.body.isUpcoming,
       is_preorder: req.body.isPreorder,
+      views: req.body.views || 0,
+      average_rating: req.body.averageRating,
     };
 
     const affectedRows = await videoGamesRepository.update(videoGame);
@@ -77,6 +79,8 @@ const add: RequestHandler = async (req, res, next) => {
       description: req.body.description,
       is_upcoming: req.body.isUpcoming,
       is_preorder: req.body.isPreorder,
+      views: req.body.views || 0,
+      average_rating: req.body.averageRating,
     };
 
     const insertId = await videoGamesRepository.create(newVideoGame);
@@ -138,6 +142,18 @@ const getUpcoming: RequestHandler = async (req, res, next) => {
   }
 };
 
+// Read operation for games associated with a platform
+const getPlatformGames: RequestHandler = async (req, res, next) => {
+  try {
+    const platform_Id = Number(req.params.platform_Id);
+    const platformGames =
+      await videoGamesRepository.readPlatformGames(platform_Id);
+    res.json(platformGames);
+  } catch (err) {
+    next(err);
+  }
+};
+
 export default {
   browse,
   read,
@@ -148,5 +164,6 @@ export default {
   getTrendingNoLimit,
   getPreorder,
   getUpcoming,
+  getPlatformGames,
   //getBasket,
 };

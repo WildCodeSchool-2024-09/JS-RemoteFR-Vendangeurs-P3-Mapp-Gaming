@@ -7,6 +7,7 @@ interface User {
   firstname: string;
   lastname: string;
   username: string;
+  is_admin: boolean;
 }
 
 const AdminUserSection = () => {
@@ -18,37 +19,20 @@ const AdminUserSection = () => {
 
   useEffect(() => {
     axios.get("http://localhost:3310/api/user").then((response) => {
-      console.info(response.data);
-      setUsers(response.data);
+      const formattedUsers = response.data.map((user: User) => ({
+        ...user,
+        is_admin: Boolean(user.is_admin),
+      }));
+      setUsers(formattedUsers);
     });
   }, []);
 
   const deleteUser = (id: number) => {
-    axios.delete(`http://localhost:3310/api/user/${id}`).then((response) => {
-      console.info(response);
+    axios.delete(`http://localhost:3310/api/user/${id}`).then(() => {
       setUsers(users.filter((user) => user.id !== id));
     });
   };
 
-  const editUser = (id: number) => {
-    const updatedUser = {
-      firstname: "Updated",
-      lastname: "User",
-      username: "updated_user",
-    };
-
-    axios
-      .put(`http://localhost:3310/api/user/${id}`, updatedUser)
-      .then((response) => {
-        console.info(response);
-        setUsers(users.map((user) => (user.id === id ? response.data : user)));
-      })
-      .catch((error) => {
-        console.error("Error editing user:", error);
-      });
-  };
-
-  // Search functionality
   useEffect(() => {
     const lowerSearch = searchTerm.trim().toLowerCase();
     if (lowerSearch === "") {
@@ -84,74 +68,111 @@ const AdminUserSection = () => {
   const validateSearch = () => {
     if (filteredUsers.length > 0) {
       setUsers(filteredUsers);
-      setSearchTerm(""); // Clear the search bar
-      setFilteredUsers([]); // Clear suggestions
+      setSearchTerm("");
+      setFilteredUsers([]);
     }
   };
 
+  const standardUsers = users.filter((user) => !user.is_admin);
+  const adminUsers = users.filter((user) => user.is_admin);
+
   return (
-    <div className="AdminUserSection">
-      {/* recherche */}
-      <div className="flex justify-center">
-        <input
-          type="text"
-          placeholder="Rechercher un utilisateur"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
-        <button type="button" onClick={validateSearch}>
-          Valider
-        </button>
-        {/* Suggestions */}
+    <div className="min-h-screen flex flex-col z-10">
+      <div className="flex flex-col items-center relative w-full max-w-md mx-auto">
+        <div className="flex w-full">
+          <input
+            type="text"
+            placeholder="Rechercher un utilisateur"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="w-full p-2 rounded-md text-black"
+          />
+          <button
+            type="button"
+            onClick={validateSearch}
+            className="ml-2 p-2 bg-primary text-color-text-primary rounded-md"
+          >
+            Valider
+          </button>
+        </div>
+
         {filteredUsers.length > 0 && (
-          <ul>
+          <ul className="absolute top-full mt-2 w-full bg-white border border-gray-300 shadow-lg rounded-md z-50">
             {filteredUsers.map((user, index) => (
               <li
                 key={user.id}
                 ref={handleRef(index)}
-                className={index === highlightedIndex ? "highlighted" : ""}
+                className={`text-black p-2 hover:bg-gray-200 cursor-pointer ${
+                  index === highlightedIndex ? "bg-gray-300" : ""
+                }`}
               >
-                {user.username}
+                {user.firstname} {user.lastname} ({user.username})
               </li>
             ))}
           </ul>
         )}
       </div>
-      {/* tout les utilisateurs */}
-      <h2>Tout les utilisateurs</h2>
-      <div className="flex flex-col justify-center items-center gap-2 border-2 border-orange-500">
-        {users.map((user) => (
-          <div key={user.id}>
-            <div className="flex flex-row items-center gap-10">
-              <div>
-                <h3>{user.firstname}</h3>
-              </div>
-              <div>
-                <h3>{user.lastname}</h3>
-              </div>
-              <div>
-                <h3>{user.username}</h3>
-              </div>
-              <div className="flex flex-row gap-2">
-                <div>
-                  <button type="button" onClick={() => editUser(user.id)}>
-                    Edit
-                  </button>
-                </div>
-                <div>
-                  <button type="button" onClick={() => deleteUser(user.id)}>
-                    Delete
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-      <div>
-        <Link to="/admin/utilisateurs/creation-utilisateur">
+
+      <div className="flex flex-row gap-10 my-6">
+        <Link
+          to="/admin/gestion-utilisateur"
+          className="border border-primary p-2 bg-slate-800/70 rounded-lg"
+        >
           Ajouter un utilisateur
         </Link>
+      </div>
+
+      <div className="flex-grow">
+        {[
+          {
+            title: "Utilisateurs Standard",
+            users: standardUsers,
+            border: "border-primary",
+          },
+          {
+            title: "Administrateurs",
+            users: adminUsers,
+            border: "border-primary",
+          },
+        ].map((group) => (
+          <div key={group.title}>
+            <h2 className="my-4">{group.title}</h2>
+            {group.users.length === 0 ? (
+              <p>Aucun {group.title.toLowerCase()} trouvé.</p>
+            ) : (
+              <div
+                className={`flex flex-col justify-center items-center gap-2 border rounded-lg p-6 bg-slate-900/50 ${group.border}`}
+              >
+                {group.users.map((user) => (
+                  <div key={user.id} className="w-full px-4 py-6">
+                    <div className="flex flex-row justify-between items-center w-full gap-20">
+                      <div className="flex flex-row gap-4">
+                        <h3>{user.firstname}</h3>
+                        <h3>{user.lastname}</h3>
+                        <h3>{user.username}</h3>
+                      </div>
+                      <div className="flex flex-row gap-2">
+                        <Link
+                          to={`/admin/gestion-utilisateur/${user.id}`}
+                          className="border border-primary p-2 rounded-lg"
+                        >
+                          Modifier
+                        </Link>
+                        <button
+                          type="button"
+                          onClick={() => deleteUser(user.id)}
+                          className="border border-red-500 p-2 rounded-lg"
+                        >
+                          Supprimer
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        ))}
       </div>
     </div>
   );

@@ -25,6 +25,7 @@ router.delete("/api/user/:id", userAction.remove);
 router.post("/auth/register", authActions.register);
 router.post("/auth/login", checkAuthDatas, authActions.login);
 router.get("/auth/find/:id", authActions.findCurrentUser);
+router.put("/auth/update/:id", authActions.UpdateUser);
 
 // Define item-related routes
 import itemActions from "./modules/item/itemActions";
@@ -50,12 +51,26 @@ router.get("/api/videoGames/:id", videoGamesAction.read);
 router.put("/api/videoGames/:id", videoGamesAction.edit);
 router.post("/api/videoGames", videoGamesAction.add);
 router.delete("/api/videoGames/:id", videoGamesAction.remove);
+
+router.get(
+  "/api/videoGames/platform/:platform_Id",
+  videoGamesAction.getPlatformGames,
+);
 /* ************************************************************************* */
 
 import wishlistActions from "./modules/whishlist/wishlistActions";
 
-router.get("/api/user/profile/:id/wishlist", wishlistActions.getWishlist);
-//router.get("/api/videoGames/basket", videoGamesAction.getBasket);
+router.get("/api/user/:id/wishlist", wishlistActions.getwishlist);
+router.post("/api/user/:id/wishlist", wishlistActions.addwishlist);
+router.delete("/api/user/:id/wishlist", wishlistActions.removeGameFromWishlist);
+
+/* ************************************************************************* */
+
+import basketActions from "./modules/basket/basketActions";
+
+router.get("/api/users/:id/basket", basketActions.getBasket);
+router.post("/api/users/:id/basket", basketActions.addBasket);
+router.delete("/api/users/:id/basket", basketActions.removeGameFromBasket);
 
 /* ************************************************************************* */
 
